@@ -1,0 +1,1209 @@
+/* ::: ---------------------------- General | Buttons --------------------------------- */
+
+/* Base button styles */
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin: 2px 0;
+  transition: 0.3s;
+  background-color: var(--inactive-button-color1);
+  color: var(--inactive-button-text-color1);
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
+}
+
+/* Change background color of buttons on hover */
+button:hover {
+  background-color: var(--hover-button-color1);
+  color: var(--hover-button-text-color1);
+}
+
+/* Create an active/current tablink class */
+button.active {
+  background-color: var(--active-button-color1);
+  color: var(--active-button-text-color1);
+  /* No border effect or glow here */
+}
+
+/* Focus effect for primary buttons */
+button:focus {
+  outline: none; /* Remove the default outline */
+  background-color: var(--hover-button-color1);
+  position: relative;
+}
+
+button:focus::after {
+  content: ""; /* Required for the effect to work */
+  position: absolute;
+  bottom: 3px; /* Adjust the distance from the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; /* Control the width of the effect */
+  height: 4px; /* Control the thickness of the effect */
+  background: linear-gradient(to right, transparent, var(--color-orange), transparent); /* Gradient effect */
+  background: linear-gradient(to right, transparent, var(--neon-light), transparent); /* Gradient effect */
+  background: var(--color-orange);
+  background: var(--neon-light);
+}
+
+.main-content-containers:has(button:focus) {
+  /* Styles for the parent when the child is focused */
+  border-left: 3px solid var(--neon-light);
+}
+
+.main-content-containers:has(a:focus) {
+  /* Styles for the parent when the child is focused */
+  border-left: 3px solid var(--neon-light);
+}
+
+.header:has(button:focus) {
+  border-left: 3px solid var(--neon-light);
+  width: calc(100% - 3px); /* Subtract the border width */
+}
+
+/* Focus effect for active buttons - add red glow only when focused */
+button.active:focus {
+  background-color: var(--active-button-color1); /* Keep background color intact */
+}
+
+/* Third row buttons for first group (alt1-buttons) */
+.alt1-buttons {
+  background-color: var(--inactive-button-color3);
+  color: var(--inactive-button-text-color3);
+}
+
+.alt1-buttons:hover {
+  background-color: var(--hover-button-color3);
+  color: var(--hover-button-text-color3);
+}
+
+.alt1-buttons.active {
+  background-color: var(--active-button-color2);
+  color: var(--active-button-text-color2);
+  /* No red border effect for active buttons in normal state */
+}
+
+/* Focus effect for alt1-buttons */
+.alt1-buttons:focus {
+  outline: none;
+  background-color: var(--hover-button-color3); /* Optional: change background on focus */
+  transition: 0.3s;
+}
+
+/* Focus effect for active alt1-buttons - red glow only when focused */
+.alt1-buttons.active:focus {
+  background-color: var(--active-button-color2); /* Keep background color intact */
+}
+
+/* Third row buttons for second group (alt2-buttons) */
+.alt2-buttons {
+  background-color: var(--inactive-button-color2);
+  color: var(--inactive-button-text-color2);
+}
+
+.alt2-buttons:hover {
+  background-color: var(--hover-button-color2);
+  color: var(--hover-button-text-color2);
+}
+
+.alt2-buttons.active {
+  background-color: var(--active-button-color2);
+  color: var(--active-button-text-color2);
+  /* No red border effect for active buttons in normal state */
+}
+
+/* Focus effect for alt2-buttons */
+.alt2-buttons:focus {
+  outline: none;
+  background-color: var(--hover-button-color2); /* Optional: change background on focus */
+  transition: 0.3s;
+}
+
+/* Focus effect for active alt2-buttons - red glow only when focused */
+.alt2-buttons.active:focus {
+  background-color: var(--active-button-color2); /* Keep background color intact */
+}
+
+/*  */
+
+/*  */
+.asset-update-text {
+  margin-left: 20px;
+  color: var(--notes-text);
+}
+
+/* ::: ---------------------------- General | Containers --------------------------------- */
+
+/* Hidden initially */
+.asset-containers,
+.bridge-component-containers,
+.bridge-alignment-containers,
+.bridge-approach-containers,
+.bridge-joints-containers,
+.bridge-railings-containers,
+.bridge-deck-containers,
+.bridge-super-containers,
+.bridge-sub-containers,
+.bridge-bearings-containers,
+.bridge-culvert-containers,
+.bridge-channel-containers,
+.bridge-scour-containers,
+.bridge-overtopping-containers,
+.bridge-wildlife-containers,
+.culvert-item-containers,
+.wall-item-containers,
+.misc-component-containers,
+.glossary-item-containers,
+.district-item-containers,
+.settings-item-containers,
+.element-content-containers,
+.review-content-containers {
+  display: none;
+}
+
+.main-content-containers {
+  padding: 10px 20px;
+  text-align: left;
+  height: fit-content;
+  margin: 10px 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.main-content-containers:focus {
+  border-left: 3px solid var(--neon-light);
+}
+
+.content-container-tabs {
+  min-height: 25px;
+  padding: 5px 10px;
+  border-bottom: solid 2px grey;
+  cursor: default;
+  text-align: left;
+}
+
+.content-container-paragraphs {
+  padding: 12px;
+  background-color: var(--content-background-color);
+}
+
+.content-container-paragraphs-ul {
+  padding: 5px 20px;
+  margin: 0 5px;
+}
+
+.content-container-rating-lines {
+  border-bottom: solid 2px var(--rating-lines);
+  display: flex;
+  cursor: default;
+  background-color: var(--content-background-color);
+}
+
+.content-container-rating-numerical {
+  padding: 5px 10px 5px 15px;
+  width: 15px;
+  max-width: 15px;
+  min-width: 15px;
+  /* background-color: var(--content-background-color); */
+  background-color: none;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Parents the overall condition text and is the description text. */
+.content-container-rating-description-and-condition-bubble {
+  padding: 5px 5px 5px 5px;
+  text-indent: -8px;
+  text-wrap: wrap;
+  color: var(--text-color);
+}
+
+/* The overall condition text. (Good, Fair, Poor) */
+.content-container-rating-condition-bubble {
+  margin: 0 8px 0 5px;
+  padding: 0 5px;
+  font-weight: 500;
+  border-radius: 1px;
+  text-wrap: nowrap;
+  background-color: var(--active-button-color1);
+  color: var(--active-button-text-color1);
+}
+
+.content-container-comment-lines {
+  padding: 0 15px;
+  margin-bottom: 3px;
+  color: var(--text-color);
+  text-indent: -15px;
+  border-bottom: solid 2px var(--rating-lines);
+  transition: 0.2s;
+  color: var(--text-color);
+}
+
+.content-container-paragraphs p.content-container-comment-lines:nth-of-type(2),
+.content-container-paragraphs p.content-container-comment-lines:nth-of-type(6),
+.content-container-paragraphs p.content-container-comment-lines:nth-of-type(10) {
+  background-color: rgba(134, 10, 29, 0.4);
+  background-color: rgba(119, 82, 130, 0.3);
+}
+
+.content-container-paragraphs p.content-container-comment-lines:nth-of-type(4),
+.content-container-paragraphs p.content-container-comment-lines:nth-of-type(8) {
+  background-color: rgba(179, 15, 15, 0.4);
+  background-color: rgba(70, 18, 61, 0.6);
+  background-color: rgba(131, 99, 86, 0.3);
+}
+
+.content-container-comment-lines:active {
+  color: rgb(123, 131, 189);
+}
+
+.content-container-links-line {
+  min-height: 25px;
+  padding: 20px;
+  padding: 5px;
+  color: var(--text-color);
+  border-top: solid 2px grey;
+  cursor: default;
+  text-align: left;
+}
+
+.content-container-links-line-label {
+  display: inline-block;
+  cursor: default;
+}
+
+.content-container-links-line-links {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 4px 8px;
+  margin: 0 2px;
+  background-color: var(--inactive-button-color1);
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-block;
+  user-select: none;
+}
+
+.content-container-links-line-links:hover,
+.content-container-links-line-links:active,
+.content-container-links-line-links:focus {
+  color: var(--text-color);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.2);
+  background-color: var(--hover-button-color1);
+  border-radius: 1px;
+}
+
+.content-container-links-line-links:focus {
+  border-left: 3px solid var(--neon-light);
+}
+
+.paragraph-rating {
+  margin: 0 0 5px 0;
+}
+
+/* ::: ---------------------------- General | Textarea --------------------------------- */
+
+.textarea-containers {
+  width: 100%;
+  border: none;
+}
+
+.textarea-containers:hover,
+.textarea-containers:focus,
+.textarea-comments:focus {
+  background: rgba(91, 84, 122, 0.1);
+}
+
+.main-content-containers:has(.textarea-comments:focus) {
+  /* Styles for the parent when the child is focused */
+  border-left: 3px solid var(--neon-light);
+}
+
+.textarea-mirrors {
+  display: grid;
+  margin-left: 0px;
+  /* padding: 3px 5px 0 3px; */
+  text-align: left;
+}
+
+.textarea-mirrors::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+.textarea-comments,
+.textarea-mirrors::after {
+  padding: 3px 5px 5px 3px;
+  padding: 0px;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.textarea-comments {
+  resize: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  overflow: hidden;
+  transition: 3s;
+  color: var(--text-color);
+}
+
+.asset-data-container-header {
+  margin: -2px -2px 0px -2px;
+  margin: 20px 15px 0;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.asset-data-content-containers {
+  padding: 10px 20px;
+  text-align: left;
+  height: fit-content;
+  margin: 0 15px 10px 15px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.textarea-containers2 {
+  width: 100%;
+  border: none;
+  position: relative; /* Required for positioning the icon */
+}
+
+.textarea-containers2:hover,
+.textarea-containers2:focus,
+.textarea-comments2:focus {
+  background: rgba(91, 84, 122, 0.1);
+}
+
+.textarea-mirrors2 {
+  display: grid;
+  margin-left: 0px;
+  text-align: left;
+}
+
+.textarea-mirrors2::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+.textarea-comments2,
+.textarea-mirrors2::after {
+  padding: 3px 5px 5px 3px;
+  padding: 0px;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.textarea-comments2 {
+  resize: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  overflow: hidden;
+  transition: 3s;
+  color: var(--text-color);
+}
+
+.asset-icon-container,
+.error-icon-container {
+  position: absolute;
+  right: -15px; /* Position the icon to the right edge */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+}
+
+.asset-icon,
+.error-icon {
+  font-size: 18px; /* Adjust size as needed */
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: 2px 8px 2px 0;
+  border-radius: 10px;
+  user-select: none;
+  transition: 0.8s;
+}
+
+.asset-icon {
+  background-color: var(--inactive-button-color1);
+  color: var(--inactive-button-text-color1);
+}
+
+.error-icon {
+  background-color: rgba(158, 33, 33, 0.3);
+  color: var(--inactive-button-text-color1);
+}
+
+.asset-icon:hover {
+  color: var(--color-yellow);
+}
+
+.error-icon:hover {
+  background-color: rgba(158, 33, 33, 0.4);
+  color: var(--color-yellow);
+}
+
+.asset-icon:active {
+  /* transform: rotate(20deg); */
+  left: 4px;
+  top: 0px;
+  color: var(--color-red);
+}
+
+.error-icon:active {
+  /* transform: rotate(20deg); */
+  left: 4px;
+  top: 0px;
+  color: var(--color-red);
+}
+
+.main-error-icon {
+  font-size: 18px; /* Adjust size as needed */
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 10px;
+  user-select: none;
+  transition: 0.8s;
+  background-color: rgba(158, 33, 33, 0.3);
+  color: var(--inactive-button-text-color1);
+}
+
+.main-error-icon:hover,
+.main-error-icon:focus,
+.main-error-icon:active {
+  background-color: rgba(158, 33, 33, 0.4);
+  color: var(--inactive-button-text-color1);
+  color: var(--color-yellow);
+}
+
+.main-error-icon2 {
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: -4px 0 0;
+  border-radius: 10px;
+  user-select: none;
+  transition: 0.8s;
+  background-color: rgba(158, 33, 33, 0.3);
+  color: var(--inactive-button-text-color1);
+  display: none;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.main-error-icon2:hover,
+.main-error-icon2:focus,
+.main-error-icon2:active {
+  background-color: rgba(158, 33, 33, 0.4);
+  color: var(--color-yellow);
+}
+
+.textarea2-group-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjusts to create even columns */
+  gap: 20px; /* Adds consistent spacing between the boxes */
+  padding: 20px; /* Adds padding around the container */
+}
+
+.textarea2-group {
+  height: 160px; /* Consistent height for all boxes */
+  text-align: left;
+  padding: 10px; /* Adds padding inside each box */
+  border: solid 2px grey;
+  border-radius: 5px; /* Slightly rounds the corners for better appearance */
+  background-color: var(--main-color);
+  box-sizing: border-box; /* Ensures padding doesn't affect the overall width */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.paragraph-rating2 {
+  margin: 0 0 5px 0;
+}
+
+/* ::: ---------------------------- Bridge | Rating Table --------------------------------- */
+
+.highlight {
+  background-color: var(--highlight);
+}
+
+/* ::: ---------------------------- Bridge | Comment Builder --------------------------------- */
+
+.comment-builder-selector {
+  margin: 0px 0px 0px 0px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.comment-builder-option-list {
+  list-style-type: none;
+  padding: 5px;
+  margin-bottom: 0px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  display: flex;
+  background-color: var(--content-background-color);
+  border-bottom: solid 2px rgba(128, 128, 128, 0.2);
+}
+
+.comment-builder-option {
+  padding: 4px 8px;
+  background-color: var(--inactive-button-color1);
+  background-color: rgba(167, 84, 167, 0.247);
+  color: var(--inactive-button-text-color1);
+  border: 1px solid #cccccc7a;
+  cursor: pointer;
+}
+
+.comment-builder-option-list .selected {
+  background-color: rgba(241, 89, 47, 0.589);
+  color: var(--inactive-button-text-color1);
+  border: 1px solid #cccccc7a;
+}
+
+/* ::: ---------------------------- Bridge | Elements --------------------------------- */
+
+.element-content-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.element-content-cards {
+  width: 550px;
+  height: 160px;
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.element-content-cards li {
+  margin: 8px 10px;
+}
+
+.element-card-header {
+  margin: -2px -2px 5px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.element-card-paragraph {
+  text-indent: 0 hanging;
+}
+
+/* ::: ---------------------------- Bridge | Elements | JS --------------------------------- */
+
+.elements-segment-header {
+  margin: 8px 0px 0px 0px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.component-elements-container {
+  display: flex;
+  background-color: var(--content-background-color);
+  border-bottom: solid 2px rgba(128, 128, 128, 0.2);
+}
+
+.component-elements-button2,
+.component-elements-button3,
+.component-elements-button4 {
+  margin: 4px 5px;
+}
+
+.component-elements-button2 {
+  background-color: rgb(177, 177, 33);
+}
+.component-elements-button3 {
+  background-color: rgb(146, 90, 16);
+}
+.component-elements-button4 {
+  background-color: rgb(158, 33, 33);
+}
+
+.component-elements-item {
+  padding: 12px 0 0 10px;
+}
+
+/* ::: ---------------------------- Bridge | Maintenance --------------------------------- */
+
+.maintenance-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.maintenance-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 4px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.maintenance-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.maintenance-content-cards li {
+  margin: 8px 10px;
+}
+
+.maintenance-card-paragraph {
+  text-indent: 0 hanging;
+}
+
+/* ::: ---------------------------- Bridge | Maintenance | JS --------------------------------- */
+
+.component-maintenance-container {
+  display: flex;
+  background-color: var(--content-background-color);
+  border-bottom: solid 2px rgba(128, 128, 128, 0.2);
+}
+
+.component-maintenance-button1,
+.component-maintenance-button2,
+.component-maintenance-button3,
+.component-maintenance-button4 {
+  margin: 4px 5px;
+  background-color: rgba(128, 128, 128, 0); /* Default transparent background */
+  border: solid 2px;
+  transition: background-color 0.3s ease; /* Smooth transition for background change */
+}
+
+/* Button states for maintenance buttons */
+.component-maintenance-button1 {
+  border: solid 2px rgba(128, 128, 128, 0.3);
+  background-color: rgba(128, 128, 128, 0.3);
+}
+.component-maintenance-button2 {
+  border: solid 2px rgba(19, 114, 19, 0.3);
+  background-color: rgba(19, 114, 19, 0.3);
+}
+.component-maintenance-button3 {
+  border: solid 2px rgba(177, 177, 33, 0.3);
+  background-color: rgba(177, 177, 33, 0.3);
+}
+.component-maintenance-button4 {
+  border: solid 2px rgba(158, 33, 33, 0.3);
+  background-color: rgba(158, 33, 33, 0.3);
+}
+
+.component-maintenance-button1.active-maintenance {
+  background-color: rgba(128, 128, 128, 1);
+  border: solid 2px rgba(128, 128, 128, 1);
+}
+.component-maintenance-button2.active-maintenance {
+  background-color: rgba(19, 114, 19, 1);
+  border: solid 2px rgba(19, 114, 19, 1);
+}
+.component-maintenance-button3.active-maintenance {
+  background-color: rgba(177, 177, 33, 1);
+  border: solid 2px rgba(177, 177, 33, 1);
+}
+.component-maintenance-button4.active-maintenance {
+  background-color: rgba(158, 33, 33, 1);
+  border: solid 2px rgba(158, 33, 33, 1);
+}
+
+.component-maintenance-item {
+  padding: 12px 0 0 10px;
+}
+
+/* ::: ---------------------------- Bridge | Review --------------------------------- */
+
+.review-card-header {
+  margin: -2px -2px 0px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.light-placeholder::placeholder {
+  color: #fff; /* light texty */
+  opacity: 0.6; /* Ensures full opacity */
+}
+
+/* ::: ---------------------------- Culvert | Rating Guidance --------------------------------- */
+
+.culvert-content-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.culvert-content-cards {
+  width: 550px;
+  height: 280px;
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.culvert-content-cards li {
+  margin: 0px 10px;
+}
+
+.culvert-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 2px grey;
+  border-radius: 1px;
+}
+
+.culvert-card-paragraph {
+  text-indent: 0 hanging;
+}
+
+/* ::: ---------------------------- Culvert | Naming Convention --------------------------------- */
+
+.naming-conventions-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.naming-conventions-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 2px grey;
+  border-radius: 1px;
+}
+
+.naming-conventions-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.naming-conventions-content-cards li {
+  margin: 8px 10px;
+}
+
+.naming-conventions-card-paragraph {
+  text-indent: 0 hanging;
+}
+
+/* ::: ---------------------------- Culvert | Report Walkthrough --------------------------------- */
+
+.report-walkthrough-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.report-walkthrough-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 2px grey;
+  border-radius: 1px;
+}
+
+.report-walkthrough-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.report-walkthrough-content-cards li {
+  margin: 8px 10px;
+}
+
+.report-walkthrough-card-paragraph {
+  text-indent: 0 hanging;
+}
+
+/* ::: ---------------------------- Culvert | Report Walkthrough --------------------------------- */
+
+.settings-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.settings-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 2px grey;
+  border-radius: 1px;
+}
+
+.settings-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.settings-content-cards li {
+  margin: 8px 10px;
+}
+
+.settings-card-paragraph {
+  text-indent: 0 hanging;
+  padding-bottom: 5px;
+}
+
+.settings2-card-paragraph {
+  text-indent: 0 hanging;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+kbd {
+  background: #4d4b4b;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: monospace;
+}
+
+/* ::: ---------------------------- Wall | General --------------------------------- */
+
+.wall-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.wall-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 2px grey;
+  border-radius: 1px;
+}
+
+.wall-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.wall-card-paragraph {
+  text-indent: 0 hanging;
+  padding: 0 10px 5px 10px;
+}
+
+/* ::: ---------------------------- Glossaries --------------------------------- */
+
+.glossary-content-cards-container {
+  display: block;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
+}
+
+.glossary-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: 10px 5px;
+  padding-bottom: 5px;
+  border: solid 2px grey;
+  border-radius: 1px;
+  background-color: var(--main-color);
+}
+
+.glossary-card-header {
+  margin: -2px -2px 8px -2px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+  cursor: default;
+}
+
+.glossary-card-paragraph {
+  text-indent: 0 hanging;
+  padding: 0 10px 5px 10px;
+  cursor: default;
+}
+
+.glossary-term-link {
+  color: inherit; /* Keeps the text color unchanged */
+  text-decoration: none; /* Removes underline */
+  cursor: pointer;
+}
+
+.glossary-term-link:focus {
+  color: var(--color-yellow);
+}
+
+/* New styling */
+
+/* Some weird margin stuff going on here */
+
+.glossary-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: -8px 0;
+  padding-bottom: 10px;
+  border: None;
+  background-color: transparent;
+}
+
+.glossary-card-header {
+  margin: 8px 0px 0px 0px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.glossary-card-paragraph {
+  background-color: var(--content-background-color);
+  border-bottom: solid 2px rgba(128, 128, 128, 0.2);
+  text-indent: 0 hanging;
+  padding: 5px 10px 5px 10px;
+  cursor: default;
+}
+/* ::: ---------------------------- Not Sorted | Working --------------------------------- */
+
+.error-popup {
+  position: absolute;
+  background-color: rgb(80, 50, 60);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 300px;
+  word-wrap: break-word;
+
+  /* Optional adjustments for smoother appearance */
+  transition: opacity 0.3s ease;
+}
+
+/* ::: ---------------------------- Unknown --------------------------------- */
+
+/* .category { */
+/* margin: 5px; */
+/* } */
+
+/* #output { */
+/* margin-top: 10px; */
+/* } */
+
+/* ::: ---------------------------- Bridge | SNBI Commentary (Page 1) --------------------------------- */
+
+.snbi-content-cards {
+  min-height: fit-content;
+  text-align: left;
+  margin: -8px 0;
+  padding-bottom: 10px;
+  border: None;
+  background-color: transparent;
+}
+
+.snbi-commentary-card-header {
+  margin: 8px 0px 0px 0px;
+  background-color: var(--hover-button-color1);
+  padding: 10px 4px 4px 8px;
+  border-bottom: solid 1px grey;
+  border-radius: 1px;
+}
+
+.snbi-card-paragraph {
+  background-color: var(--content-background-color);
+  border-bottom: solid 2px rgba(128, 128, 128, 0.2);
+  text-indent: 0 hanging;
+  padding: 5px 10px 5px 10px;
+  cursor: default;
+}
+
+/* ::: ---------------------------- New Review Page --------------------------------- */
+
+.textareaNew-group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+.textareaNew-group-container > * {
+  width: 100%;
+}
+
+.rating-button {
+  padding: 0 10px;
+  margin: 0;
+  border-radius: 0;
+  height: 24px; /* fixed height */
+  width: 30px;
+  font-size: 16px;
+  line-height: 24px; /* ensure text is centered */
+}
+
+.content-container-with-rating {
+  display: flex;
+  align-items: center; /* Center vertically */
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--content-background-color);
+  position: relative; /* This is required to ensure the button is positioned relative to this container */
+}
+
+.paragraph-rating.paragraph-navigate {
+  cursor: pointer;
+}
+
+.review-textarea-highlighted {
+  background: rgba(74, 36, 20, 0.7);
+}
+
+/* ------------------------------ */
+
+.theme-slider {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  width: 40px;
+  height: 30px;
+  background-color: #1c4592;
+  background-color: #f78da7;
+  background-color: #d2d2d2;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 3s;
+  z-index: 9999;
+}
+
+.theme-slider .slider-knob {
+  width: 26px;
+  height: 26px;
+  margin: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 1s;
+}
+
+[data-theme="pink"] .theme-slider {
+  background-color: #f78da7;
+  background-color: #1c4592;
+  background-color: #6c6c6c;
+}
+
+[data-theme="pink"] .theme-slider .slider-knob {
+  transform: translateX(10px);
+}
+
+[data-theme="white"] .theme-slider {
+  background-color: #f78da7;
+  background-color: #1c4592;
+  background-color: #6c6c6c;
+}
+
+[data-theme="white"] .theme-slider .slider-knob {
+  transform: translateX(10px);
+}
+
+.iterate-img {
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+.iterate-img.fade-out {
+  opacity: 0;
+}
+
+html,
+body,
+* {
+  transition: background-color 1s, color 1s, border-color 1s;
+}
+
+/* --------------------------------------- */
+
+.label-and-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.paint-year {
+  width: 80px;
+  padding: 4px;
+  background-color: var(--main-color);
+  margin-left: auto;
+
+  border-radius: 4px;
+  background-color: var(--active-button-color1);
+  color: var(--active-button-text-color1);
+
+  position: relative;
+  top: -5px;
+}
+
+.paint-year::placeholder {
+  color: #555; /* Darker gray */
+  opacity: 1; /* Ensures full opacity */
+}
+
+/* class you toggle */
+.gray-out {
+  color: gray; /* or #aaa etc. */
+}

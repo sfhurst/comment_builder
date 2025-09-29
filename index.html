@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="blue">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment Builder</title>
+    <link rel="icon" href="./media/logo-rings-only-red.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/foundations.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=DM+Sans:opsz@9..40&family=Ubuntu:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  </head>
+  <body>
+    <header class="header">
+      <!-- <div style="display: flex; height: 40px; line-height: 40px; vertical-align: middle; margin-left: 10px">Bridge | Culvert | Walls</div>
+      <div style="display: flex; height: 40px; line-height: 40px; vertical-align: middle; margin-left: 10px">Superstructure | Reinforced Concrete Slab | Spalling</div> -->
+      <div class="header-tab-line">
+        <div class="left-buttons">
+          <button class="asset-buttons active row1">Clear</button>
+          <button class="asset-buttons active row1">Copy & Close</button>
+          <button class="defect1-component-buttons active row2">&#9664;</button>
+          <button class="defect1-component-buttons active row2">&#9654;</button>
+          The {location} has {quantity} {severity} {defect}: {details}.
+        </div>
+      </div>
+    </header>
+
+    <!-- ::::: --------------------------- Main --------------------------- -->
+
+    <main id="main-content" tabindex="-1">
+      <div class="defect-containers asset-display">
+        <div class="main-content-containers">
+          <button class="defect1-component-buttons active row2">Isolated</button>
+          <button class="defect1-component-buttons active row2">Some</button>
+          <button class="defect1-component-buttons active row2">Widespread</button>
+        </div>
+        <div class="main-content-containers">
+          <button class="defect1-component-buttons active row3">Inherent</button>
+          <button class="defect1-component-buttons active row3">Minor</button>
+          <button class="defect1-component-buttons active row3">Moderate</button>
+          <button class="defect1-component-buttons active row3">Major</button>
+        </div>
+        <div class="main-content-containers">
+          <p class="paragraph-rating">Defect:</p>
+          <div class="content-container-paragraphs">
+            <div class="textarea-containers">
+              <div class="textarea-mirrors">
+                <textarea
+                  id="txt01-textarea"
+                  class="textarea-comments reset-comments row4"
+                  name="Defect"
+                  rows="1"
+                  data-category="B.AP.01"
+                  oninput="expandTextarea(event, 'txt01-textarea')"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-content-containers">
+          <p class="paragraph-rating">Location:</p>
+          <div class="content-container-paragraphs">
+            <div class="textarea-containers">
+              <div class="textarea-mirrors">
+                <textarea
+                  id="txt02-textarea"
+                  class="textarea-comments reset-comments row5"
+                  name="Location"
+                  rows="1"
+                  data-category="B.AP.01"
+                  oninput="expandTextarea(event, 'txt02-textarea')"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-content-containers">
+          <p class="paragraph-rating">Details:</p>
+          <div class="content-container-paragraphs">
+            <div class="textarea-containers">
+              <div class="textarea-mirrors">
+                <textarea
+                  id="txt03-textarea"
+                  class="textarea-comments reset-comments row6"
+                  name="Details"
+                  rows="1"
+                  data-category="B.AP.01"
+                  oninput="expandTextarea(event, 'txt03-textarea')"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-content-containers">
+          <button class="defect1-component-buttons active row7">Template 1</button>
+          <button class="defect1-component-buttons active row7">Template 2</button>
+          <button class="defect1-component-buttons active row7">Template 3</button>
+        </div>
+        <div class="main-content-containers">
+          <p class="paragraph-rating">Final Comment:</p>
+          <div class="content-container-paragraphs">
+            <div class="textarea-containers">
+              <div class="textarea-mirrors">
+                <textarea
+                  id="txt04-textarea"
+                  class="textarea-comments reset-comments row9"
+                  name="Details"
+                  rows="1"
+                  data-category="B.AP.01"
+                  oninput="expandTextarea(event, 'txt04-textarea')"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ::::: --------------------------- Footer --------------------------- -->
+
+    <footer class="footer">
+      <div class="outer-container">
+        <a class="logolink" tabindex="-1" href="iterate-logo.html" target="_blank" rel="noreferrer">
+          <div class="inner-container" style="display: flex">
+            <span class="footer-image-holder">
+              <img class="iterate-img" src=".\media\logo-rings-only-purple.png" alt="iterate logo" />
+            </span>
+            <span class="footer-text-holder"
+              ><span class="ite-text"
+                >ite<span class="rate-text">rate</span> <span class="trailing-text"> //bridge Inspection tools</span></span
+              ></span
+            >
+          </div>
+        </a>
+      </div>
+    </footer>
+    <div id="theme-toggle" class="theme-slider" title="Toggle Theme">
+      <div class="slider-knob"></div>
+    </div>
+  </body>
+</html>

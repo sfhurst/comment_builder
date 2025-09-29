@@ -1,0 +1,542 @@
+/* ::: --------------------------- Defaults | Resets --------------------------- */
+
+:root {
+  /* Default fallback values if no theme is set */
+  --main-background: none;
+  --main-background-overlay: rgba(0, 0, 0, 0.5);
+  --main-color: gray;
+  --text-color: white;
+  --content-background-color: rgba(0, 0, 0, 0.5);
+  --active-button-color1: #ccc;
+  --hover-button-color1: #666;
+  --inactive-button-color1: #444;
+  --active-button-text-color1: black;
+  --hover-button-text-color1: white;
+  --inactive-button-text-color1: white;
+  /* repeat for color2 and color3 */
+
+  --color-red: rgb(234, 30, 30);
+  --color-blue: rgb(45, 45, 168);
+  --color-yellow: rgb(202, 199, 18);
+  --color-orange: rgba(241, 89, 47, 0.7);
+  --color-purple: rgba(167, 84, 167, 0.7);
+
+  /* Failed - Critical */
+  --rating-0: rgba(100, 0, 0, 0.5); /* Very Dark Red */
+  --rating-0: rgba(52, 0, 0, 0.6); /* Very Dark Red */
+  --rating-1: rgba(120, 0, 0, 0.5); /* Very Dark Red */
+  --rating-1: rgba(120, 0, 0, 0.6); /* Very Dark Red */
+  --rating-2: rgba(139, 0, 0, 0.5); /* Dark Red */
+  --rating-2: rgba(187, 5, 5, 0.6); /* Dark Red */
+
+  /* Serious - Poor */
+  --rating-3: rgba(200, 30, 0, 0.5); /* Deep Orange-Red */
+  --rating-3: rgba(221, 51, 29, 0.6); /* Deep Orange-Red */
+  --rating-4: rgba(230, 90, 0, 0.5); /* Dark Orange */
+  --rating-4: rgba(244, 131, 61, 0.6); /* Dark Orange */
+  --rating-P: rgba(230, 90, 0, 0.5); /* Dark Orange (Poor) */
+  --rating-P: rgba(244, 131, 61, 0.6); /* Dark Orange (Poor) */
+
+  /* Fair - Satisfactory (closer tones) */
+  --rating-5: rgba(255, 180, 0, 0.4); /* Gold */
+  --rating-5: rgba(244, 251, 35, 0.6); /* Gold */
+  --rating-F: rgba(255, 180, 0, 0.4); /* Fair */
+  --rating-F: rgba(244, 251, 35, 0.6); /* Fair */
+  --rating-6: rgba(235, 200, 50, 0.4); /* Slightly lighter Gold/Yellow */
+  --rating-6: rgba(171, 255, 87, 0.6); /* Slightly lighter Gold/Yellow */
+
+  /* Good - Excellent */
+  --rating-7: rgba(140, 240, 100, 0.4); /* Soft Green */
+  --rating-7: rgba(88, 255, 22, 0.6); /* Soft Green */
+  --rating-G: rgba(140, 240, 100, 0.4); /* Good */
+  --rating-G: rgba(88, 255, 22, 0.6); /* Good */
+  --rating-8: rgba(80, 200, 80, 0.4); /* Medium Green */
+  --rating-8: rgba(85, 164, 221, 0.6); /* Medium Green */
+  --rating-9: rgba(40, 150, 40, 0.4); /* Deep Green */
+  --rating-9: rgba(19, 60, 192, 0.6); /* Deep Green */
+}
+
+[data-theme="white"] {
+  --main-background: url("../media/light-down-black2.svg");
+  --main-background-overlay: rgba(255, 255, 255, 0.85);
+  --main-color: rgba(240, 240, 240, 0.95); /* light neutral */
+  --text-color: rgb(33, 33, 33); /* dark readable text */
+  --content-background-color: rgba(220, 218, 218, 0.9); /* soft white */
+
+  /* primary buttons - background */
+  --active-button-color1: rgb(230, 230, 230); /* light grey */
+  --hover-button-color1: rgb(193, 193, 193); /* soft blue highlight */
+  --inactive-button-color1: rgb(210, 210, 210); /* muted grey */
+
+  /* primary buttons - text */
+  --active-button-text-color1: rgb(42, 42, 42);
+  --hover-button-text-color1: var(--text-color);
+  --inactive-button-text-color1: var(--text-color);
+
+  /* secondary buttons - background */
+  --active-button-color2: rgb(230, 230, 230);
+  --hover-button-color2: rgb(180, 220, 180); /* light green */
+  --inactive-button-color2: rgb(200, 210, 200); /* pale greenish grey */
+
+  /* secondary buttons - text */
+  --active-button-text-color2: rgb(42, 42, 42);
+  --hover-button-text-color2: var(--text-color);
+  --inactive-button-text-color2: var(--text-color);
+
+  /* tertiary buttons - background */
+  --active-button-color3: rgb(230, 230, 230);
+  --hover-button-color3: rgb(240, 220, 180); /* light beige/tan */
+  --inactive-button-color3: rgb(225, 215, 195); /* muted tan */
+
+  /* tertiary buttons - text */
+  --active-button-text-color3: rgb(42, 42, 42);
+  --hover-button-text-color3: var(--text-color);
+  --inactive-button-text-color3: var(--text-color);
+
+  --rating-lines: rgba(89, 89, 89, 0.32); /* subtle grid lines */
+  --neon-light: rgb(76, 76, 253);
+  --highlight: rgba(168, 168, 168, 0.7);
+  --notes-text: rgba(33 33 33 / 0.6);
+}
+
+[data-theme="orange"] {
+  --main-background: url("../media/light-down-black2.svg");
+  --main-background-overlay: rgb(65 45 25 / 0.9); /* warm dark overlay */
+  --main-color: rgb(124 69 18 / 0.9); /* rich burnt orange */
+  --text-color: rgb(245 235 220); /* light tan text */
+  --content-background-color: rgb(50 30 20 / 0.7); /* muted brownish base */
+
+  /* primary buttons - background */
+  --active-button-color1: rgb(215 180 140); /* warm beige */
+  --hover-button-color1: rgb(160 85 30); /* deep orange hover */
+  --inactive-button-color1: rgb(130 70 25); /* duller burnt orange */
+
+  /* primary buttons - text */
+  --active-button-text-color1: rgb(42 42 42);
+  --hover-button-text-color1: var(--text-color);
+  --inactive-button-text-color1: var(--text-color);
+
+  /* secondary buttons - background */
+  --active-button-color2: rgb(215 180 140);
+  --hover-button-color2: rgb(155 100 50); /* medium toast brown */
+  --inactive-button-color2: rgb(140 85 45); /* muted orange-brown */
+
+  /* secondary buttons - text */
+  --active-button-text-color2: rgb(42 42 42);
+  --hover-button-text-color2: var(--text-color);
+  --inactive-button-text-color2: var(--text-color);
+
+  /* tertiary buttons - background */
+  --active-button-color3: rgb(215 180 140);
+  --hover-button-color3: rgb(125 95 55); /* mustard brown */
+  --inactive-button-color3: rgb(110 80 45); /* toned down mustard */
+
+  /* tertiary buttons - text */
+  --active-button-text-color3: rgb(42 42 42);
+  --hover-button-text-color3: var(--text-color);
+  --inactive-button-text-color3: var(--text-color);
+
+  --rating-lines: rgba(160, 120, 90, 0.2); /* soft orange tint */
+  --neon-light: rgb(76, 76, 253);
+  --highlight: rgba(63, 63, 63, 0.7);
+}
+
+[data-theme="blue"] {
+  --main-background: url("../media/light-down-black2.svg");
+  --main-background-overlay: rgb(54 54 54 / 0.9);
+  --main-color: rgb(58 73 95 / 0.9);
+  --text-color: rgb(233 233 233);
+  --content-background-color: rgb(34 34 34 / 0.7);
+  --active-button-color1: rgb(182 182 182);
+  --hover-button-color1: rgb(40 40 65);
+  --inactive-button-color1: rgb(47 47 77);
+  --active-button-text-color1: rgb(42 42 42);
+  --hover-button-text-color1: var(--text-color);
+  --inactive-button-text-color1: var(--text-color);
+  --active-button-color2: rgb(182 182 182);
+  --hover-button-color2: rgb(58 88 74);
+  --inactive-button-color2: rgb(65 99 79);
+  --active-button-text-color2: rgb(42 42 42);
+  --hover-button-text-color2: var(--text-color);
+  --inactive-button-text-color2: var(--text-color);
+  --active-button-color3: rgb(182 182 182);
+  --hover-button-color3: rgb(88, 83, 58);
+  --inactive-button-color3: rgb(97, 99, 65);
+  --active-button-text-color3: rgb(42 42 42);
+  --hover-button-text-color3: var(--text-color);
+  --inactive-button-text-color3: var(--text-color);
+
+  --rating-lines: rgba(128, 128, 128, 0.2);
+  --neon-light: rgb(76, 76, 253);
+  --highlight: rgba(63, 63, 63, 0.7);
+  --notes-text: rgba(233 233 233 / 0.6);
+}
+
+[data-theme="pink"] {
+  --main-background: url("../media/light-down-black2.svg");
+  --main-background-overlay: rgba(147, 147, 147, 0.9);
+  --main-color: rgba(109, 93, 110, 0.9);
+  --text-color: rgb(29, 29, 29);
+  --content-background-color: rgba(156, 156, 156, 0.7);
+  --active-button-color1: rgb(182 182 182);
+  --hover-button-color1: rgb(166, 152, 174);
+  --inactive-button-color1: rgb(149, 135, 156);
+  --active-button-text-color1: rgb(42 42 42);
+  --hover-button-text-color1: var(--text-color);
+  --inactive-button-text-color1: var(--text-color);
+  --active-button-color2: rgb(182 182 182);
+  --hover-button-color2: rgb(119, 156, 153);
+  --inactive-button-color2: rgb(107, 140, 137);
+  --active-button-text-color2: rgb(42 42 42);
+  --hover-button-text-color2: var(--text-color);
+  --inactive-button-text-color2: var(--text-color);
+  --active-button-color3: rgb(182 182 182);
+  --hover-button-color3: rgb(103, 118, 134);
+  --inactive-button-color3: rgb(89, 103, 117);
+  --active-button-text-color3: rgb(42 42 42);
+  --hover-button-text-color3: var(--text-color);
+  --inactive-button-text-color3: var(--text-color);
+
+  --rating-lines: rgba(199, 199, 199, 0.2);
+  --neon-light: rgb(76, 76, 253);
+  --highlight: rgba(149, 135, 156, 0.7);
+}
+
+html,
+header,
+textarea,
+input,
+button,
+div,
+p,
+li,
+ul {
+  font-family: "Ubuntu", sans-serif;
+  font-family: "DM Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+}
+
+ul {
+  margin: 0 0 0 -15px;
+  /* text-indent: -5px; */
+}
+
+select {
+  background-color: #222;
+  color: white;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #666;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
+  font-family: "DM Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ::: --------------------------- HTML | Body --------------------------- */
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0px 10px 10px 10px;
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+  height: 100%;
+  background-image: var(--main-background);
+  background-size: 100px 115px;
+}
+
+/* ::: --------------------------- Header --------------------------- */
+
+.header {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: solid 2px grey;
+  border-radius: 1px 1px 1px 1px;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--main-color);
+  color: var(--text-color);
+}
+
+.header-tab-line {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px 0 10px; /* Adjusted padding for spacing */
+}
+
+/* ::: --------------------------- Header | Asset Search --------------------------- */
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust this value as needed */
+}
+
+.search-box {
+  padding: 5px;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  width: 80px; /* Adjust width as needed */
+  background-color: var(--active-button-color1);
+  color: var(--active-button-text-color1);
+}
+
+.search-title {
+  padding: 0 10px;
+  color: var(--text-color);
+  cursor: pointer; /* Change the cursor to a pointer when hovering */
+  transition: 0.8s;
+}
+
+.search-title:hover {
+  color: var(--color-yellow);
+}
+
+.search-title:focus {
+  color: var(--color-yellow);
+}
+
+.search-title:active {
+  /* transform: rotate(20deg); */
+  left: 4px;
+  top: 0px;
+  color: var(--color-red);
+}
+
+.search-box:focus {
+  outline: none;
+  box-shadow: 0 0 4px 4px rgba(255, 25, 0, 0.685); /* Soft blue glow for focus */
+  transition: 0.3s;
+  background-color: rgb(183, 190, 196);
+}
+
+.search-box::placeholder {
+  color: #555; /* Darker gray */
+  opacity: 1; /* Ensures full opacity */
+}
+
+.button-icon {
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  margin: 2px 8px 2px 0;
+  background-color: var(--inactive-button-color1);
+  color: var(--inactive-button-text-color1);
+  /* border: 2px solid #ccc; */
+  border-radius: 10px;
+  cursor: default;
+  user-select: none;
+  font-weight: 500;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.button-icon:hover {
+  color: var(--color-yellow);
+}
+
+.button-icon:active {
+  /* transform: rotate(20deg); */
+  left: 4px;
+  top: 0px;
+  color: var(--color-red);
+}
+
+/* ::: --------------------------- Main --------------------------- */
+
+main {
+  position: fixed;
+  top: 62px;
+  height: calc(100% - 62px - 57px);
+  width: calc(100% - 20px);
+  width: 100%;
+  overflow-y: auto;
+  background-color: var(--main-background-overlay);
+  color: var(--text-color);
+}
+
+/* main containers styled in a separate section. */
+
+/* ::: --------------------------- Footer --------------------------- */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 20px); /* minus the padding on both sides */
+  width: 100%;
+  height: 35px;
+  padding: 10px 0;
+  border: none;
+  border-top: solid 2px grey;
+  border-radius: 1px 1px 1px 1px;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--main-color);
+  color: var(--text-color);
+}
+
+.footer-spacer {
+  /* sits above footer to add a little blank space for extra scrolling */
+  height: 5px;
+  display: block;
+  margin-top: 5px;
+  background-color: none;
+}
+
+/* ::: --------------------------- Footer | Logo --------------------------- */
+
+.outer-container {
+  position: absolute;
+  left: 50%; /* Positions the top-left corner inside the parent */
+  transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%); /* Adjusts the position based on width and height (left, top) */
+  width: 320px;
+  height: 30px;
+  cursor: default;
+}
+
+.logolink {
+  text-decoration: none;
+}
+
+.inner-container {
+  margin: auto;
+  width: 290px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  padding-left: 0px; /* Margin (auto) and width values allow the object to be centered horizontally inside parent */
+}
+
+.footer-image-holder {
+  /* Logo */
+  width: 30px;
+  height: 60px;
+  margin: -6px 0 0 0;
+  padding: 0 0 0 0;
+  border: 3px solid rgb(12, 158, 158, 0);
+}
+
+.iterate-img {
+  padding-left: 10px; /* Move logo position to the right */
+  height: 40px;
+  width: 40px;
+}
+
+.footer-text-holder {
+  /* Text */
+  width: 290px;
+  height: 60px;
+  margin: -4px 0 0 0;
+  padding: 4px 0 0 0;
+  border: 3px solid rgba(245, 144, 144, 0);
+}
+.ite-text {
+  color: var(--color-purple);
+  text-shadow: 0 0 2px rgb(0, 0, 0), 1px 1px 2px rgb(0, 0, 0);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+.rate-text {
+  color: var(--color-orange);
+  text-shadow: 0 0 2px rgb(0, 0, 0), 1px 1px 2px rgb(0, 0, 0);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+.trailing-text {
+  font-size: 12px;
+  color: rgb(224, 224, 224);
+  color: var(--text-color);
+  vertical-align: 2px;
+  text-shadow: 0 0 8px rgb(0, 0, 0), 3px 3px 8px rgb(0, 0, 0);
+}
+
+/* ::: --------------------------- Media --------------------------- */
+
+/* Asset data display boxes */
+@media (max-width: 768px) {
+  .textarea2-group-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjusts for smaller screen sizes */
+  }
+}
+
+@media (max-width: 480px) {
+  .textarea2-group-container {
+    grid-template-columns: 1fr; /* Stacks the boxes vertically on very small screens */
+  }
+}
+
+/* Review tab message */
+@media (max-width: 1280px) {
+  /* Adjust 600px to your needs */
+  .asset-update-text {
+    display: none;
+  }
+}
+
+/* Main asset buttons */
+@media (max-width: 768px) {
+  /* Hide the buttons or elements with specific data-target values */
+  [data-target="culvert-asset-tab"],
+  [data-target="wall-asset-tab"],
+  [data-target="misc-asset-tab"] {
+    display: none;
+  }
+}
+
+/* Hide the whole component row (js automatically activates the review page) */
+@media (max-width: 768px) {
+  #bridge-component-button-row {
+    display: none;
+  }
+}
+
+/* Pointer on Review tab links back to component pages */
+/* Apply !important because this won't work without it */
+@media (max-width: 768px) {
+  .paragraph-rating.paragraph-navigate {
+    cursor: default !important;
+  }
+}
+
+/* ::: --------------------------- Not Sorted | Working --------------------------- */
+
+/* ::: --------------------------- Unknown --------------------------- */

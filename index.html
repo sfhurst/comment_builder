@@ -14,14 +14,35 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Roboto&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <!-- Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
   </head>
   <body>
     <header class="header">
@@ -29,10 +50,36 @@
       <div style="display: flex; height: 40px; line-height: 40px; vertical-align: middle; margin-left: 10px">Superstructure | Reinforced Concrete Slab | Spalling</div> -->
       <div class="header-tab-line">
         <div class="left-buttons">
-          <button data-button-class="navigation-buttons" class="navigation-buttons row1" >Clear</button>
-          <button id="copyCloseButton" data-button-class="navigation-buttons" class="navigation-buttons active row1" >Copy & Close</button>
-          <button data-button-class="navigation-buttons" class="navigation-buttons row1">&#9664;</button>
-          <button data-button-class="navigation-buttons" class="navigation-buttons row1" >&#9654;</button>
+          <button
+            id="copyCloseButton"
+            data-button-class="navigation-buttons"
+            class="navigation-buttons active row1"
+          >
+            Copy & Close
+          </button>
+          |
+          <button
+            id="addDefectButton"
+            data-button-class="navigation-buttons"
+            class="navigation-buttons row1"
+          >
+            Add Defect
+          </button>
+          <button
+            id="removeDefectButton"
+            data-button-class="navigation-buttons"
+            class="navigation-buttons row1"
+          >
+            Remove Defect
+          </button>
+          |
+          <button
+            id="changeDefectButton"
+            data-button-class="navigation-buttons"
+            class="navigation-buttons row1"
+          >
+            Change Defect
+          </button>
         </div>
       </div>
     </header>
@@ -42,18 +89,70 @@
     <main id="main-content" tabindex="-1">
       <div class="defect-containers asset-display">
         <div class="main-content-containers">
-          <button data-button-class="quantity-buttons" class="quantity-buttons row2">Isolated</button>
-          <button data-button-class="quantity-buttons" class="quantity-buttons active row2">Some</button>
-          <button data-button-class="quantity-buttons" class="quantity-buttons row2">Widespread</button> |
-          <button data-button-class="quantity-buttons" class="quantity-buttons row2">X</button>
+          <button
+            data-button-class="quantity-buttons"
+            class="quantity-buttons row2"
+          >
+            Isolated
+          </button>
+          <button
+            data-button-class="quantity-buttons"
+            class="quantity-buttons active row2"
+          >
+            Some
+          </button>
+          <button
+            data-button-class="quantity-buttons"
+            class="quantity-buttons row2"
+          >
+            Widespread
+          </button>
+          |
+          <button
+            data-button-class="quantity-buttons"
+            class="quantity-buttons row2"
+          >
+            X
+          </button>
         </div>
         <div class="main-content-containers">
-          <button data-button-class="severity-buttons" class="severity-buttons row3">Inherent</button>
-          <button data-button-class="severity-buttons" class="severity-buttons active row3">Minor</button>
-          <button data-button-class="severity-buttons" class="severity-buttons row3">Moderate</button>
-          <button data-button-class="severity-buttons" class="severity-buttons row3">Major</button> |
-          <button data-button-class="severity-buttons" class="severity-buttons row3">Insignificant</button>
-          <button data-button-class="severity-buttons" class="severity-buttons row3">X</button>
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons row3"
+          >
+            Inherent
+          </button>
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons active row3"
+          >
+            Minor
+          </button>
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons row3"
+          >
+            Moderate
+          </button>
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons row3"
+          >
+            Major
+          </button>
+          |
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons row3"
+          >
+            Insignificant
+          </button>
+          <button
+            data-button-class="severity-buttons"
+            class="severity-buttons row3"
+          >
+            X
+          </button>
         </div>
         <div class="main-content-containers">
           <p class="paragraph-rating">Defect:</p>
@@ -107,12 +206,54 @@
           </div>
         </div>
         <div class="main-content-containers">
-          <button data-button-class="template-buttons" class="template-buttons active row7">Template 1</button>
-          <button data-button-class="template-buttons" class="template-buttons row7">Template 2</button>
-          <button data-button-class="template-buttons" class="template-buttons row7">Template 3</button>
-          <button data-button-class="template-buttons" class="template-buttons row7">Template 4</button>
-          <button data-button-class="template-buttons" class="template-buttons row7">Template 5</button>
-          <span id="template-text" class="asset-update-text">The &lt;location&gt; has &lt;quantity&gt; &lt;severity&gt; &lt;defect&gt;: &lt;details&gt;.</span>
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons active row7"
+          >
+            T1
+          </button>
+          |
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T2
+          </button>
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T3
+          </button>
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T4
+          </button>
+          |
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T5
+          </button>
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T6
+          </button>
+          <button
+            data-button-class="template-buttons"
+            class="template-buttons row7"
+          >
+            T7
+          </button>
+          <span id="template-text" class="asset-update-text"
+            >&lt;Quantity&gt; &lt;severity&gt; defects&gt;:
+            &lt;details&gt;.</span
+          >
         </div>
         <div class="main-content-containers">
           <p class="paragraph-rating">Final Comment:</p>
@@ -138,14 +279,27 @@
 
     <footer class="footer">
       <div class="outer-container">
-        <a class="logolink" tabindex="-1" href="iterate-logo.html" target="_blank" rel="noreferrer">
+        <a
+          class="logolink"
+          tabindex="-1"
+          href="iterate-logo.html"
+          target="_blank"
+          rel="noreferrer"
+        >
           <div class="inner-container" style="display: flex">
             <span class="footer-image-holder">
-              <img class="iterate-img" src=".\media\logo-rings-only-purple.png" alt="iterate logo" />
+              <img
+                class="iterate-img"
+                src=".\media\logo-rings-only-purple.png"
+                alt="iterate logo"
+              />
             </span>
             <span class="footer-text-holder"
               ><span class="ite-text"
-                >ite<span class="rate-text">rate</span> <span class="trailing-text"> //bridge Inspection tools</span></span
+                >ite<span class="rate-text">rate</span>
+                <span class="trailing-text">
+                  //bridge Inspection tools</span
+                ></span
               ></span
             >
           </div>

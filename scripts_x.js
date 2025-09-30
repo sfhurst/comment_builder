@@ -65,37 +65,41 @@
 
 // :::: (Theme Button) = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.getElementById("theme-toggle");
-  const logoImg = document.querySelector(".iterate-img");
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('theme-toggle');
+  const logoImg = document.querySelector('.iterate-img');
 
-  slider.addEventListener("click", () => {
+  slider.addEventListener('click', () => {
     const html = document.documentElement;
-    const current = html.getAttribute("data-theme");
+    const current = html.getAttribute('data-theme');
 
-    if (current === "blue") {
-      html.setAttribute("data-theme", "white");
-      logoImg.src = "./media/logo-rings-only-orange.png";
+    if (current === 'blue') {
+      html.setAttribute('data-theme', 'white');
+      logoImg.src = './media/logo-rings-only-orange.png';
     } else {
-      html.setAttribute("data-theme", "blue");
-      logoImg.src = "./media/logo-rings-only-purple.png";
+      html.setAttribute('data-theme', 'blue');
+      logoImg.src = './media/logo-rings-only-purple.png';
     }
   });
 });
 
 // :::: (Paint Year Link) = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("DOMContentLoaded", () => {
-  const paintMain = document.getElementById("paint-main");
-  const paintReview = document.getElementById("paint-review");
+document.addEventListener('DOMContentLoaded', () => {
+  const paintMain = document.getElementById('paint-main');
+  const paintReview = document.getElementById('paint-review');
 
   if (paintMain && paintReview) {
     function syncPaintInputs(source, target) {
       target.value = source.value;
     }
 
-    paintMain.addEventListener("input", () => syncPaintInputs(paintMain, paintReview));
-    paintReview.addEventListener("input", () => syncPaintInputs(paintReview, paintMain));
+    paintMain.addEventListener('input', () =>
+      syncPaintInputs(paintMain, paintReview)
+    );
+    paintReview.addEventListener('input', () =>
+      syncPaintInputs(paintReview, paintMain)
+    );
   }
 });
 
@@ -109,9 +113,9 @@ function setSafeHTML(container, unsafeHTML) {
     // Sanitize the HTML to avoid XSS attacks
     const safeHTML = DOMPurify.sanitize(unsafeHTML);
     container.innerHTML = safeHTML;
-    console.log("Sanitization complete and inserted.");
+    console.log('Sanitization complete and inserted.');
   } else {
-    console.log("Container not found.");
+    console.log('Container not found.');
   }
 }
 
@@ -121,33 +125,38 @@ function setSafeHTML(container, unsafeHTML) {
 
 // Populate glossary with defect definitions
 function populateGlossaryDefects() {
-  const container = document.querySelector("#glossary-defects-tab .glossary-numeric-ratings-container");
+  const container = document.querySelector(
+    '#glossary-defects-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each defect definition and create a glossary card for each
   defectDefinitions.forEach((defect) => {
     // Create a container for each glossary card
-    const card = document.createElement("div");
-    card.classList.add("glossary-content-cards");
+    const card = document.createElement('div');
+    card.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header = document.createElement("div");
-    header.classList.add("glossary-card-header");
+    const header = document.createElement('div');
+    header.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link = document.createElement("a");
-    let search = defect.search || `What is "${defect.term}" in ${defect.discipline}?`; // Search query
-    link.classList.add("glossary-term-link");
+    const link = document.createElement('a');
+    let search =
+      defect.search || `What is "${defect.term}" in ${defect.discipline}?`; // Search query
+    link.classList.add('glossary-term-link');
     link.textContent = defect.term;
     // If defect.link exists, use it; otherwise, fall back to Google search
-    link.href = defect.link || `https://www.google.com/search?q=${encodeURIComponent(search)}`;
-    link.target = "_blank";
+    link.href =
+      defect.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search)}`;
+    link.target = '_blank';
 
     // Append the link inside the header div
     header.appendChild(link);
 
     // Create a paragraph for the card with the defect definition
-    const paragraph = document.createElement("p");
-    paragraph.classList.add("glossary-card-paragraph");
+    const paragraph = document.createElement('p');
+    paragraph.classList.add('glossary-card-paragraph');
     paragraph.textContent = defect.definition;
 
     // Append the header and paragraph to the card container
@@ -159,39 +168,44 @@ function populateGlossaryDefects() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryDefects);
+document.addEventListener('DOMContentLoaded', populateGlossaryDefects);
 
 // :::: (Populate SNBI Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Populate glossary with bridge definitions
 function populateGlossaryBridge() {
-  const container2 = document.querySelector("#glossary-bridge-tab .glossary-numeric-ratings-container");
+  const container2 = document.querySelector(
+    '#glossary-bridge-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each glossary term and create a glossary card for each
   glossaryTerms.forEach((defect2) => {
     // Create the card container
-    const card2 = document.createElement("div");
-    card2.classList.add("glossary-content-cards");
+    const card2 = document.createElement('div');
+    card2.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header2 = document.createElement("div");
-    header2.classList.add("glossary-card-header");
+    const header2 = document.createElement('div');
+    header2.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link2 = document.createElement("a");
-    let search2 = defect2.search || `What is "${defect2.term}" in ${defect2.discipline}?`; // Search query
-    link2.classList.add("glossary-term-link");
+    const link2 = document.createElement('a');
+    let search2 =
+      defect2.search || `What is "${defect2.term}" in ${defect2.discipline}?`; // Search query
+    link2.classList.add('glossary-term-link');
     link2.textContent = defect2.term;
     // If defect2.link exists, use it; otherwise, fall back to Google search
-    link2.href = defect2.link || `https://www.google.com/search?q=${encodeURIComponent(search2)}`;
-    link2.target = "_blank";
+    link2.href =
+      defect2.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search2)}`;
+    link2.target = '_blank';
 
     // Append the link inside the header div
     header2.appendChild(link2);
 
     // Create the paragraph for the card with the defect definition
-    const paragraph2 = document.createElement("p");
-    paragraph2.classList.add("glossary-card-paragraph");
+    const paragraph2 = document.createElement('p');
+    paragraph2.classList.add('glossary-card-paragraph');
     paragraph2.textContent = defect2.definition;
 
     // Assemble the card elements
@@ -201,39 +215,44 @@ function populateGlossaryBridge() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryBridge);
+document.addEventListener('DOMContentLoaded', populateGlossaryBridge);
 
 // :::: (Populate Culvert Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Populate glossary with culvert definitions
 function populateGlossaryCulvert() {
-  const container2 = document.querySelector("#glossary-culvert-tab .glossary-numeric-ratings-container");
+  const container2 = document.querySelector(
+    '#glossary-culvert-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each glossary term and create a glossary card for each
   culvertTerms.forEach((defect2) => {
     // Create the card container
-    const card2 = document.createElement("div");
-    card2.classList.add("glossary-content-cards");
+    const card2 = document.createElement('div');
+    card2.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header2 = document.createElement("div");
-    header2.classList.add("glossary-card-header");
+    const header2 = document.createElement('div');
+    header2.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link2 = document.createElement("a");
-    let search2 = defect2.search || `What is "${defect2.term}" in ${defect2.discipline}?`; // Search query
-    link2.classList.add("glossary-term-link");
+    const link2 = document.createElement('a');
+    let search2 =
+      defect2.search || `What is "${defect2.term}" in ${defect2.discipline}?`; // Search query
+    link2.classList.add('glossary-term-link');
     link2.textContent = defect2.term;
     // If defect2.link exists, use it; otherwise, fall back to Google search
-    link2.href = defect2.link || `https://www.google.com/search?q=${encodeURIComponent(search2)}`;
-    link2.target = "_blank";
+    link2.href =
+      defect2.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search2)}`;
+    link2.target = '_blank';
 
     // Append the link inside the header div
     header2.appendChild(link2);
 
     // Create the paragraph for the card with the defect definition
-    const paragraph2 = document.createElement("p");
-    paragraph2.classList.add("glossary-card-paragraph");
+    const paragraph2 = document.createElement('p');
+    paragraph2.classList.add('glossary-card-paragraph');
     paragraph2.textContent = defect2.definition;
 
     // Assemble the card elements
@@ -243,39 +262,44 @@ function populateGlossaryCulvert() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryCulvert);
+document.addEventListener('DOMContentLoaded', populateGlossaryCulvert);
 
 // :::: (Populate Wall Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Populate glossary with wall definitions
 function populateGlossaryWall() {
-  const container3 = document.querySelector("#glossary-wall-tab .glossary-numeric-ratings-container");
+  const container3 = document.querySelector(
+    '#glossary-wall-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each glossary term and create a glossary card for each
   wallTerms.forEach((defect3) => {
     // Create the card container
-    const card3 = document.createElement("div");
-    card3.classList.add("glossary-content-cards");
+    const card3 = document.createElement('div');
+    card3.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header3 = document.createElement("div");
-    header3.classList.add("glossary-card-header");
+    const header3 = document.createElement('div');
+    header3.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link3 = document.createElement("a");
-    let search3 = defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
-    link3.classList.add("glossary-term-link");
+    const link3 = document.createElement('a');
+    let search3 =
+      defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
+    link3.classList.add('glossary-term-link');
     link3.textContent = defect3.term;
     // If defect3.link exists, use it; otherwise, fall back to Google search
-    link3.href = defect3.link || `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
-    link3.target = "_blank";
+    link3.href =
+      defect3.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
+    link3.target = '_blank';
 
     // Append the link inside the header div
     header3.appendChild(link3);
 
     // Create the paragraph for the card with the defect definition
-    const paragraph3 = document.createElement("p");
-    paragraph3.classList.add("glossary-card-paragraph");
+    const paragraph3 = document.createElement('p');
+    paragraph3.classList.add('glossary-card-paragraph');
     paragraph3.textContent = defect3.definition;
 
     // Assemble the card elements
@@ -285,39 +309,44 @@ function populateGlossaryWall() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryWall);
+document.addEventListener('DOMContentLoaded', populateGlossaryWall);
 
 // :::: (Populate Compound Word Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Populate glossary with compound word definitions
 function populateGlossaryCompound() {
-  const container3 = document.querySelector("#glossary-compounds-tab .glossary-numeric-ratings-container");
+  const container3 = document.querySelector(
+    '#glossary-compounds-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each glossary term and create a glossary card for each
   compoundTerms.forEach((defect3) => {
     // Create the card container
-    const card3 = document.createElement("div");
-    card3.classList.add("glossary-content-cards");
+    const card3 = document.createElement('div');
+    card3.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header3 = document.createElement("div");
-    header3.classList.add("glossary-card-header");
+    const header3 = document.createElement('div');
+    header3.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link3 = document.createElement("a");
-    let search3 = defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
-    link3.classList.add("glossary-term-link");
+    const link3 = document.createElement('a');
+    let search3 =
+      defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
+    link3.classList.add('glossary-term-link');
     link3.textContent = defect3.term;
     // If defect3.link exists, use it; otherwise, fall back to Google search
-    link3.href = defect3.link || `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
-    link3.target = "_blank";
+    link3.href =
+      defect3.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
+    link3.target = '_blank';
 
     // Append the link inside the header div
     header3.appendChild(link3);
 
     // Create the paragraph for the card with the defect definition
-    const paragraph3 = document.createElement("p");
-    paragraph3.classList.add("glossary-card-paragraph");
+    const paragraph3 = document.createElement('p');
+    paragraph3.classList.add('glossary-card-paragraph');
     paragraph3.textContent = defect3.definition;
 
     // Assemble the card elements
@@ -327,49 +356,55 @@ function populateGlossaryCompound() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryCompound);
+document.addEventListener('DOMContentLoaded', populateGlossaryCompound);
 
 // :::: (Populate Full Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Populate glossary with all definitions (Text Content Insertion)
 function populateGlossaryAll() {
-  const container3 = document.querySelector("#glossary-all-tab .glossary-numeric-ratings-container");
+  const container3 = document.querySelector(
+    '#glossary-all-tab .glossary-numeric-ratings-container'
+  );
 
   // Loop through each glossary term and create a glossary card for each
   glossaryAllTerms.forEach((defect3) => {
     // Create the card container
-    const card3 = document.createElement("div");
-    card3.classList.add("glossary-content-cards");
+    const card3 = document.createElement('div');
+    card3.classList.add('glossary-content-cards');
 
     // Create the header for the card with the defect term
-    const header3 = document.createElement("div");
-    header3.classList.add("glossary-card-header");
+    const header3 = document.createElement('div');
+    header3.classList.add('glossary-card-header');
 
     // Create the hidden link for the term
-    const link3 = document.createElement("a");
-    let search3 = defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
-    link3.classList.add("glossary-term-link");
+    const link3 = document.createElement('a');
+    let search3 =
+      defect3.search || `What is "${defect3.term}" in ${defect3.discipline}?`; // Search query
+    link3.classList.add('glossary-term-link');
 
     // Special case for "iterate" to use styled HTML
-    if (defect3.term.toLowerCase() === "iterate") {
-      link3.innerHTML = '<span class="ite-text">ite<span class="rate-text">rate</span></span>';
+    if (defect3.term.toLowerCase() === 'iterate') {
+      link3.innerHTML =
+        '<span class="ite-text">ite<span class="rate-text">rate</span></span>';
     } else {
       link3.textContent = defect3.term;
     }
 
     // Add the data-term attribute for search purposes
-    link3.setAttribute("data-term", defect3.term.toLowerCase()); // Add the data-term attribute here
+    link3.setAttribute('data-term', defect3.term.toLowerCase()); // Add the data-term attribute here
 
     // If defect3.link exists, use it; otherwise, fall back to Google search
-    link3.href = defect3.link || `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
-    link3.target = "_blank";
+    link3.href =
+      defect3.link ||
+      `https://www.google.com/search?q=${encodeURIComponent(search3)}`;
+    link3.target = '_blank';
 
     // Append the link inside the header div
     header3.appendChild(link3);
 
     // Create the paragraph for the card with the defect definition
-    const paragraph3 = document.createElement("p");
-    paragraph3.classList.add("glossary-card-paragraph");
+    const paragraph3 = document.createElement('p');
+    paragraph3.classList.add('glossary-card-paragraph');
     paragraph3.textContent = defect3.definition;
 
     // Assemble the card elements
@@ -379,7 +414,7 @@ function populateGlossaryAll() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", populateGlossaryAll);
+document.addEventListener('DOMContentLoaded', populateGlossaryAll);
 
 // :::: (Populate County Glossary) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -387,43 +422,47 @@ document.addEventListener("DOMContentLoaded", populateGlossaryAll);
 // This is still generated in the index.html and can be deleted.
 // Function to populate the county glossary
 function populateCountyGlossary() {
-  const container = document.querySelector("#glossary-county-tab .glossary-card-paragraph");
+  const container = document.querySelector(
+    '#glossary-county-tab .glossary-card-paragraph'
+  );
 
   if (!container) {
-    console.error("Glossary container not found.");
+    console.error('Glossary container not found.');
     return;
   }
 
   // Clear any existing content
-  container.innerHTML = ""; // Not ideal, you can remove this if you prefer to create elements directly
+  container.innerHTML = ''; // Not ideal, you can remove this if you prefer to create elements directly
 
   // Find the object with variable: "countyCode"
-  const countyObject = bridgeData.find((obj) => obj.variable === "countyCode");
+  const countyObject = bridgeData.find((obj) => obj.variable === 'countyCode');
 
   // If found, populate with county data
   if (countyObject && Array.isArray(countyObject.values)) {
     countyObject.values.forEach(({ code, description }) => {
       // Create a div for each county item
-      const countyItem = document.createElement("div");
-      countyItem.classList.add("county-item");
+      const countyItem = document.createElement('div');
+      countyItem.classList.add('county-item');
 
       // Create a link element wrapping the county info
-      const link = document.createElement("a");
-      link.classList.add("glossary-term-link");
-      link.href = `https://www.google.com/maps?q=${encodeURIComponent(description + " County, Indiana")}`;
-      link.target = "_blank"; // Open in a new tab
+      const link = document.createElement('a');
+      link.classList.add('glossary-term-link');
+      link.href = `https://www.google.com/maps?q=${encodeURIComponent(
+        description + ' County, Indiana'
+      )}`;
+      link.target = '_blank'; // Open in a new tab
 
       // Create a span for the code
-      const codeSpan = document.createElement("span");
-      codeSpan.classList.add("county-code");
+      const codeSpan = document.createElement('span');
+      codeSpan.classList.add('county-code');
       codeSpan.textContent = code;
 
       // Create a text node for " - "
-      const dashText = document.createTextNode(" - ");
+      const dashText = document.createTextNode(' - ');
 
       // Create a span for the description
-      const descriptionSpan = document.createElement("span");
-      descriptionSpan.classList.add("county-description");
+      const descriptionSpan = document.createElement('span');
+      descriptionSpan.classList.add('county-description');
       descriptionSpan.textContent = description;
 
       // Append the code, dash, and description spans to the link
@@ -438,12 +477,14 @@ function populateCountyGlossary() {
       container.appendChild(countyItem);
     });
   } else {
-    console.error("No matching object with 'variable: countyCode' found in bridgeData.");
+    console.error(
+      "No matching object with 'variable: countyCode' found in bridgeData."
+    );
   }
 }
 
 // Call the function once the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", populateCountyGlossary);
+document.addEventListener('DOMContentLoaded', populateCountyGlossary);
 
 // :::: (Populate Bridge Tab Glossaries) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -460,32 +501,34 @@ function buildGlossaries(bridgeComponents) {
 
     if (container) {
       // Clear the container before adding new content
-      container.innerHTML = "";
+      container.innerHTML = '';
 
       // Iterate over the glossary items and create a card for each
       glossaryItems.forEach((item) => {
         // Create the card container
-        const card = document.createElement("div");
-        card.classList.add("glossary-content-cards");
+        const card = document.createElement('div');
+        card.classList.add('glossary-content-cards');
 
         // Create the header container for the card with the glossary term
-        const header = document.createElement("div");
-        header.classList.add("glossary-card-header");
+        const header = document.createElement('div');
+        header.classList.add('glossary-card-header');
 
         // Create the hidden link for the term
-        const link = document.createElement("a");
+        const link = document.createElement('a');
         let search = item.search || `What is "${item.term}" in highway design?`;
-        link.classList.add("glossary-term-link");
+        link.classList.add('glossary-term-link');
         link.textContent = item.term;
-        link.href = `https://www.google.com/search?q=${encodeURIComponent(search)}`;
-        link.target = "_blank";
+        link.href = `https://www.google.com/search?q=${encodeURIComponent(
+          search
+        )}`;
+        link.target = '_blank';
 
         // Append the link inside the header div
         header.appendChild(link);
 
         // Create the paragraph for the card with the glossary definition
-        const paragraph = document.createElement("p");
-        paragraph.classList.add("glossary-card-paragraph");
+        const paragraph = document.createElement('p');
+        paragraph.classList.add('glossary-card-paragraph');
         paragraph.textContent = item.definition;
 
         // Assemble the card elements
@@ -506,28 +549,32 @@ buildGlossaries(bridgeComponents);
 // Populate example comments for bridge components
 function updateExampleComments() {
   bridgeComponents.forEach((component) => {
-    const commentsContainer = document.getElementById(component.example_comments_page_id);
+    const commentsContainer = document.getElementById(
+      component.example_comments_page_id
+    );
 
     if (commentsContainer && component.example_comments) {
       // Find or create the content container for comments
-      let contentContainer = commentsContainer.querySelector(".content-container-paragraphs");
+      let contentContainer = commentsContainer.querySelector(
+        '.content-container-paragraphs'
+      );
       if (!contentContainer) {
-        contentContainer = document.createElement("div");
-        contentContainer.classList.add("content-container-paragraphs");
+        contentContainer = document.createElement('div');
+        contentContainer.classList.add('content-container-paragraphs');
         commentsContainer.appendChild(contentContainer);
       }
 
       // Clear existing content and add new comments
-      contentContainer.innerHTML = "";
+      contentContainer.innerHTML = '';
 
       // Iterate over each comment group
       component.example_comments.forEach((commentGroup) => {
         const randomComment = getRandomComment(commentGroup); // Get random comment from the group
-        const p = document.createElement("p");
-        p.classList.add("content-container-comment-lines");
+        const p = document.createElement('p');
+        p.classList.add('content-container-comment-lines');
 
         // Create the new class from the item_id with "p" prepended and periods removed
-        const newClass = "p-" + component.item_id.replace(/\./g, "");
+        const newClass = 'p-' + component.item_id.replace(/\./g, '');
 
         // Add the new class to the p element
         p.classList.add(newClass);
@@ -545,7 +592,7 @@ function getRandomComment(commentGroup) {
   return commentGroup[randomIndex];
 }
 
-document.addEventListener("DOMContentLoaded", updateExampleComments);
+document.addEventListener('DOMContentLoaded', updateExampleComments);
 
 // :::: (Populate Review Textarea Comments) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -554,33 +601,37 @@ function handleTextareaChange(event) {
   const textarea = event.target; // Get the changed textarea element
 
   // Capture the data-category from the clicked textarea's data-category attribute
-  const dataCategory = textarea.getAttribute("data-category");
+  const dataCategory = textarea.getAttribute('data-category');
 
   // Capture the value (contents) of the textarea
   const textareaContents = textarea.value;
 
   // Find the div with the matching data-category within #bridge-review-tab
-  const reviewTab = document.getElementById("bridge-review-tab");
-  const targetDiv = reviewTab.querySelector(`.content-container-rating-lines[data-category="${dataCategory}"]`);
+  const reviewTab = document.getElementById('bridge-review-tab');
+  const targetDiv = reviewTab.querySelector(
+    `.content-container-rating-lines[data-category="${dataCategory}"]`
+  );
 
   if (targetDiv) {
     // Find the span with the class 'textarea-content-here' inside this div
-    const textareaSpan = targetDiv.querySelector(".textarea-content-here");
+    const textareaSpan = targetDiv.querySelector('.textarea-content-here');
 
     if (textareaSpan) {
       // Set the contents of the 'textarea-content-here' span to the value of the textarea
       textareaSpan.textContent = textareaContents;
     }
   } else {
-    console.log("No matching div found for data-category:", dataCategory);
+    console.log('No matching div found for data-category:', dataCategory);
   }
 
   // Check if the changed textarea is from the "review" ID structure
-  const isReviewTextarea = textarea.id.includes("-review");
+  const isReviewTextarea = textarea.id.includes('-review');
 
   // Update the corresponding textarea without causing an endless loop
   if (isReviewTextarea) {
-    const matchingTextareas = document.querySelectorAll(`[id^="${textarea.id.split("-")[0]}-textarea"]`);
+    const matchingTextareas = document.querySelectorAll(
+      `[id^="${textarea.id.split('-')[0]}-textarea"]`
+    );
     matchingTextareas.forEach((matchingTextarea) => {
       if (matchingTextarea !== textarea) {
         matchingTextarea.value = textareaContents;
@@ -588,7 +639,9 @@ function handleTextareaChange(event) {
     });
   } else {
     // Update the corresponding review textarea without causing an endless loop
-    const matchingReviewTextareas = document.querySelectorAll(`[id^="${textarea.id.split("-")[0]}-textarea-review"]`);
+    const matchingReviewTextareas = document.querySelectorAll(
+      `[id^="${textarea.id.split('-')[0]}-textarea-review"]`
+    );
     matchingReviewTextareas.forEach((matchingReviewTextarea) => {
       if (matchingReviewTextarea !== textarea) {
         matchingReviewTextarea.value = textareaContents;
@@ -598,8 +651,8 @@ function handleTextareaChange(event) {
 }
 
 // Add event listener to all textareas to detect when their value changes
-document.querySelectorAll("textarea").forEach((textarea) => {
-  textarea.addEventListener("input", handleTextareaChange);
+document.querySelectorAll('textarea').forEach((textarea) => {
+  textarea.addEventListener('input', handleTextareaChange);
 });
 
 // :::::: (Copy To Clipboard) //////////////////////////////////////////////////////////////////////////
@@ -607,9 +660,9 @@ document.querySelectorAll("textarea").forEach((textarea) => {
 // :::: (Example Comment to Clipboard) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Copy Example Comment Text to Clipboard
-document.addEventListener("click", function (evt) {
+document.addEventListener('click', function (evt) {
   // Check if the clicked element is one of the comment lines to trigger the copy action
-  if (evt.target.classList.contains("content-container-comment-lines")) {
+  if (evt.target.classList.contains('content-container-comment-lines')) {
     copyToClipboard(evt); // Call the copy function
   }
 });
@@ -620,24 +673,26 @@ function copyToClipboard(evt) {
 
   // Handle case where no text is found to copy
   if (!textToCopy) {
-    console.error("No text found to copy!"); // Log error if no text exists
+    console.error('No text found to copy!'); // Log error if no text exists
     return;
   }
 
   // Copy the text to clipboard with a space appended for formatting
   navigator.clipboard
-    .writeText(textToCopy + " ")
+    .writeText(textToCopy + ' ')
     .then(() => {
-      storeClipboardData(textToCopy + " "); // Store the copied text into clipboard history
+      storeClipboardData(textToCopy + ' '); // Store the copied text into clipboard history
       showCopiedMessage(); // Show the "Copied" message
     })
-    .catch((err) => console.error("Error copying text:", err)); // Error handling
+    .catch((err) => console.error('Error copying text:', err)); // Error handling
 }
 
 // Add Event Listener for Copying Text from Comment Lines to Clipboard
-document.querySelectorAll(".content-container-comment-lines").forEach(function (element) {
-  element.addEventListener("click", copyToClipboard); // Add click event listener to each comment line
-});
+document
+  .querySelectorAll('.content-container-comment-lines')
+  .forEach(function (element) {
+    element.addEventListener('click', copyToClipboard); // Add click event listener to each comment line
+  });
 
 // :::: (Dbl-Clicked Textarea to Clipboard) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -654,13 +709,13 @@ function copyTextarea(evt) {
       showCopiedMessage(); // Show the "Copied" message
     })
     .catch(function (err) {
-      console.error("Error copying text: ", err); // Log any errors that occur
+      console.error('Error copying text: ', err); // Log any errors that occur
     });
 }
 
 // Add event listener for double-click on all textareas with the class 'textarea-comments'
-document.querySelectorAll(".textarea-comments").forEach(function (textarea) {
-  textarea.addEventListener("dblclick", copyTextarea); // Trigger copyTextarea function on double-click
+document.querySelectorAll('.textarea-comments').forEach(function (textarea) {
+  textarea.addEventListener('dblclick', copyTextarea); // Trigger copyTextarea function on double-click
 });
 
 // :::: (Textarea Expansion) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -668,7 +723,7 @@ document.querySelectorAll(".textarea-comments").forEach(function (textarea) {
 // Expand the textareas when pasted or typed in
 function expandTextarea(event, componentName) {
   // Extract the unique part of the component name (e.g., BC01 from BC01-textarea)
-  const baseId = componentName.split("-")[0];
+  const baseId = componentName.split('-')[0];
 
   // Create the IDs for both textarea and review textarea
   const textareaId = `${baseId}-textarea`;
@@ -685,28 +740,33 @@ function expandTextarea(event, componentName) {
       textareaElem.parentNode.dataset.replicatedValue = textareaElem.value;
     }
     if (reviewTextareaElem) {
-      reviewTextareaElem.parentNode.dataset.replicatedValue = reviewTextareaElem.value;
+      reviewTextareaElem.parentNode.dataset.replicatedValue =
+        reviewTextareaElem.value;
     }
   });
 }
 
 // :::: (Automatically Type in Textareas) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Ignore if not a Shift + Letter keypress
   if (!event.shiftKey || event.key.length !== 1 || !/[A-Z]/.test(event.key)) {
     return;
   }
 
   // Step 1: Check if the unique bridge asset tab button is active
-  const bridgeAssetTab = document.querySelector('button[data-target="bridge-asset-tab"]');
-  if (!bridgeAssetTab || !bridgeAssetTab.classList.contains("active")) {
+  const bridgeAssetTab = document.querySelector(
+    'button[data-target="bridge-asset-tab"]'
+  );
+  if (!bridgeAssetTab || !bridgeAssetTab.classList.contains('active')) {
     // alert("Step 1: The bridge asset tab is not active.");
     return;
   }
 
   // Step 2: Find the active bridge component button in row 2
-  const activeComponentButton = document.querySelector("button.bridge-component-buttons.active.row2");
+  const activeComponentButton = document.querySelector(
+    'button.bridge-component-buttons.active.row2'
+  );
   if (!activeComponentButton) {
     // alert("Step 2: No active bridge component button found.");
     return;
@@ -721,14 +781,14 @@ document.addEventListener("keydown", function (event) {
   }
 
   // Find the active button inside this component div
-  const activeSubButton = componentDiv.querySelector("button.active");
+  const activeSubButton = componentDiv.querySelector('button.active');
   if (!activeSubButton) {
     // alert("Step 3: No active button found within the component div.");
     return;
   }
 
   // Step 4: Determine if the active button is alt1 or alt2
-  const textareas = componentDiv.querySelectorAll("textarea");
+  const textareas = componentDiv.querySelectorAll('textarea');
   if (textareas.length === 0) {
     // alert("Step 5: No textareas found in the component div.");
     return;
@@ -740,9 +800,9 @@ document.addEventListener("keydown", function (event) {
     targetTextarea = textareas[0];
   } else {
     // If two textareas, select based on alt1 or alt2 button class
-    if (activeSubButton.classList.contains("alt1-buttons")) {
+    if (activeSubButton.classList.contains('alt1-buttons')) {
       targetTextarea = textareas[0];
-    } else if (activeSubButton.classList.contains("alt2-buttons")) {
+    } else if (activeSubButton.classList.contains('alt2-buttons')) {
       targetTextarea = textareas[1];
     } else {
       // alert("Step 4: Active button is neither alt1-buttons nor alt2-buttons.");
@@ -751,9 +811,16 @@ document.addEventListener("keydown", function (event) {
   }
 
   // Step 6: If no input fields are active, focus the appropriate textarea and append the letter
-  if (!document.activeElement || (document.activeElement.tagName !== "TEXTAREA" && document.activeElement.tagName !== "INPUT")) {
+  if (
+    !document.activeElement ||
+    (document.activeElement.tagName !== 'TEXTAREA' &&
+      document.activeElement.tagName !== 'INPUT')
+  ) {
     targetTextarea.focus();
-    targetTextarea.setSelectionRange(targetTextarea.value.length, targetTextarea.value.length);
+    targetTextarea.setSelectionRange(
+      targetTextarea.value.length,
+      targetTextarea.value.length
+    );
   }
 });
 
@@ -768,32 +835,32 @@ let isInitialLoad = true;
 
 function openTab(evt) {
   var button = evt.currentTarget; // The clicked button
-  var componentName = button.getAttribute("data-target");
-  var containerClass = button.getAttribute("data-container-class");
-  var buttonClass = button.getAttribute("data-button-class");
+  var componentName = button.getAttribute('data-target');
+  var containerClass = button.getAttribute('data-container-class');
+  var buttonClass = button.getAttribute('data-button-class');
 
   // Scroll main element to the top on page change
-  const mainSection = document.querySelector("main"); // Adjust selector if needed
-  mainSection.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  const mainSection = document.querySelector('main'); // Adjust selector if needed
+  mainSection.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
   // Hide all content containers of the same class
   var containers = document.getElementsByClassName(containerClass);
   for (var i = 0; i < containers.length; i++) {
-    containers[i].style.display = "none"; // Hide all containers
+    containers[i].style.display = 'none'; // Hide all containers
   }
 
   // Remove "active" class from all buttons in the same button class
   var buttons = document.getElementsByClassName(buttonClass);
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].className = buttons[i].className.replace(" active", ""); // Remove active class
+    buttons[i].className = buttons[i].className.replace(' active', ''); // Remove active class
   }
 
   // Show the selected tab's content and add "active" class to the clicked button
-  document.getElementById(componentName).style.display = "block"; // Display the targeted container
-  button.className += " active"; // Add active class to the clicked button
+  document.getElementById(componentName).style.display = 'block'; // Display the targeted container
+  button.className += ' active'; // Add active class to the clicked button
 
   // Update the URL hash (only for main tab)
-  var hash = button.getAttribute("data-hash");
+  var hash = button.getAttribute('data-hash');
   updateURLHash(hash);
 
   // Focus on the active button if it's the initial page load
@@ -811,7 +878,7 @@ function updateURLHash(hash) {
 }
 
 // Event listener for the hashchange event to handle tab changes
-window.addEventListener("hashchange", function () {
+window.addEventListener('hashchange', function () {
   var hash = window.location.hash.substring(1); // Get the current hash (without the "#")
 
   // Activate the correct tab based on the hash
@@ -822,7 +889,7 @@ window.addEventListener("hashchange", function () {
 });
 
 // On page load, open the tab corresponding to the current hash or default to the first tab
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
   var hash = window.location.hash.substring(1); // Get the current hash (without the "#")
   if (hash) {
     var button = document.querySelector(`[data-hash="${hash}"]`);
@@ -831,45 +898,45 @@ window.addEventListener("load", function () {
     }
   } else {
     // If no hash in URL, trigger the first button click (default tab)
-    document.querySelector(".asset-buttons.active").click();
+    document.querySelector('.asset-buttons.active').click();
   }
 });
 
 // Add event listeners to the header buttons (main tabs)
-document.querySelectorAll(".asset-buttons").forEach(function (button) {
-  button.addEventListener("click", openTab); // Add click event to trigger openTab
+document.querySelectorAll('.asset-buttons').forEach(function (button) {
+  button.addEventListener('click', openTab); // Add click event to trigger openTab
 });
 
 // :::: (Button Click Array of Classes) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Button Classes
 var buttonClasses = [
-  "asset-buttons",
-  "bridge-component-buttons",
-  "bridge-alignment-buttons",
-  "bridge-approach-buttons",
-  "bridge-joints-buttons",
-  "bridge-railings-buttons",
-  "bridge-deck-buttons",
-  "bridge-super-buttons",
-  "bridge-bearings-buttons",
-  "bridge-sub-buttons",
-  "bridge-culvert-buttons",
-  "bridge-channel-buttons",
-  "bridge-scour-buttons",
-  "bridge-overtopping-buttons",
-  "bridge-wildlife-buttons",
-  "bridge-elements-buttons",
-  "bridge-maintenance-buttons",
-  "bridge-review-buttons",
-  "element-item-buttons",
-  "culvert-item-buttons",
-  "wall-item-buttons",
-  "misc-component-buttons",
-  "glossary-item-buttons",
-  "district-item-buttons",
-  "review-item-buttons",
-  "settings-item-buttons",
+  'asset-buttons',
+  'bridge-component-buttons',
+  'bridge-alignment-buttons',
+  'bridge-approach-buttons',
+  'bridge-joints-buttons',
+  'bridge-railings-buttons',
+  'bridge-deck-buttons',
+  'bridge-super-buttons',
+  'bridge-bearings-buttons',
+  'bridge-sub-buttons',
+  'bridge-culvert-buttons',
+  'bridge-channel-buttons',
+  'bridge-scour-buttons',
+  'bridge-overtopping-buttons',
+  'bridge-wildlife-buttons',
+  'bridge-elements-buttons',
+  'bridge-maintenance-buttons',
+  'bridge-review-buttons',
+  'element-item-buttons',
+  'culvert-item-buttons',
+  'wall-item-buttons',
+  'misc-component-buttons',
+  'glossary-item-buttons',
+  'district-item-buttons',
+  'review-item-buttons',
+  'settings-item-buttons',
 ];
 
 // :::: (Button Classes Add Event Listeners) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -877,8 +944,8 @@ var buttonClasses = [
 // Loop Through Button Classes and Add Event Listeners
 buttonClasses.forEach(function (buttonClass) {
   // For each button class, find buttons and add an event listener for tab opening
-  document.querySelectorAll("." + buttonClass).forEach(function (button) {
-    button.addEventListener("click", openTab); // Add click event to trigger openTab
+  document.querySelectorAll('.' + buttonClass).forEach(function (button) {
+    button.addEventListener('click', openTab); // Add click event to trigger openTab
   });
 });
 
@@ -890,56 +957,62 @@ let activeTab = null;
 // Function to Handle Clicks on Elements with a data-target Attribute
 function handleTabClick(event) {
   // Get the data-target attribute of the clicked element
-  const target = event.target.getAttribute("data-target");
+  const target = event.target.getAttribute('data-target');
 
   if (target) {
     // Store the data-target value when the button is clicked
     activeTab = target;
 
     // If "review-ratings-tab" is clicked, clear the asset-updated message
-    if (target === "review-ratings-tab") {
-      document.getElementById("asset-updated").textContent =
-        "The ratings and comments are generated by actions on the corresponding component pages.";
+    if (target === 'review-ratings-tab') {
+      document.getElementById('asset-updated').textContent =
+        'The ratings and comments are generated by actions on the corresponding component pages.';
     }
     // If "review-ratings-tab" is clicked, clear the asset-updated message
-    if (target === "review-summary-tab") {
+    if (target === 'review-summary-tab') {
       document.getElementById(
-        "asset-updated"
+        'asset-updated'
       ).textContent = `The summary is built automatically when an asset number is searched. The asset data was last updated on ${dataDate}.`;
     }
     // If "review-ratings-tab" is clicked, clear the asset-updated message
-    if (target === "review-data-tab") {
+    if (target === 'review-data-tab') {
       document.getElementById(
-        "asset-updated"
+        'asset-updated'
       ).textContent = `These are populated when an asset number is searched. The asset data was last updated on ${dataDate}.`;
     }
 
-    if (target === "settings-user-tab") {
+    if (target === 'settings-user-tab') {
       document.querySelector(
-        "#user-local-storage"
+        '#user-local-storage'
       ).textContent = `User information is saved in the browser's local storage by completing the fields. Clear the browser cache to remove.`;
     }
-    if (target === "settings-global-tab") {
-      document.querySelector("#user-local-storage").textContent = `Global features are under development.`;
+    if (target === 'settings-global-tab') {
+      document.querySelector(
+        '#user-local-storage'
+      ).textContent = `Global features are under development.`;
       // `Global settings are saved in the browser's local storage by completing the fields. Clear the browser cache to remove.`
     }
-    if (target === "settings-guide-tab") {
-      document.querySelector("#user-local-storage").textContent = `A general overview of site functionality.`;
+    if (target === 'settings-guide-tab') {
+      document.querySelector(
+        '#user-local-storage'
+      ).textContent = `A general overview of site functionality.`;
     }
 
     // If two or more comment builders hold the active view on their tabs then select the correct one to be active
-    const activeButtons = document.querySelectorAll(".bridge-approach-buttons.active, .bridge-deck-buttons.active");
-    if (activeTab === "bridge-approach-tab") {
-      currentTarget = "approach-pg6";
+    const activeButtons = document.querySelectorAll(
+      '.bridge-approach-buttons.active, .bridge-deck-buttons.active'
+    );
+    if (activeTab === 'bridge-approach-tab') {
+      currentTarget = 'approach-pg6';
     }
-    if (activeTab === "bridge-deck-tab") {
+    if (activeTab === 'bridge-deck-tab') {
       if (activeButtons.length > 0) {
         activeButtons.forEach((button) => {
-          if (button.dataset.target === "bridge-deck-pg9") {
-            currentTarget = "deck-pg9";
+          if (button.dataset.target === 'bridge-deck-pg9') {
+            currentTarget = 'deck-pg9';
           }
-          if (button.dataset.target === "bridge-deck-pg10") {
-            currentTarget = "deck-pg10";
+          if (button.dataset.target === 'bridge-deck-pg10') {
+            currentTarget = 'deck-pg10';
           }
         });
       }
@@ -948,9 +1021,9 @@ function handleTabClick(event) {
 }
 
 // Attach the event listener to the entire document to catch clicks on any data-target element
-document.addEventListener("click", function (event) {
+document.addEventListener('click', function (event) {
   // Check if the clicked element has a data-target attribute
-  if (event.target.hasAttribute("data-target")) {
+  if (event.target.hasAttribute('data-target')) {
     handleTabClick(event);
   }
 });
@@ -963,84 +1036,98 @@ function handleHighlight(event) {
   const container = event.target.closest('[class*="containers"]');
 
   // Get all items within this container
-  const items = container.querySelectorAll(".content-container-rating-lines");
+  const items = container.querySelectorAll('.content-container-rating-lines');
 
   // Check if the clicked item is already highlighted
-  const clickedItem = event.target.closest(".content-container-rating-lines");
-  const isHighlighted = clickedItem.classList.contains("highlight");
+  const clickedItem = event.target.closest('.content-container-rating-lines');
+  const isHighlighted = clickedItem.classList.contains('highlight');
 
   if (isHighlighted) {
     // If already highlighted, remove the highlight
-    clickedItem.classList.remove("highlight");
+    clickedItem.classList.remove('highlight');
 
     // Reset the numerical value in #bridge-review-tab to an empty string
-    const dataCategory = clickedItem.getAttribute("data-category");
-    const bridgeReviewTab = document.getElementById("bridge-review-tab");
-    const matchingItem = bridgeReviewTab.querySelector(`.content-container-rating-lines[data-category="${dataCategory}"]`);
+    const dataCategory = clickedItem.getAttribute('data-category');
+    const bridgeReviewTab = document.getElementById('bridge-review-tab');
+    const matchingItem = bridgeReviewTab.querySelector(
+      `.content-container-rating-lines[data-category="${dataCategory}"]`
+    );
 
     if (matchingItem) {
-      const span = matchingItem.querySelector(".content-container-rating-numerical");
+      const span = matchingItem.querySelector(
+        '.content-container-rating-numerical'
+      );
       if (span) {
-        span.textContent = ""; // Reset the numerical value to an empty string
+        span.textContent = ''; // Reset the numerical value to an empty string
       }
     }
 
     // Reset the numerical value on the corresponding review button
-    const reviewButton = document.getElementById(`${dataCategory}-button-review`);
+    const reviewButton = document.getElementById(
+      `${dataCategory}-button-review`
+    );
     if (reviewButton) {
-      reviewButton.textContent = "N"; // Reset button text or whatever default text you prefer
+      reviewButton.textContent = 'N'; // Reset button text or whatever default text you prefer
     }
   } else {
     // Remove the highlight from all items in this container
     items.forEach((item) => {
-      item.classList.remove("highlight");
+      item.classList.remove('highlight');
     });
 
     // Add highlight to the clicked item
-    clickedItem.classList.add("highlight");
+    clickedItem.classList.add('highlight');
 
     // Capture the numerical value from the clicked item's .content-container-rating-numerical
-    const numericalValue = clickedItem.querySelector(".content-container-rating-numerical").textContent.trim();
+    const numericalValue = clickedItem
+      .querySelector('.content-container-rating-numerical')
+      .textContent.trim();
 
     // Capture the data-category from the clicked item's data-category attribute
-    const dataCategory = clickedItem.getAttribute("data-category");
+    const dataCategory = clickedItem.getAttribute('data-category');
 
     updateObjectRatings(`${numericalValue}`, dataCategory);
 
     // Now, find the matching element inside #bridge-review-tab
-    const bridgeReviewTab = document.getElementById("bridge-review-tab");
+    const bridgeReviewTab = document.getElementById('bridge-review-tab');
 
     // Search for the div with matching data-category under the bridge-review-tab
-    const matchingItem = bridgeReviewTab.querySelector(`.content-container-rating-lines[data-category="${dataCategory}"]`);
+    const matchingItem = bridgeReviewTab.querySelector(
+      `.content-container-rating-lines[data-category="${dataCategory}"]`
+    );
 
     // If a match is found, update the span with the new numerical value
     if (matchingItem) {
-      const span = matchingItem.querySelector(".content-container-rating-numerical");
+      const span = matchingItem.querySelector(
+        '.content-container-rating-numerical'
+      );
       if (span) {
         span.textContent = numericalValue; // Update the numerical value
       } else {
-        console.log("No span found for the matching data-category.");
+        console.log('No span found for the matching data-category.');
       }
     } else {
-      console.log("No matching data-category found in #bridge-review-tab.");
+      console.log('No matching data-category found in #bridge-review-tab.');
     }
 
     // Update the corresponding review button with the numerical value
-    let newStr = dataCategory.replace(/\./g, ""); // Replaces all periods with an empty string
+    let newStr = dataCategory.replace(/\./g, ''); // Replaces all periods with an empty string
     const reviewButton = document.getElementById(`${newStr}-button-review`);
     if (reviewButton) {
       reviewButton.textContent = numericalValue; // Update button text with the numerical value
 
       const colorVar = `--rating-${numericalValue}`;
-      const color = getComputedStyle(document.documentElement).getPropertyValue(colorVar);
+      const color = getComputedStyle(document.documentElement).getPropertyValue(
+        colorVar
+      );
       reviewButton.style.backgroundColor = color.trim();
     }
   }
 }
 
 // Add event listeners for each content line in all relevant containers
-document.querySelectorAll(".content-container-rating-lines").forEach((item) => {
-  item.addEventListener("click", handleHighlight);
+document.querySelectorAll('.content-container-rating-lines').forEach((item) => {
+  item.addEventListener('click', handleHighlight);
 });
 
 // :::: (Maintenance/Element Clicks) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -1052,48 +1139,56 @@ function addDeficiencyButtons(event) {
   const button = event.target;
 
   // Get shared attributes
-  const buttonName = button.getAttribute("data-button-name");
-  const buttonCategory = button.getAttribute("data-button-category");
+  const buttonName = button.getAttribute('data-button-name');
+  const buttonCategory = button.getAttribute('data-button-category');
 
   // Find all buttons that match the same task name and category
-  const allMatchingButtons = document.querySelectorAll(`button[data-button-name="${buttonName}"][data-button-category="${buttonCategory}"]`);
+  const allMatchingButtons = document.querySelectorAll(
+    `button[data-button-name="${buttonName}"][data-button-category="${buttonCategory}"]`
+  );
 
   // Determine if we are activating or deactivating based on the clicked button
-  const isActive = button.classList.contains("active-maintenance");
+  const isActive = button.classList.contains('active-maintenance');
 
   // Toggle class for all matching buttons
   allMatchingButtons.forEach((btn) => {
     if (isActive) {
-      btn.classList.remove("active-maintenance");
+      btn.classList.remove('active-maintenance');
     } else {
-      btn.classList.add("active-maintenance");
+      btn.classList.add('active-maintenance');
     }
   });
 
   // Action for maintenance tasks
-  if (button.getAttribute("data-button-number").includes("Maintenance")) {
+  if (button.getAttribute('data-button-number').includes('Maintenance')) {
     // Add or remove task from global array
     if (isActive) {
       // If it's active, remove it from the array
-      maintenanceArray = maintenanceArray.filter((task) => task.name !== buttonName || task.category !== buttonCategory);
+      maintenanceArray = maintenanceArray.filter(
+        (task) => task.name !== buttonName || task.category !== buttonCategory
+      );
     } else {
       // If it's not active, add it to the array
       maintenanceArray.push({ name: buttonName, category: buttonCategory });
     }
 
-    const categoryOrder = ["Red", "Yellow", "Green", "Grey"];
+    const categoryOrder = ['Red', 'Yellow', 'Green', 'Grey'];
 
     maintenanceArray.sort((a, b) => {
-      return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
+      return (
+        categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
+      );
     });
 
-    if (searchValue !== "") {
-      const asset = assetData.find((item) => item["Asset Number"].toLowerCase() === searchValue.toLowerCase());
+    if (searchValue !== '') {
+      const asset = assetData.find(
+        (item) =>
+          item['Asset Number'].toLowerCase() === searchValue.toLowerCase()
+      );
       if (asset) {
         displaySummary(assetObject); // Pass the whole asset object to the function
-
       } else {
-        console.log("Asset not found.");
+        console.log('Asset not found.');
       }
     }
   }
@@ -1103,38 +1198,40 @@ function addDeficiencyButtons(event) {
 
 // Update summary when changing ratings
 function updateObjectRatings(numericalValue, dataCategory) {
-  if (searchValue !== "") {
-    if (dataCategory === "B.C.01") {
+  if (searchValue !== '') {
+    if (dataCategory === 'B.C.01') {
       if (assetObject) {
-        assetObject["(B.C.01) Deck Condition Rating"] = numericalValue;
+        assetObject['(B.C.01) Deck Condition Rating'] = numericalValue;
         hideAllErrors();
         displaySummary(assetObject);
       }
     }
-    if (dataCategory === "B.C.02") {
+    if (dataCategory === 'B.C.02') {
       if (assetObject) {
-        assetObject["(B.C.02) Superstructure Condition Rating"] = numericalValue;
+        assetObject['(B.C.02) Superstructure Condition Rating'] =
+          numericalValue;
         hideAllErrors();
         displaySummary(assetObject);
       }
     }
-    if (dataCategory === "B.C.03") {
+    if (dataCategory === 'B.C.03') {
       if (assetObject) {
-        assetObject["(B.C.03) Substructure Condition Rating"] = numericalValue;
+        assetObject['(B.C.03) Substructure Condition Rating'] = numericalValue;
         hideAllErrors();
         displaySummary(assetObject);
       }
     }
-    if (dataCategory === "B.C.04") {
+    if (dataCategory === 'B.C.04') {
       if (assetObject) {
-        assetObject["(B.C.04) Culvert Condition Rating"] = numericalValue;
+        assetObject['(B.C.04) Culvert Condition Rating'] = numericalValue;
         hideAllErrors();
         displaySummary(assetObject);
       }
     }
-    if (dataCategory === "B.C.01a") {
+    if (dataCategory === 'B.C.01a') {
       if (assetObject) {
-        assetObject["(B.C.01a) Wearing Surface Condition Rating"] = numericalValue;
+        assetObject['(B.C.01a) Wearing Surface Condition Rating'] =
+          numericalValue;
         hideAllErrors();
         displaySummary(assetObject);
       }
@@ -1158,68 +1255,77 @@ function loadSavedValues() {
     if (savedValue !== null) {
       textarea.value = savedValue;
     }
-    textarea.addEventListener("input", saveOnChange); // Listen for any changes
+    textarea.addEventListener('input', saveOnChange); // Listen for any changes
   });
 }
 
 // Object to store predefined data based on the input
 const data = {
   sh: {
-    name: "Stephen Hurst",
-    number: "317-509-6407",
-    email: "shurst1@indot.in.gov",
-    teamleader: "IN000422-2027",
+    name: 'Stephen Hurst',
+    number: '317-509-6407',
+    email: 'shurst1@indot.in.gov',
+    teamleader: 'IN000422-2027',
   },
   mf: {
-    name: "Matthew Ference",
-    number: "317-452-5067",
-    email: "mference@indot.in.gov",
-    teamleader: "IN000237-2027",
+    name: 'Matthew Ference',
+    number: '317-452-5067',
+    email: 'mference@indot.in.gov',
+    teamleader: 'IN000237-2027',
   },
   jw: {
-    name: "Jessica Waggoner",
-    number: "812-530-6727",
-    email: "jwaggoner1@indot.in.gov",
-    teamleader: "IN000402-2029",
+    name: 'Jessica Waggoner',
+    number: '812-530-6727',
+    email: 'jwaggoner1@indot.in.gov',
+    teamleader: 'IN000402-2029',
   },
   ce: {
-    name: "Chris Everman",
-    number: "812-345-8240",
-    email: "ceverman@indot.in.gov",
-    teamleader: "IN000114-2027",
+    name: 'Chris Everman',
+    number: '812-345-8240',
+    email: 'ceverman@indot.in.gov',
+    teamleader: 'IN000114-2027',
   },
   // Add more key-value pairs as needed
 };
 
 // Load saved values on page load
-window.addEventListener("load", loadSavedValues);
+window.addEventListener('load', loadSavedValues);
 
 // Event listener for populating predefined data on Enter press
-document.getElementById("user-textarea-name").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // Prevent newline
+document
+  .getElementById('user-textarea-name')
+  .addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent newline
 
-    const inputValue = this.value.toLowerCase().trim();
+      const inputValue = this.value.toLowerCase().trim();
 
-    // Only populate and save if matching data is found
-    if (data[inputValue]) {
-      document.getElementById("user-textarea-name").value = data[inputValue].name;
-      document.getElementById("user-textarea-number").value = data[inputValue].number;
-      document.getElementById("user-textarea-email").value = data[inputValue].email;
-      document.getElementById("user-textarea-teamleader").value = data[inputValue].teamleader;
+      // Only populate and save if matching data is found
+      if (data[inputValue]) {
+        document.getElementById('user-textarea-name').value =
+          data[inputValue].name;
+        document.getElementById('user-textarea-number').value =
+          data[inputValue].number;
+        document.getElementById('user-textarea-email').value =
+          data[inputValue].email;
+        document.getElementById('user-textarea-teamleader').value =
+          data[inputValue].teamleader;
 
-      // Manually trigger save for the updated values in localStorage
-      localStorage.setItem("user-textarea-name", data[inputValue].name);
-      localStorage.setItem("user-textarea-number", data[inputValue].number);
-      localStorage.setItem("user-textarea-email", data[inputValue].email);
-      localStorage.setItem("user-textarea-teamleader", data[inputValue].teamleader);
+        // Manually trigger save for the updated values in localStorage
+        localStorage.setItem('user-textarea-name', data[inputValue].name);
+        localStorage.setItem('user-textarea-number', data[inputValue].number);
+        localStorage.setItem('user-textarea-email', data[inputValue].email);
+        localStorage.setItem(
+          'user-textarea-teamleader',
+          data[inputValue].teamleader
+        );
+      }
     }
-  }
-});
+  });
 
 // Handle double-click to copy text from textareas to clipboard
 document.querySelectorAll("[id^='user-textarea']").forEach((textarea) => {
-  textarea.addEventListener("dblclick", function () {
+  textarea.addEventListener('dblclick', function () {
     navigator.clipboard.writeText(this.value).then(() => {
       storeClipboardData(this.value); // Store the copied text into clipboard history
       showCopiedMessage(); // Show the "Copied" message
@@ -1229,15 +1335,15 @@ document.querySelectorAll("[id^='user-textarea']").forEach((textarea) => {
 
 // :::: (Glossary Search) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("DOMContentLoaded", function () {
-  let searchTerm = "";
+document.addEventListener('DOMContentLoaded', function () {
+  let searchTerm = '';
   let searchTimeout;
   let specialKeyTimeout;
   let specialKeyActive = false;
 
-  document.addEventListener("keydown", function (event) {
-    const glossaryTab = document.getElementById("glossary-tab");
-    if (!glossaryTab || glossaryTab.style.display !== "block") {
+  document.addEventListener('keydown', function (event) {
+    const glossaryTab = document.getElementById('glossary-tab');
+    if (!glossaryTab || glossaryTab.style.display !== 'block') {
       return;
     }
 
@@ -1267,7 +1373,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset search term if no keys are pressed within 1 second
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      searchTerm = "";
+      searchTerm = '';
     }, 1000);
 
     // Filter the glossary terms based on the search term
@@ -1278,14 +1384,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Scroll to the first matched term's parent div
     if (matchedTerms.length > 0) {
       const firstMatch = matchedTerms[0];
-      const termElement = document.querySelector(`.glossary-term-link[data-term="${firstMatch.term.toLowerCase()}"]`);
+      const termElement = document.querySelector(
+        `.glossary-term-link[data-term="${firstMatch.term.toLowerCase()}"]`
+      );
 
       if (termElement) {
-        const parentElement = termElement.closest(".glossary-card-header");
+        const parentElement = termElement.closest('.glossary-card-header');
         if (parentElement) {
-          parentElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-          const link = parentElement.querySelector(".glossary-term-link");
+          const link = parentElement.querySelector('.glossary-term-link');
           if (link) {
             link.focus({ preventScroll: true });
           }
@@ -1297,20 +1405,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // :::: (Scroll To Top) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("keydown", function (event) {
-    const mainSection = document.querySelector("main"); // Adjust selector if needed
+document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('keydown', function (event) {
+    const mainSection = document.querySelector('main'); // Adjust selector if needed
 
     // Handle Home and End key scrolling
-    if (event.key === "Home") {
-      mainSection.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      const activeButton = document.querySelector(".asset-buttons.active");
+    if (event.key === 'Home') {
+      mainSection.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      const activeButton = document.querySelector('.asset-buttons.active');
 
       if (activeButton) {
         activeButton.focus(); // Focus on the active button
       }
-    } else if (event.key === "End") {
-      mainSection.scrollTo({ top: mainSection.scrollHeight, left: 0, behavior: "auto" });
+    } else if (event.key === 'End') {
+      mainSection.scrollTo({
+        top: mainSection.scrollHeight,
+        left: 0,
+        behavior: 'auto',
+      });
     }
   });
 });
@@ -1318,14 +1430,18 @@ document.addEventListener("DOMContentLoaded", function () {
 // :::: (Review Navigate) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Go to the component's example comments tab
-document.querySelectorAll(".paragraph-navigate").forEach((paragraph) => {
-  paragraph.addEventListener("click", () => {
+document.querySelectorAll('.paragraph-navigate').forEach((paragraph) => {
+  paragraph.addEventListener('click', () => {
     if (window.innerWidth > 768) {
       const targetNavigate = paragraph.dataset.navigate;
       const targetComments = paragraph.dataset.comments;
 
-      const navigateButton = document.querySelector(`button[data-navigate="${targetNavigate}"]`);
-      const commentsButton = document.querySelector(`button[data-target="${targetComments}"]`);
+      const navigateButton = document.querySelector(
+        `button[data-navigate="${targetNavigate}"]`
+      );
+      const commentsButton = document.querySelector(
+        `button[data-target="${targetComments}"]`
+      );
 
       if (navigateButton) {
         navigateButton.click();
@@ -1341,14 +1457,18 @@ document.querySelectorAll(".paragraph-navigate").forEach((paragraph) => {
 });
 
 // Go to the component's rating table tab
-document.querySelectorAll(".rating-button").forEach((paragraph) => {
-  paragraph.addEventListener("click", () => {
+document.querySelectorAll('.rating-button').forEach((paragraph) => {
+  paragraph.addEventListener('click', () => {
     if (window.innerWidth > 768) {
       const targetNavigate = paragraph.dataset.navigate;
       const targetRating = paragraph.dataset.rating;
 
-      const navigateButton = document.querySelector(`button[data-navigate="${targetNavigate}"]`);
-      const ratingButton = document.querySelector(`button[data-target="${targetRating}"]`);
+      const navigateButton = document.querySelector(
+        `button[data-navigate="${targetNavigate}"]`
+      );
+      const ratingButton = document.querySelector(
+        `button[data-target="${targetRating}"]`
+      );
 
       if (navigateButton) {
         navigateButton.click();
@@ -1363,13 +1483,13 @@ document.querySelectorAll(".rating-button").forEach((paragraph) => {
   });
 });
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener('keydown', (event) => {
   // Check if Ctrl + Shift + E is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "E") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'E') {
     const activeTextarea = document.activeElement;
 
     // Step 1: Check if the active element is a textarea
-    if (activeTextarea && activeTextarea.tagName === "TEXTAREA") {
+    if (activeTextarea && activeTextarea.tagName === 'TEXTAREA') {
       // Step 2: Retrieve the data-navigate and data-comments attributes from the active textarea
       const dataNavigate = activeTextarea.dataset.navigate;
       const dataComments = activeTextarea.dataset.comments;
@@ -1377,14 +1497,18 @@ document.addEventListener("keydown", (event) => {
       // Step 3: Trigger the same functionality as the paragraph click event
       if (window.innerWidth > 768) {
         // Step 4: Find the button with the matching data-navigate and simulate a click
-        const navigateButton = document.querySelector(`button[data-navigate="${dataNavigate}"]`);
+        const navigateButton = document.querySelector(
+          `button[data-navigate="${dataNavigate}"]`
+        );
         if (navigateButton) {
           navigateButton.click(); // Simulate click on the navigate button
           navigateButton.focus(); // Set focus after click
         }
 
         // Step 5: Find the button with the matching data-target (matching data-comments) and simulate a click
-        const commentsButton = document.querySelector(`button[data-target="${dataComments}"]`);
+        const commentsButton = document.querySelector(
+          `button[data-target="${dataComments}"]`
+        );
         if (commentsButton) {
           commentsButton.click(); // Simulate click on the comments button
           commentsButton.focus(); // Set focus on the comments button
@@ -1398,13 +1522,13 @@ document.addEventListener("keydown", (event) => {
 
 // Handle double-click to copy text from textareas with id = something-textarea-review to clipboard
 document.querySelectorAll("[id$='-textarea-review']").forEach((textarea) => {
-  textarea.addEventListener("dblclick", function () {
+  textarea.addEventListener('dblclick', function () {
     // Find the parent div with class "content-container-rating-lines"
-    const parentDiv = this.closest(".main-content-containers");
+    const parentDiv = this.closest('.main-content-containers');
 
     if (parentDiv) {
       // Add the 'highlighted' class to change the background color
-      parentDiv.classList.add("review-textarea-highlighted");
+      parentDiv.classList.add('review-textarea-highlighted');
     }
 
     // Copy text to clipboard
@@ -1415,7 +1539,7 @@ document.querySelectorAll("[id$='-textarea-review']").forEach((textarea) => {
         showCopiedMessage(); // Show the "Copied" message
       })
       .catch((err) => {
-        console.error("Error copying text:", err);
+        console.error('Error copying text:', err);
       });
   });
 });
@@ -1444,58 +1568,59 @@ function storeClipboardData(data) {
 // Function to show a custom "Copied" message
 function showCopiedMessage() {
   // Remove any existing message before showing a new one
-  const existingCopiedMessage = document.querySelector(".copied-message");
+  const existingCopiedMessage = document.querySelector('.copied-message');
   if (existingCopiedMessage) {
     existingCopiedMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingClipboardMessage = document.querySelector(".clipboard-message");
+  const existingClipboardMessage = document.querySelector('.clipboard-message');
   if (existingClipboardMessage) {
     existingClipboardMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingArrowMessage = document.querySelector(".arrow-message");
+  const existingArrowMessage = document.querySelector('.arrow-message');
   if (existingArrowMessage) {
     existingArrowMessage.remove();
   }
 
-  const copiedMessage = document.createElement("div");
-  copiedMessage.classList.add("copied-message"); // Add a class to target this specific message
+  const copiedMessage = document.createElement('div');
+  copiedMessage.classList.add('copied-message'); // Add a class to target this specific message
 
   // Style the message container to use flexbox
-  copiedMessage.style.display = "flex"; // Use flexbox to align items horizontally
-  copiedMessage.style.alignItems = "center"; // Vertically align items in the center
-  copiedMessage.style.position = "fixed";
-  copiedMessage.style.top = "15px";
-  copiedMessage.style.left = "50%";
-  copiedMessage.style.transform = "translateX(-50%)";
-  copiedMessage.style.borderRadius = "8px"; // Rounded corners for the container
-  copiedMessage.style.fontSize = "14px"; // Font size
-  copiedMessage.style.maxWidth = "80%"; // Max width of the message block
-  copiedMessage.style.wordWrap = "break-word"; // Ensure long lines of text wrap correctly
-  copiedMessage.style.zIndex = "9999"; // Ensure it appears above other content
+  copiedMessage.style.display = 'flex'; // Use flexbox to align items horizontally
+  copiedMessage.style.alignItems = 'center'; // Vertically align items in the center
+  copiedMessage.style.position = 'fixed';
+  copiedMessage.style.top = '15px';
+  copiedMessage.style.left = '50%';
+  copiedMessage.style.transform = 'translateX(-50%)';
+  copiedMessage.style.borderRadius = '8px'; // Rounded corners for the container
+  copiedMessage.style.fontSize = '14px'; // Font size
+  copiedMessage.style.maxWidth = '80%'; // Max width of the message block
+  copiedMessage.style.wordWrap = 'break-word'; // Ensure long lines of text wrap correctly
+  copiedMessage.style.zIndex = '9999'; // Ensure it appears above other content
 
   // Create the "Copied:" part with different background
-  const copiedPart = document.createElement("div");
-  copiedPart.textContent = "Copied!";
-  copiedPart.style.backgroundColor = "rgba(67, 84, 167, 0.9)"; // Blue background for "Copied"
-  copiedPart.style.backgroundColor = "rgba(75, 84, 128, 0.9)"; // Blue background for "Copied"
-  copiedPart.style.color = "#fff"; // White text color
-  copiedPart.style.padding = "6px 10px"; // Reduced padding for the "Copied:" part
+  const copiedPart = document.createElement('div');
+  copiedPart.textContent = 'Copied!';
+  copiedPart.style.backgroundColor = 'rgba(67, 84, 167, 0.9)'; // Blue background for "Copied"
+  copiedPart.style.backgroundColor = 'rgba(75, 84, 128, 0.9)'; // Blue background for "Copied"
+  copiedPart.style.color = '#fff'; // White text color
+  copiedPart.style.padding = '6px 10px'; // Reduced padding for the "Copied:" part
   // copiedPart.style.fontWeight = "bold"; // Bold text for "Copied:"
-  copiedPart.style.marginRight = "8px"; // Space between "Copied:" and the next text
-  copiedPart.style.borderRadius = "4px"; // Rounded corners for the "Copied:" part
+  copiedPart.style.marginRight = '8px'; // Space between "Copied:" and the next text
+  copiedPart.style.borderRadius = '4px'; // Rounded corners for the "Copied:" part
 
   // Create the part with instructions (Ctrl+Shift+Z and Ctrl+Shift+Y)
-  const instructionsPart = document.createElement("div");
-  instructionsPart.textContent = "Press Ctrl+Shift+Z to undo and Ctrl+Shift+Y to redo.";
-  instructionsPart.style.backgroundColor = "#333"; // Dark background for instructions
-  instructionsPart.style.color = "#fff"; // White text color
-  instructionsPart.style.padding = "6px 10px"; // Reduced padding for instructions
-  instructionsPart.style.flexGrow = "1"; // Allow content to take remaining space if needed
-  instructionsPart.style.borderRadius = "4px"; // Rounded corners for the instructions part
+  const instructionsPart = document.createElement('div');
+  instructionsPart.textContent =
+    'Press Ctrl+Shift+Z to undo and Ctrl+Shift+Y to redo.';
+  instructionsPart.style.backgroundColor = '#333'; // Dark background for instructions
+  instructionsPart.style.color = '#fff'; // White text color
+  instructionsPart.style.padding = '6px 10px'; // Reduced padding for instructions
+  instructionsPart.style.flexGrow = '1'; // Allow content to take remaining space if needed
+  instructionsPart.style.borderRadius = '4px'; // Rounded corners for the instructions part
 
   // Append the "Copied:" part and the instructions to the message container
   copiedMessage.appendChild(copiedPart);
@@ -1513,58 +1638,58 @@ function showCopiedMessage() {
 // Function to show the current clipboard value (used for Undo/Redo)
 function showCurrentClipboardValue(value) {
   // Remove any existing message before showing a new one
-  const existingCopiedMessage = document.querySelector(".copied-message");
+  const existingCopiedMessage = document.querySelector('.copied-message');
   if (existingCopiedMessage) {
     existingCopiedMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingClipboardMessage = document.querySelector(".clipboard-message");
+  const existingClipboardMessage = document.querySelector('.clipboard-message');
   if (existingClipboardMessage) {
     existingClipboardMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingArrowMessage = document.querySelector(".arrow-message");
+  const existingArrowMessage = document.querySelector('.arrow-message');
   if (existingArrowMessage) {
     existingArrowMessage.remove();
   }
 
   // Create the message container
-  const currentMessage = document.createElement("div");
-  currentMessage.classList.add("clipboard-message"); // Add a class to target this specific message
+  const currentMessage = document.createElement('div');
+  currentMessage.classList.add('clipboard-message'); // Add a class to target this specific message
 
   // Style the message container to use flexbox
-  currentMessage.style.display = "flex"; // Use flexbox to align items horizontally
-  currentMessage.style.alignItems = "center"; // Vertically align items in the center
-  currentMessage.style.position = "fixed";
-  currentMessage.style.top = "15px";
-  currentMessage.style.left = "50%";
-  currentMessage.style.transform = "translateX(-50%)";
-  currentMessage.style.borderRadius = "8px"; // Rounded corners for the message container
-  currentMessage.style.fontSize = "14px"; // Font size
-  currentMessage.style.maxWidth = "80%"; // Max width of the message block
-  currentMessage.style.wordWrap = "break-word"; // Ensure long lines of text wrap correctly
-  currentMessage.style.zIndex = "9999"; // Ensure it appears above other content
+  currentMessage.style.display = 'flex'; // Use flexbox to align items horizontally
+  currentMessage.style.alignItems = 'center'; // Vertically align items in the center
+  currentMessage.style.position = 'fixed';
+  currentMessage.style.top = '15px';
+  currentMessage.style.left = '50%';
+  currentMessage.style.transform = 'translateX(-50%)';
+  currentMessage.style.borderRadius = '8px'; // Rounded corners for the message container
+  currentMessage.style.fontSize = '14px'; // Font size
+  currentMessage.style.maxWidth = '80%'; // Max width of the message block
+  currentMessage.style.wordWrap = 'break-word'; // Ensure long lines of text wrap correctly
+  currentMessage.style.zIndex = '9999'; // Ensure it appears above other content
 
   // Create a div for the "Clipboard Contents:" part with different background
-  const titlePart = document.createElement("div");
-  titlePart.textContent = "Clipboard Contents:";
-  titlePart.style.padding = "6px 10px"; // Increased padding for better spacing
+  const titlePart = document.createElement('div');
+  titlePart.textContent = 'Clipboard Contents:';
+  titlePart.style.padding = '6px 10px'; // Increased padding for better spacing
   // titlePart.style.fontWeight = "bold"; // Bold text for the title
-  titlePart.style.marginRight = "8px"; // Space between the title and content
-  titlePart.style.borderRadius = "4px"; // Rounded corners for the title
-  titlePart.style.backgroundColor = "rgba(45, 91, 47, 0.9)"; // Green background for the title
-  titlePart.style.color = "#fff"; // White text color
+  titlePart.style.marginRight = '8px'; // Space between the title and content
+  titlePart.style.borderRadius = '4px'; // Rounded corners for the title
+  titlePart.style.backgroundColor = 'rgba(45, 91, 47, 0.9)'; // Green background for the title
+  titlePart.style.color = '#fff'; // White text color
 
   // Create a div for the clipboard content itself (rest of the message)
-  const contentPart = document.createElement("div");
+  const contentPart = document.createElement('div');
   contentPart.textContent = value.slice(0, 100); // Show more of the text (100 characters)
-  contentPart.style.padding = "6px 10px"; // Increased padding for better spacing
-  contentPart.style.flexGrow = "1"; // Allow content to take remaining space if needed
-  contentPart.style.borderRadius = "4px"; // Rounded corners for the content part
-  contentPart.style.backgroundColor = "#333"; // Dark background for content part
-  contentPart.style.color = "#fff"; // White text color
+  contentPart.style.padding = '6px 10px'; // Increased padding for better spacing
+  contentPart.style.flexGrow = '1'; // Allow content to take remaining space if needed
+  contentPart.style.borderRadius = '4px'; // Rounded corners for the content part
+  contentPart.style.backgroundColor = '#333'; // Dark background for content part
+  contentPart.style.color = '#fff'; // White text color
 
   // Append the title and content to the message container
   currentMessage.appendChild(titlePart);
@@ -1581,7 +1706,7 @@ function showCurrentClipboardValue(value) {
 
 // Handle double-click to copy text from textareas to clipboard
 document.querySelectorAll("[id$='-textarea-review']").forEach((textarea) => {
-  textarea.addEventListener("dblclick", function () {
+  textarea.addEventListener('dblclick', function () {
     const value = this.value;
     navigator.clipboard
       .writeText(value)
@@ -1590,15 +1715,15 @@ document.querySelectorAll("[id$='-textarea-review']").forEach((textarea) => {
         showCopiedMessage(); // Show the "Copied" message
       })
       .catch((err) => {
-        console.error("Error copying text:", err);
+        console.error('Error copying text:', err);
       });
   });
 });
 
 // Modify undo function to never remove the last item
 // Handle keyboard shortcut (Ctrl + Shift + Z) to restore previous clipboard content
-document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey && event.shiftKey && event.key === "Z") {
+document.addEventListener('keydown', (event) => {
+  if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
     event.preventDefault(); // Prevent the default browser undo/redo action
 
     if (clipboardHistory.length > 1) {
@@ -1612,17 +1737,17 @@ document.addEventListener("keydown", (event) => {
           showCurrentClipboardValue(previousClipboard); // Show current clipboard value (Undo)
         })
         .catch((err) => {
-          console.error("Error restoring clipboard value:", err);
+          console.error('Error restoring clipboard value:', err);
         });
     } else {
-      console.log("Clipboard history cannot be emptied.");
+      console.log('Clipboard history cannot be emptied.');
     }
   }
 });
 
 // Handle keyboard shortcut (Ctrl + Shift + Y) to redo clipboard content
-document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey && event.shiftKey && event.key === "Y") {
+document.addEventListener('keydown', (event) => {
+  if (event.ctrlKey && event.shiftKey && event.key === 'Y') {
     event.preventDefault(); // Prevent the default browser redo action
 
     if (redoHistory.length > 0) {
@@ -1634,21 +1759,27 @@ document.addEventListener("keydown", (event) => {
           showCurrentClipboardValue(redoValue); // Show current clipboard value (Redo)
         })
         .catch((err) => {
-          console.error("Error redoing clipboard value:", err);
+          console.error('Error redoing clipboard value:', err);
         });
     } else {
-      console.log("No redo clipboard history.");
+      console.log('No redo clipboard history.');
     }
   }
 });
 
 // Capture manual copy events (Ctrl+C, right-click copy) inside the page
-document.addEventListener("copy", (event) => {
-  let copiedText = "";
+document.addEventListener('copy', (event) => {
+  let copiedText = '';
 
   const activeEl = document.activeElement;
-  if (activeEl && (activeEl.tagName === "TEXTAREA" || activeEl.tagName === "INPUT")) {
-    copiedText = activeEl.value.substring(activeEl.selectionStart, activeEl.selectionEnd);
+  if (
+    activeEl &&
+    (activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'INPUT')
+  ) {
+    copiedText = activeEl.value.substring(
+      activeEl.selectionStart,
+      activeEl.selectionEnd
+    );
   } else {
     copiedText = window.getSelection().toString();
   }
@@ -1656,20 +1787,20 @@ document.addEventListener("copy", (event) => {
   if (copiedText) {
     storeClipboardData(copiedText);
     showCopiedMessage(); // Show "Copied" message for manual copy
-    console.log("Captured copy:", copiedText);
+    console.log('Captured copy:', copiedText);
   }
 });
 
 // Function to save clipboard history to sessionStorage
 function saveClipboardHistory() {
-  sessionStorage.setItem("clipboardHistory", JSON.stringify(clipboardHistory));
-  sessionStorage.setItem("redoHistory", JSON.stringify(redoHistory));
+  sessionStorage.setItem('clipboardHistory', JSON.stringify(clipboardHistory));
+  sessionStorage.setItem('redoHistory', JSON.stringify(redoHistory));
 }
 
 // Function to load clipboard history from sessionStorage
 function loadClipboardHistory() {
-  const storedClipboard = sessionStorage.getItem("clipboardHistory");
-  const storedRedo = sessionStorage.getItem("redoHistory");
+  const storedClipboard = sessionStorage.getItem('clipboardHistory');
+  const storedRedo = sessionStorage.getItem('redoHistory');
 
   if (storedClipboard) {
     clipboardHistory = JSON.parse(storedClipboard);
@@ -1685,15 +1816,15 @@ loadClipboardHistory();
 // :::: (Tab Order) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Disable tabbing globally by setting tabindex="-1" for all elements
-document.querySelectorAll("div:not(.divRow)").forEach((element) => {
-  element.setAttribute("tabindex", "-1");
+document.querySelectorAll('div:not(.divRow)').forEach((element) => {
+  element.setAttribute('tabindex', '-1');
 });
 
 // Function to enable tabbing on specific elements
 function enableTabbing(elementId, tabindexValue) {
   const element = document.getElementById(elementId);
   if (element) {
-    element.setAttribute("tabindex", tabindexValue);
+    element.setAttribute('tabindex', tabindexValue);
   }
 }
 
@@ -1704,16 +1835,16 @@ function enableTabbing(elementId, tabindexValue) {
 
 // :::: (Arrow Buttons) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-const toggleFocusActivation = "activate"; // Set to "focus" or "activate"
+const toggleFocusActivation = 'activate'; // Set to "focus" or "activate"
 
 // Track the number of times the Control key is pressed // :::: (Ctrl, Ctrl) //
 let ctrlPresses = 0;
 let lastCtrlPressTime = 0;
-let toggleArrow = "navigation";
+let toggleArrow = 'navigation';
 
 // Event listener for keydown events
-window.addEventListener("keydown", function (event) {
-  if (event.key !== "Control" || event.repeat) return; // Ignore repeats
+window.addEventListener('keydown', function (event) {
+  if (event.key !== 'Control' || event.repeat) return; // Ignore repeats
 
   const currentTime = Date.now();
   if (currentTime - lastCtrlPressTime > 300) {
@@ -1724,31 +1855,33 @@ window.addEventListener("keydown", function (event) {
   ctrlPresses++;
 
   if (ctrlPresses === 2) {
-    toggleArrow = toggleArrow === "navigation" ? "default" : "navigation";
+    toggleArrow = toggleArrow === 'navigation' ? 'default' : 'navigation';
     ctrlPresses = 0; // Reset counter
     showArrowMessage(toggleArrow);
   }
 });
 
 function handleElementAction(element) {
-  if (element.tagName.toLowerCase() === "a") return; // Skip activation for links
-  if (element.id === "button-map-link") return; // Skip activation if the ID is "button-map-link"
-  if (element.id === "searchID") return; // Skip activation if the ID is "searchID"
-  if ("rating" in element.dataset) return; // Skip activation if the data attribute is rating
+  if (element.tagName.toLowerCase() === 'a') return; // Skip activation for links
+  if (element.id === 'button-map-link') return; // Skip activation if the ID is "button-map-link"
+  if (element.id === 'searchID') return; // Skip activation if the ID is "searchID"
+  if ('rating' in element.dataset) return; // Skip activation if the data attribute is rating
 
-  if (toggleFocusActivation === "focus") {
+  if (toggleFocusActivation === 'focus') {
     element.focus();
-    if (element.tagName.toLowerCase() === "textarea") {
+    if (element.tagName.toLowerCase() === 'textarea') {
       element.selectionStart = element.value.length;
       element.selectionEnd = element.value.length;
     }
-  } else if (toggleFocusActivation === "activate") {
+  } else if (toggleFocusActivation === 'activate') {
     element.click();
   }
 }
 
 function getVisibleElements(rowClass) {
-  return Array.from(document.querySelectorAll(`.${rowClass}`)).filter((el) => el.offsetParent !== null);
+  return Array.from(document.querySelectorAll(`.${rowClass}`)).filter(
+    (el) => el.offsetParent !== null
+  );
 }
 
 function getAllRowClasses() {
@@ -1758,7 +1891,7 @@ function getAllRowClasses() {
   allElements.forEach((el) => {
     if (el.offsetParent !== null) {
       el.classList.forEach((cls) => {
-        if (cls.startsWith("row")) {
+        if (cls.startsWith('row')) {
           rowClasses.add(cls);
         }
       });
@@ -1766,15 +1899,17 @@ function getAllRowClasses() {
   });
 
   return Array.from(rowClasses).sort((a, b) => {
-    const numA = parseInt(a.replace("row", ""));
-    const numB = parseInt(b.replace("row", ""));
+    const numA = parseInt(a.replace('row', ''));
+    const numB = parseInt(b.replace('row', ''));
     return numA - numB;
   });
 }
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener('keydown', function (event) {
   let activeElement = document.activeElement;
-  let rowClass = Array.from(activeElement.classList).find((cls) => cls.startsWith("row"));
+  let rowClass = Array.from(activeElement.classList).find((cls) =>
+    cls.startsWith('row')
+  );
   if (!rowClass) return;
 
   const elements = getVisibleElements(rowClass);
@@ -1782,11 +1917,11 @@ window.addEventListener("keydown", function (event) {
   const allRows = getAllRowClasses();
   const rowIndex = allRows.indexOf(rowClass);
 
-  if (event.code === "ArrowRight") {
+  if (event.code === 'ArrowRight') {
     let activeElement = document.activeElement;
 
     // Check if the active element is a textarea
-    if (activeElement.tagName.toLowerCase() === "textarea") {
+    if (activeElement.tagName.toLowerCase() === 'textarea') {
       const textarea = activeElement;
       const cursorPosition = textarea.selectionEnd;
 
@@ -1811,11 +1946,11 @@ window.addEventListener("keydown", function (event) {
     }
   }
 
-  if (event.code === "ArrowLeft") {
+  if (event.code === 'ArrowLeft') {
     let activeElement = document.activeElement;
 
     // Check if the active element is a textarea
-    if (activeElement.tagName.toLowerCase() === "textarea") {
+    if (activeElement.tagName.toLowerCase() === 'textarea') {
       const textarea = activeElement;
       const cursorPosition = textarea.selectionStart;
 
@@ -1840,11 +1975,11 @@ window.addEventListener("keydown", function (event) {
     }
   }
 
-  if (event.code === "ArrowDown" && toggleArrow !== "default") {
+  if (event.code === 'ArrowDown' && toggleArrow !== 'default') {
     const activeElement = document.activeElement;
 
     // Check if the active element is a textarea
-    if (activeElement.tagName.toLowerCase() === "textarea") {
+    if (activeElement.tagName.toLowerCase() === 'textarea') {
       const cursorPosition = activeElement.selectionStart; // Get the cursor position
       const textLength = activeElement.value.length; // Get the text length
 
@@ -1864,7 +1999,11 @@ window.addEventListener("keydown", function (event) {
 
           if (nextRow.length) {
             // Check if there's an active button in the next row
-            const activeButton = nextRow.find((el) => el.tagName.toLowerCase() === "button" && el.classList.contains("active"));
+            const activeButton = nextRow.find(
+              (el) =>
+                el.tagName.toLowerCase() === 'button' &&
+                el.classList.contains('active')
+            );
             if (activeButton) {
               activeButton.focus(); // Focus the active button
               handleElementAction(activeButton);
@@ -1887,7 +2026,11 @@ window.addEventListener("keydown", function (event) {
 
       if (nextRow.length) {
         // Check if there's an active button in the next row
-        const activeButton = nextRow.find((el) => el.tagName.toLowerCase() === "button" && el.classList.contains("active"));
+        const activeButton = nextRow.find(
+          (el) =>
+            el.tagName.toLowerCase() === 'button' &&
+            el.classList.contains('active')
+        );
         if (activeButton) {
           activeButton.focus(); // Focus the active button
           handleElementAction(activeButton);
@@ -1900,11 +2043,11 @@ window.addEventListener("keydown", function (event) {
     }
   }
 
-  if (event.code === "ArrowUp" && toggleArrow !== "default") {
+  if (event.code === 'ArrowUp' && toggleArrow !== 'default') {
     let activeElement = document.activeElement;
 
     // Check if the active element is a textarea
-    if (activeElement.tagName.toLowerCase() === "textarea") {
+    if (activeElement.tagName.toLowerCase() === 'textarea') {
       const textarea = activeElement;
       const cursorPosition = textarea.selectionStart;
 
@@ -1924,7 +2067,11 @@ window.addEventListener("keydown", function (event) {
       const nextRow = getVisibleElements(allRows[nextRowIndex]);
       if (nextRow.length) {
         // Check if there's an active button in the previous row
-        const activeButton = nextRow.find((el) => el.tagName.toLowerCase() === "button" && el.classList.contains("active"));
+        const activeButton = nextRow.find(
+          (el) =>
+            el.tagName.toLowerCase() === 'button' &&
+            el.classList.contains('active')
+        );
         if (activeButton) {
           activeButton.focus(); // Focus the active button
           handleElementAction(activeButton);
@@ -1940,18 +2087,21 @@ window.addEventListener("keydown", function (event) {
 
 // :::: (Enter & Row Down) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-window.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+window.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
     setTimeout(() => {
       // Get the event target (the button that was just activated)
       const targetButton = document.activeElement;
 
       // Check if the target button has both required classes
-      if (targetButton.classList.contains("row2") && targetButton.classList.contains("bridge-component-buttons")) {
+      if (
+        targetButton.classList.contains('row2') &&
+        targetButton.classList.contains('bridge-component-buttons')
+      ) {
         // Trigger a simulated "ArrowDown" key event
-        const arrowDownEvent = new KeyboardEvent("keydown", {
-          key: "ArrowDown",
-          code: "ArrowDown",
+        const arrowDownEvent = new KeyboardEvent('keydown', {
+          key: 'ArrowDown',
+          code: 'ArrowDown',
           keyCode: 40,
           which: 40,
           bubbles: true,
@@ -1964,9 +2114,9 @@ window.addEventListener("keydown", function (event) {
 
 // :::: (Type Rating) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener('keydown', function (event) {
   // Ignore if typing in input or textarea
-  if (["INPUT", "TEXTAREA"].includes(event.target.tagName)) return;
+  if (['INPUT', 'TEXTAREA'].includes(event.target.tagName)) return;
 
   const key = event.key.toUpperCase();
 
@@ -1975,37 +2125,41 @@ window.addEventListener("keydown", function (event) {
 
   // List of possible visible container IDs
   const containerIds = [
-    "bridge-alignment-pg2",
-    "bridge-approach-pg2",
-    "bridge-joints-pg2",
-    "bridge-joints-pg5",
-    "bridge-railings-pg2",
-    "bridge-railings-pg5",
-    "bridge-deck-pg2",
-    "bridge-deck-pg5",
-    "bridge-super-pg2",
-    "bridge-super-pg5",
-    "bridge-bearings-pg2",
-    "bridge-sub-pg2",
-    "bridge-sub-pg5",
-    "bridge-culvert-pg2",
-    "bridge-channel-pg2",
-    "bridge-channel-pg5",
-    "bridge-scour-pg2",
-    "bridge-scour-pg5",
-    "bridge-overtopping-pg2",
-    "bridge-wildlife-pg2",
-    "bridge-wildlife-pg4",
+    'bridge-alignment-pg2',
+    'bridge-approach-pg2',
+    'bridge-joints-pg2',
+    'bridge-joints-pg5',
+    'bridge-railings-pg2',
+    'bridge-railings-pg5',
+    'bridge-deck-pg2',
+    'bridge-deck-pg5',
+    'bridge-super-pg2',
+    'bridge-super-pg5',
+    'bridge-bearings-pg2',
+    'bridge-sub-pg2',
+    'bridge-sub-pg5',
+    'bridge-culvert-pg2',
+    'bridge-channel-pg2',
+    'bridge-channel-pg5',
+    'bridge-scour-pg2',
+    'bridge-scour-pg5',
+    'bridge-overtopping-pg2',
+    'bridge-wildlife-pg2',
+    'bridge-wildlife-pg4',
   ];
 
   // Find the currently visible container
-  const activeContainer = containerIds.map((id) => document.getElementById(id)).find((el) => el && el.offsetParent !== null);
+  const activeContainer = containerIds
+    .map((id) => document.getElementById(id))
+    .find((el) => el && el.offsetParent !== null);
 
   if (!activeContainer) return; // No visible container
 
   // Find the rating line matching the key
-  const targetLine = Array.from(activeContainer.querySelectorAll(".content-container-rating-lines")).find((line) => {
-    const span = line.querySelector(".content-container-rating-numerical");
+  const targetLine = Array.from(
+    activeContainer.querySelectorAll('.content-container-rating-lines')
+  ).find((line) => {
+    const span = line.querySelector('.content-container-rating-numerical');
     return span && span.textContent.trim().toUpperCase() === key;
   });
 
@@ -2019,30 +2173,30 @@ window.addEventListener("keydown", function (event) {
 
 // Define the navigation sequence as an array of button data-targets
 const navigationMap = [
-  ["bridge-asset-tab", "bridge-alignment-tab", "bridge-alignment-pg2"], // Index 0
-  ["bridge-asset-tab", "bridge-approach-tab", "bridge-approach-pg2"], // Index 1
-  ["bridge-asset-tab", "bridge-joints-tab", "bridge-joints-pg2"], // Index 2
-  ["bridge-asset-tab", "bridge-joints-tab", "bridge-joints-pg5"], // Index 3
-  ["bridge-asset-tab", "bridge-railings-tab", "bridge-railings-pg2"], // Index 4
-  ["bridge-asset-tab", "bridge-railings-tab", "bridge-railings-pg5"], // Index 5
-  ["bridge-asset-tab", "bridge-deck-tab", "bridge-deck-pg2"], // Index 6
-  ["bridge-asset-tab", "bridge-deck-tab", "bridge-deck-pg5"], // Index 7
-  ["bridge-asset-tab", "bridge-super-tab", "bridge-super-pg2"], // Index 8
-  ["bridge-asset-tab", "bridge-super-tab", "bridge-super-pg5"], // Index 9
-  ["bridge-asset-tab", "bridge-bearings-tab", "bridge-bearings-pg2"], // Index 10
-  ["bridge-asset-tab", "bridge-sub-tab", "bridge-sub-pg2"], // Index 11
-  ["bridge-asset-tab", "bridge-sub-tab", "bridge-sub-pg5"], // Index 12
-  ["bridge-asset-tab", "bridge-culvert-tab", "bridge-culvert-pg2"], // Index 13
-  ["bridge-asset-tab", "bridge-channel-tab", "bridge-channel-pg2"], // Index 14
-  ["bridge-asset-tab", "bridge-channel-tab", "bridge-channel-pg5"], // Index 15
-  ["bridge-asset-tab", "bridge-scour-tab", "bridge-scour-pg2"], // Index 16
-  ["bridge-asset-tab", "bridge-scour-tab", "bridge-scour-pg5"], // Index 17
-  ["bridge-asset-tab", "bridge-overtopping-tab", "bridge-overtopping-pg2"], // Index 18
-  ["bridge-asset-tab", "bridge-wildlife-tab", "bridge-wildlife-pg2"], // Index 19
-  ["bridge-asset-tab", "bridge-wildlife-tab", "bridge-wildlife-pg4"], // Index 20
-  ["bridge-asset-tab", "bridge-elements-tab", "element-elements-tab"], // Index 21
-  ["bridge-asset-tab", "bridge-maintenance-tab", null], // Index 22
-  ["bridge-asset-tab", "bridge-review-tab", "review-ratings2-tab"], // Index 23
+  ['bridge-asset-tab', 'bridge-alignment-tab', 'bridge-alignment-pg2'], // Index 0
+  ['bridge-asset-tab', 'bridge-approach-tab', 'bridge-approach-pg2'], // Index 1
+  ['bridge-asset-tab', 'bridge-joints-tab', 'bridge-joints-pg2'], // Index 2
+  ['bridge-asset-tab', 'bridge-joints-tab', 'bridge-joints-pg5'], // Index 3
+  ['bridge-asset-tab', 'bridge-railings-tab', 'bridge-railings-pg2'], // Index 4
+  ['bridge-asset-tab', 'bridge-railings-tab', 'bridge-railings-pg5'], // Index 5
+  ['bridge-asset-tab', 'bridge-deck-tab', 'bridge-deck-pg2'], // Index 6
+  ['bridge-asset-tab', 'bridge-deck-tab', 'bridge-deck-pg5'], // Index 7
+  ['bridge-asset-tab', 'bridge-super-tab', 'bridge-super-pg2'], // Index 8
+  ['bridge-asset-tab', 'bridge-super-tab', 'bridge-super-pg5'], // Index 9
+  ['bridge-asset-tab', 'bridge-bearings-tab', 'bridge-bearings-pg2'], // Index 10
+  ['bridge-asset-tab', 'bridge-sub-tab', 'bridge-sub-pg2'], // Index 11
+  ['bridge-asset-tab', 'bridge-sub-tab', 'bridge-sub-pg5'], // Index 12
+  ['bridge-asset-tab', 'bridge-culvert-tab', 'bridge-culvert-pg2'], // Index 13
+  ['bridge-asset-tab', 'bridge-channel-tab', 'bridge-channel-pg2'], // Index 14
+  ['bridge-asset-tab', 'bridge-channel-tab', 'bridge-channel-pg5'], // Index 15
+  ['bridge-asset-tab', 'bridge-scour-tab', 'bridge-scour-pg2'], // Index 16
+  ['bridge-asset-tab', 'bridge-scour-tab', 'bridge-scour-pg5'], // Index 17
+  ['bridge-asset-tab', 'bridge-overtopping-tab', 'bridge-overtopping-pg2'], // Index 18
+  ['bridge-asset-tab', 'bridge-wildlife-tab', 'bridge-wildlife-pg2'], // Index 19
+  ['bridge-asset-tab', 'bridge-wildlife-tab', 'bridge-wildlife-pg4'], // Index 20
+  ['bridge-asset-tab', 'bridge-elements-tab', 'element-elements-tab'], // Index 21
+  ['bridge-asset-tab', 'bridge-maintenance-tab', null], // Index 22
+  ['bridge-asset-tab', 'bridge-review-tab', 'review-ratings2-tab'], // Index 23
 ];
 
 // Track the current position in the navigation sequence
@@ -2066,16 +2220,17 @@ function triggerButton(dataTarget) {
  */
 function navigate(direction) {
   foundIndex = findNavigationIndex(); // Call the function when Control is pressed twice
-  if (direction === "up") {
+  if (direction === 'up') {
     let roundedDown = Math.floor(foundIndex);
     // alert(roundedDown);
     // Move forward in the sequence, looping back to the first entry if at the end
     currentIndex = (roundedDown + 1) % navigationMap.length;
-  } else if (direction === "down") {
+  } else if (direction === 'down') {
     let roundedUp = Math.ceil(foundIndex);
     // alert(roundedUp);
     // Move backward in the sequence, looping back to the last entry if at the start
-    currentIndex = (roundedUp - 1 + navigationMap.length) % navigationMap.length;
+    currentIndex =
+      (roundedUp - 1 + navigationMap.length) % navigationMap.length;
   }
 
   // Simulate button clicks for the current navigation entry
@@ -2083,12 +2238,12 @@ function navigate(direction) {
 }
 
 // Listen for PageUp and PageDown key presses
-document.addEventListener("keydown", (event) => {
-  if (event.key === "PageDown") {
-    navigate("up"); // PageDown moves forward in the sequence
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'PageDown') {
+    navigate('up'); // PageDown moves forward in the sequence
     event.preventDefault();
-  } else if (event.key === "PageUp") {
-    navigate("down"); // PageUp moves backward in the sequence
+  } else if (event.key === 'PageUp') {
+    navigate('down'); // PageUp moves backward in the sequence
     event.preventDefault();
   }
 });
@@ -2106,30 +2261,35 @@ function findNavigationIndex() {
   let buttonActive3Prefix = null;
 
   // Get all buttons whose data-target starts with "bridge-" and ends with "-tab", but exclude "bridge-asset-tab"
-  const activeButton2 = document.querySelectorAll('[data-target^="bridge-"][data-target$="-tab"]:not([data-target="bridge-asset-tab"])');
+  const activeButton2 = document.querySelectorAll(
+    '[data-target^="bridge-"][data-target$="-tab"]:not([data-target="bridge-asset-tab"])'
+  );
 
   // Loop through all the buttons and check if any of them is active
   activeButton2.forEach((button) => {
-    const activeTarget2 = button.getAttribute("data-target");
+    const activeTarget2 = button.getAttribute('data-target');
 
     // Check if the button follows the "bridge-*-tab" pattern and is active
-    if (button.classList.contains("active") && activeTarget2.includes("-tab")) {
+    if (button.classList.contains('active') && activeTarget2.includes('-tab')) {
       buttonActive2 = activeTarget2; // Store the active button's data-target
-      buttonActive3Prefix = buttonActive2.split("-").slice(0, 2).join("-") + "-";
+      buttonActive3Prefix =
+        buttonActive2.split('-').slice(0, 2).join('-') + '-';
       // alert(buttonActive2);
     }
   });
 
   // alert(buttonActive3Prefix);
-  const activeButton3 = document.querySelectorAll(`[data-target^="${buttonActive3Prefix}pg"]`);
+  const activeButton3 = document.querySelectorAll(
+    `[data-target^="${buttonActive3Prefix}pg"]`
+  );
   // alert(activeButton3); // works to here!
 
   // Loop through all the buttons and check if any of them is active
   activeButton3.forEach((button) => {
-    const activeTarget3 = button.getAttribute("data-target");
+    const activeTarget3 = button.getAttribute('data-target');
 
     // Check if the button follows the "bridge-*-tab" pattern and is active
-    if (button.classList.contains("active") && activeTarget3.includes("-pg")) {
+    if (button.classList.contains('active') && activeTarget3.includes('-pg')) {
       buttonActive3 = activeTarget3; // Store the active button's data-target
       // alert(buttonActive3);
     }
@@ -2139,18 +2299,42 @@ function findNavigationIndex() {
   for (let i = 0; i < navigationMap.length; i++) {
     const buttonTarget2 = navigationMap[i][1]; // Second element in the array // bridge-*-tab // Components // buttonActive2
     const buttonTarget3 = navigationMap[i][2]; // Third element in the array // bridge-something-pgN (typically)
-    if (["bridge-elements-tab", "bridge-maintenance-tab", "bridge-review-tab"].includes(buttonActive2) && buttonActive2 === buttonTarget2) {
+    if (
+      [
+        'bridge-elements-tab',
+        'bridge-maintenance-tab',
+        'bridge-review-tab',
+      ].includes(buttonActive2) &&
+      buttonActive2 === buttonTarget2
+    ) {
       foundIndex = i;
       break;
     }
     // If buttonActive2 is set, compare it with other elements in the navigationMap
-    else if (buttonActive3 && buttonActive3.includes("-pg") && buttonTarget3 && buttonTarget3.includes("-pg")) {
+    else if (
+      buttonActive3 &&
+      buttonActive3.includes('-pg') &&
+      buttonTarget3 &&
+      buttonTarget3.includes('-pg')
+    ) {
       // Extract the number after the "-pg"
-      const numberFromButtonActive3 = parseInt(buttonActive3.slice(buttonActive3.lastIndexOf("-pg") + 3), 10);
-      const numberFromButtonTarget3 = parseInt(buttonTarget3.slice(buttonTarget3.lastIndexOf("-pg") + 3), 10);
+      const numberFromButtonActive3 = parseInt(
+        buttonActive3.slice(buttonActive3.lastIndexOf('-pg') + 3),
+        10
+      );
+      const numberFromButtonTarget3 = parseInt(
+        buttonTarget3.slice(buttonTarget3.lastIndexOf('-pg') + 3),
+        10
+      );
       // Get the prefix before "-pg"
-      const prefixFromButtonActive3 = buttonActive3.slice(0, buttonActive3.lastIndexOf("-pg"));
-      const prefixFromButtonTarget3 = buttonTarget3.slice(0, buttonTarget3.lastIndexOf("-pg"));
+      const prefixFromButtonActive3 = buttonActive3.slice(
+        0,
+        buttonActive3.lastIndexOf('-pg')
+      );
+      const prefixFromButtonTarget3 = buttonTarget3.slice(
+        0,
+        buttonTarget3.lastIndexOf('-pg')
+      );
 
       // Compare the active button's number with other elements in the navigationMap (if needed)
       // For example, if you want to compare this with `buttonTarget2` or any other values, you can add that logic here
@@ -2185,60 +2369,61 @@ function findNavigationIndex() {
 // Function to show the current clipboard value (used for Undo/Redo)
 function showArrowMessage(value) {
   // Remove any existing message before showing a new one
-  const existingCopiedMessage = document.querySelector(".copied-message");
+  const existingCopiedMessage = document.querySelector('.copied-message');
   if (existingCopiedMessage) {
     existingCopiedMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingClipboardMessage = document.querySelector(".clipboard-message");
+  const existingClipboardMessage = document.querySelector('.clipboard-message');
   if (existingClipboardMessage) {
     existingClipboardMessage.remove();
   }
 
   // Remove any existing message before showing a new one
-  const existingArrowMessage = document.querySelector(".arrow-message");
+  const existingArrowMessage = document.querySelector('.arrow-message');
   if (existingArrowMessage) {
     existingArrowMessage.remove();
   }
 
   // Create the message container
-  const currentMessage = document.createElement("div"); //
-  const messageValue = value === "default" ? "Set to vertical scroll." : "Set to page navigation.";
+  const currentMessage = document.createElement('div'); //
+  const messageValue =
+    value === 'default' ? 'Set to vertical scroll.' : 'Set to page navigation.';
 
-  currentMessage.classList.add("arrow-message"); // Add a class to target this specific message
+  currentMessage.classList.add('arrow-message'); // Add a class to target this specific message
 
   // Style the message container to use flexbox
-  currentMessage.style.display = "flex"; // Use flexbox to align items horizontally
-  currentMessage.style.alignItems = "center"; // Vertically align items in the center
-  currentMessage.style.position = "fixed";
-  currentMessage.style.top = "15px";
-  currentMessage.style.left = "50%";
-  currentMessage.style.transform = "translateX(-50%)";
-  currentMessage.style.borderRadius = "8px"; // Rounded corners for the message container
-  currentMessage.style.fontSize = "14px"; // Font size
-  currentMessage.style.maxWidth = "80%"; // Max width of the message block
-  currentMessage.style.wordWrap = "break-word"; // Ensure long lines of text wrap correctly
-  currentMessage.style.zIndex = "9999"; // Ensure it appears above other content
+  currentMessage.style.display = 'flex'; // Use flexbox to align items horizontally
+  currentMessage.style.alignItems = 'center'; // Vertically align items in the center
+  currentMessage.style.position = 'fixed';
+  currentMessage.style.top = '15px';
+  currentMessage.style.left = '50%';
+  currentMessage.style.transform = 'translateX(-50%)';
+  currentMessage.style.borderRadius = '8px'; // Rounded corners for the message container
+  currentMessage.style.fontSize = '14px'; // Font size
+  currentMessage.style.maxWidth = '80%'; // Max width of the message block
+  currentMessage.style.wordWrap = 'break-word'; // Ensure long lines of text wrap correctly
+  currentMessage.style.zIndex = '9999'; // Ensure it appears above other content
 
   // Create a div for the "Arrow Keys:" part with different background
-  const titlePart = document.createElement("div");
-  titlePart.textContent = "Up & Down Arrow Keys:";
-  titlePart.style.padding = "6px 10px"; // Increased padding for better spacing
+  const titlePart = document.createElement('div');
+  titlePart.textContent = 'Up & Down Arrow Keys:';
+  titlePart.style.padding = '6px 10px'; // Increased padding for better spacing
   // titlePart.style.fontWeight = "bold"; // Bold text for the title
-  titlePart.style.marginRight = "8px"; // Space between the title and content
-  titlePart.style.borderRadius = "4px"; // Rounded corners for the title
-  titlePart.style.backgroundColor = "rgba(63, 38, 63, 0.9)"; // Green background for the title
-  titlePart.style.color = "#fff"; // White text color
+  titlePart.style.marginRight = '8px'; // Space between the title and content
+  titlePart.style.borderRadius = '4px'; // Rounded corners for the title
+  titlePart.style.backgroundColor = 'rgba(63, 38, 63, 0.9)'; // Green background for the title
+  titlePart.style.color = '#fff'; // White text color
 
   // Create a div for the clipboard content itself (rest of the message)
-  const contentPart = document.createElement("div");
+  const contentPart = document.createElement('div');
   contentPart.textContent = messageValue; // Show more of the text (100 characters)
-  contentPart.style.padding = "6px 10px"; // Increased padding for better spacing
-  contentPart.style.flexGrow = "1"; // Allow content to take remaining space if needed
-  contentPart.style.borderRadius = "4px"; // Rounded corners for the content part
-  contentPart.style.backgroundColor = "#333"; // Dark background for content part
-  contentPart.style.color = "#fff"; // White text color
+  contentPart.style.padding = '6px 10px'; // Increased padding for better spacing
+  contentPart.style.flexGrow = '1'; // Allow content to take remaining space if needed
+  contentPart.style.borderRadius = '4px'; // Rounded corners for the content part
+  contentPart.style.backgroundColor = '#333'; // Dark background for content part
+  contentPart.style.color = '#fff'; // White text color
 
   // Append the title and content to the message container
   currentMessage.appendChild(titlePart);
@@ -2255,9 +2440,13 @@ function showArrowMessage(value) {
 
 // :::: (0-9 Example Comments) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Do nothing if an input or textarea is focused
-  if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") return;
+  if (
+    document.activeElement.tagName === 'INPUT' ||
+    document.activeElement.tagName === 'TEXTAREA'
+  )
+    return;
 
   // Check if the key is 1-9, 0 (which represents 10), or Delete
   if (!/^[1-9]$|^0$|Delete$/.test(event.key)) return;
@@ -2266,42 +2455,46 @@ document.addEventListener("keydown", function (event) {
 
   // If the key is a number (1-9 or 0), determine the index
   if (/^[1-9]$|^0$/.test(event.key)) {
-    index = event.key === "0" ? 9 : parseInt(event.key) - 1;
+    index = event.key === '0' ? 9 : parseInt(event.key) - 1;
   }
 
   // Select all visible comment lines
-  const comments = Array.from(document.querySelectorAll(".content-container-comment-lines")).filter(
+  const comments = Array.from(
+    document.querySelectorAll('.content-container-comment-lines')
+  ).filter(
     (comment) => comment.offsetParent !== null // Ensure it's visible
   );
 
   // Find the first comment line with a class starting with 'p-'
   const firstVisibleComment = comments.find((comment) => {
-    return Array.from(comment.classList).some((cls) => cls.startsWith("p-"));
+    return Array.from(comment.classList).some((cls) => cls.startsWith('p-'));
   });
 
-  const pClass = Array.from(firstVisibleComment.classList).find((cls) => cls.startsWith("p-"));
-  const textareaId = pClass.replace("p-", "") + "-textarea"; // Remove 'p' and add '-textarea'
+  const pClass = Array.from(firstVisibleComment.classList).find((cls) =>
+    cls.startsWith('p-')
+  );
+  const textareaId = pClass.replace('p-', '') + '-textarea'; // Remove 'p' and add '-textarea'
   const textarea = document.getElementById(textareaId);
 
   // If the Delete key is pressed, find the corresponding index
   if (textarea) {
-    if (event.key === "Delete") {
-      textarea.value = "";
+    if (event.key === 'Delete') {
+      textarea.value = '';
 
       // Fire the 'input' event to trigger any listeners like `oninput`
-      textarea.dispatchEvent(new Event("input", { bubbles: true }));
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }
 
   // Ensure the selected index exists
   if (index < comments.length) {
-    const textToCopy = comments[index].textContent.trim() + " ";
+    const textToCopy = comments[index].textContent.trim() + ' ';
 
     // Copy to clipboard
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => console.log(`Copied: ${textToCopy}`))
-      .catch((err) => console.error("Failed to copy:", err));
+      .catch((err) => console.error('Failed to copy:', err));
 
     if (textarea) {
       if (textarea && textarea.offsetParent !== null) {
@@ -2309,7 +2502,7 @@ document.addEventListener("keydown", function (event) {
         textarea.value += textToCopy; // Append the copied value to the textarea
 
         // Fire the 'input' event to trigger any listeners like `oninput`
-        textarea.dispatchEvent(new Event("input", { bubbles: true }));
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
       }
     }
   }
@@ -2362,33 +2555,39 @@ document.addEventListener("keydown", function (event) {
 
 // :::: (Quick TL#) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.querySelectorAll('[data-target="bridge-asset-tab"]').forEach((button) => {
-  button.addEventListener("dblclick", function () {
-    const textarea = document.getElementById("user-textarea-teamleader");
-    if (textarea) {
-      navigator.clipboard
-        .writeText(textarea.value)
-        .then(() => console.log("Copied:", textarea.value))
-        .catch((err) => console.error("Failed to copy:", err));
-    }
+document
+  .querySelectorAll('[data-target="bridge-asset-tab"]')
+  .forEach((button) => {
+    button.addEventListener('dblclick', function () {
+      const textarea = document.getElementById('user-textarea-teamleader');
+      if (textarea) {
+        navigator.clipboard
+          .writeText(textarea.value)
+          .then(() => console.log('Copied:', textarea.value))
+          .catch((err) => console.error('Failed to copy:', err));
+      }
+    });
   });
-});
 
 // :::: (Reset Tabs) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 function resetViaSimulatedClicks() {
   // Step 1: Scroll main content to top
-  const mainSection = document.getElementById("main-content");
+  const mainSection = document.getElementById('main-content');
   if (mainSection) {
-    mainSection.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    mainSection.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
 
   // Step 2: Simulate clicks on all buttons targeting bridge-SOMETHING-pg2
-  const pg2Buttons = document.querySelectorAll('button[data-target^="bridge-"][data-target$="-pg2"]');
+  const pg2Buttons = document.querySelectorAll(
+    'button[data-target^="bridge-"][data-target$="-pg2"]'
+  );
   pg2Buttons.forEach((btn) => btn.click());
 
   // Step 3: Simulate click on the bridge-alignment-tab button
-  const alignmentButton = document.querySelector('button[data-target="bridge-alignment-tab"]');
+  const alignmentButton = document.querySelector(
+    'button[data-target="bridge-alignment-tab"]'
+  );
   if (alignmentButton) alignmentButton.click();
 }
 
@@ -2414,16 +2613,18 @@ function focusButton(dataTarget) {
 function checkScreenWidthAndTriggerClicks() {
   // Check if the width is less than 768px
   if (window.innerWidth <= 768) {
-    simulateButtonClick("bridge-asset-tab");
-    simulateButtonClick("bridge-review-tab");
-    simulateButtonClick("review-data-tab");
-    focusButton("review-data-tab"); // Focus the "review-data-tab" button
+    simulateButtonClick('bridge-asset-tab');
+    simulateButtonClick('bridge-review-tab');
+    simulateButtonClick('review-data-tab');
+    focusButton('review-data-tab'); // Focus the "review-data-tab" button
 
     // Trigger expandTextarea on all matching textareas
-    document.querySelectorAll("textarea[oninput^='expandTextarea']").forEach((textarea) => {
-      const event = new Event("input", { bubbles: true });
-      textarea.dispatchEvent(event);
-    });
+    document
+      .querySelectorAll("textarea[oninput^='expandTextarea']")
+      .forEach((textarea) => {
+        const event = new Event('input', { bubbles: true });
+        textarea.dispatchEvent(event);
+      });
   }
 }
 
@@ -2431,36 +2632,46 @@ function checkScreenWidthAndTriggerClicks() {
 checkScreenWidthAndTriggerClicks();
 
 // Add event listener to trigger when the window is resized
-window.addEventListener("resize", checkScreenWidthAndTriggerClicks);
+window.addEventListener('resize', checkScreenWidthAndTriggerClicks);
 
 // :::: (SPMS Link) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.getElementById("spms-link").addEventListener("click", function (event) {
-  // Get the textarea content
-  const assetTextarea = document.getElementById("asset-textarea-assetNumberNBI");
-  if (assetTextarea) {
-    // Use the Clipboard API to copy the text to the clipboard
-    navigator.clipboard
-      .writeText(assetTextarea.value)
-      .then(function () {})
-      .catch(function (err) {
-        console.error("Unable to copy text", err);
-      });
-  }
-});
+document
+  .getElementById('spms-link')
+  .addEventListener('click', function (event) {
+    // Get the textarea content
+    const assetTextarea = document.getElementById(
+      'asset-textarea-assetNumberNBI'
+    );
+    if (assetTextarea) {
+      // Use the Clipboard API to copy the text to the clipboard
+      navigator.clipboard
+        .writeText(assetTextarea.value)
+        .then(function () {})
+        .catch(function (err) {
+          console.error('Unable to copy text', err);
+        });
+    }
+  });
 
 // :::: (Glossary Shortcut Ctrl + Shift + G) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Check if Ctrl + Shift + G is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "G") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'G') {
     // Prevent the default action (which is opening the Find bar)
     event.preventDefault();
 
     // Trigger the button with data-target="misc-asset-tab"
-    const targetButton1 = document.querySelector('[data-target="misc-asset-tab"]');
-    const targetButton2 = document.querySelector('[data-target="glossary-tab"]');
-    const targetButton3 = document.querySelector('[data-target="glossary-all-tab"]');
+    const targetButton1 = document.querySelector(
+      '[data-target="misc-asset-tab"]'
+    );
+    const targetButton2 = document.querySelector(
+      '[data-target="glossary-tab"]'
+    );
+    const targetButton3 = document.querySelector(
+      '[data-target="glossary-all-tab"]'
+    );
     if (targetButton3) {
       targetButton1.click();
       targetButton2.click();
@@ -2472,15 +2683,19 @@ document.addEventListener("keydown", function (event) {
 
 // :::: (Settings Shortcut Ctrl + Shift + S) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Check if Ctrl + Shift + S is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "S") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'S') {
     // Prevent the default action (which is opening the Find bar)
     event.preventDefault();
 
     // Trigger the button with data-target="misc-asset-tab"
-    const targetButton1 = document.querySelector('[data-target="misc-asset-tab"]');
-    const targetButton2 = document.querySelector('[data-target="settings-tab"]');
+    const targetButton1 = document.querySelector(
+      '[data-target="misc-asset-tab"]'
+    );
+    const targetButton2 = document.querySelector(
+      '[data-target="settings-tab"]'
+    );
     if (targetButton2) {
       targetButton1.click();
       targetButton2.click();
@@ -2491,14 +2706,16 @@ document.addEventListener("keydown", function (event) {
 
 // :::: (Bridge Shortcut Ctrl + Shift + B) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Check if Ctrl + Shift + B is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "B") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'B') {
     // Prevent the default action (which is opening the Find bar)
     event.preventDefault();
 
     // Trigger the button with data-target="misc-asset-tab"
-    const targetButton1 = document.querySelector('[data-target="bridge-asset-tab"]');
+    const targetButton1 = document.querySelector(
+      '[data-target="bridge-asset-tab"]'
+    );
     if (targetButton1) {
       targetButton1.click();
       targetButton1.focus();
@@ -2508,14 +2725,16 @@ document.addEventListener("keydown", function (event) {
 
 // :::: (Culvert Shortcut Ctrl + Shift + C) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Check if Ctrl + Shift + C is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "C") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'C') {
     // Prevent the default action (which is opening the Find bar)
     event.preventDefault();
 
     // Trigger the button with data-target="misc-asset-tab"
-    const targetButton1 = document.querySelector('[data-target="culvert-asset-tab"]');
+    const targetButton1 = document.querySelector(
+      '[data-target="culvert-asset-tab"]'
+    );
     if (targetButton1) {
       targetButton1.click();
       targetButton1.focus();
@@ -2525,14 +2744,16 @@ document.addEventListener("keydown", function (event) {
 
 // :::: (Retaining Wall Shortcut Ctrl + Shift + R) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   // Check if Ctrl + Shift + R is pressed
-  if (event.ctrlKey && event.shiftKey && event.key === "R") {
+  if (event.ctrlKey && event.shiftKey && event.key === 'R') {
     // Prevent the default action (which is opening the Find bar)
     event.preventDefault();
 
     // Trigger the button with data-target="misc-asset-tab"
-    const targetButton1 = document.querySelector('[data-target="wall-asset-tab"]');
+    const targetButton1 = document.querySelector(
+      '[data-target="wall-asset-tab"]'
+    );
     if (targetButton1) {
       targetButton1.click();
       targetButton1.focus();
@@ -2550,7 +2771,7 @@ const maxHistorySize = 100;
 function isElementVisible(el) {
   while (el) {
     const style = window.getComputedStyle(el);
-    if (style.display === "none" || style.visibility === "hidden") {
+    if (style.display === 'none' || style.visibility === 'hidden') {
       return false;
     }
     el = el.parentElement;
@@ -2561,14 +2782,20 @@ function isElementVisible(el) {
 // Step 2: Save current state of visible active buttons, and track focused button
 function saveActiveState() {
   // Get all active buttons that are visible
-  const activeButtons = Array.from(document.querySelectorAll("button.active")).filter((btn) => isElementVisible(btn)); // Only consider visible buttons
+  const activeButtons = Array.from(
+    document.querySelectorAll('button.active')
+  ).filter((btn) => isElementVisible(btn)); // Only consider visible buttons
 
   // Get the state of visible active buttons' data-target attributes
-  const state = activeButtons.map((btn) => btn.getAttribute("data-target")).filter(Boolean);
+  const state = activeButtons
+    .map((btn) => btn.getAttribute('data-target'))
+    .filter(Boolean);
 
   // Track the focused button (if any)
   const focusedButton =
-    document.activeElement && document.activeElement.tagName === "BUTTON" ? document.activeElement.getAttribute("data-target") : null;
+    document.activeElement && document.activeElement.tagName === 'BUTTON'
+      ? document.activeElement.getAttribute('data-target')
+      : null;
 
   // Store the state, along with the focused button (if any)
   const newState = { targets: state, focused: focusedButton };
@@ -2598,7 +2825,9 @@ function restoreState(state) {
 
   // Restore the focused button if there was one
   if (state.focused) {
-    const focusedButton = document.querySelector(`button[data-target="${state.focused}"]`);
+    const focusedButton = document.querySelector(
+      `button[data-target="${state.focused}"]`
+    );
     if (focusedButton) {
       focusedButton.focus(); // Set focus back to the button
     }
@@ -2606,13 +2835,17 @@ function restoreState(state) {
 }
 
 // Step 4: Backspace key to navigate back (remove current state and restore previous state)
-document.addEventListener("keydown", (event) => {
+document.addEventListener('keydown', (event) => {
   // Check if the backspace key was pressed
-  if (event.key === "Backspace") {
+  if (event.key === 'Backspace') {
     const activeElement = document.activeElement;
 
     // Allow the default backspace action in input/textarea or editable elements
-    if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA" || activeElement.isContentEditable) {
+    if (
+      activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
+      activeElement.isContentEditable
+    ) {
       return; // Don't prevent default, let backspace work normally
     }
 
@@ -2628,14 +2861,14 @@ document.addEventListener("keydown", (event) => {
 });
 
 // Save state on load and after every button click
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('DOMContentLoaded', () => {
   // Give the DOM time to load and capture the initial state (including focused button)
   setTimeout(saveActiveState, 0);
 });
 
 // Capture state after every button click
-document.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON" && e.target.dataset.target) {
+document.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON' && e.target.dataset.target) {
     // Defer the snapshot to ensure DOM updates (class changes, etc.)
     setTimeout(saveActiveState, 0);
   }
@@ -2646,19 +2879,23 @@ document.addEventListener("click", (e) => {
 // Run Times and Counts
 
 // Random data logs
-console.log("Number of bridge assets loaded: " + Object.keys(assetData).length);
-console.log("index.html last modified:", document.lastModified);
-console.log("Data last updated:", dataDate);
+console.log('Number of bridge assets loaded: ' + Object.keys(assetData).length);
+console.log('index.html last modified:', document.lastModified);
+console.log('Data last updated:', dataDate);
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
   const loadTimeInMilliseconds = performance.now();
   const loadTimeInSeconds = loadTimeInMilliseconds / 1000;
   console.log(`Page loaded in ${loadTimeInSeconds.toFixed(2)} seconds`);
 });
 
 // Seymour routes
-const district2Assets = assetData.filter((asset) => asset["(2) Highway Agency District:"] === 2);
-const uniqueInvRoutes = new Set(district2Assets.map((asset) => asset["Inv Route #"]));
+const district2Assets = assetData.filter(
+  (asset) => asset['(2) Highway Agency District:'] === 2
+);
+const uniqueInvRoutes = new Set(
+  district2Assets.map((asset) => asset['Inv Route #'])
+);
 console.log(`Number of unique routes in Seymour: ${uniqueInvRoutes.size}`);
 
 // Glossary Terms
@@ -2667,13 +2904,13 @@ console.log(`Number of unique glossary terms: ${count}`);
 
 // Mapping district numbers to district names
 const districtIdMap = {
-  1: "crawfordsville",
-  2: "fortwayne",
-  3: "greenfield",
-  4: "laporte",
-  5: "seymour",
-  6: "vincennes",
-  7: "toll",
+  1: 'crawfordsville',
+  2: 'fortwayne',
+  3: 'greenfield',
+  4: 'laporte',
+  5: 'seymour',
+  6: 'vincennes',
+  7: 'toll',
 };
 
 // Compute district counts & NSTM inspection counts
@@ -2699,30 +2936,33 @@ let totalPosted = 0;
 let totalScour = 0;
 
 assetData.forEach((asset) => {
-  const district = asset["(2) Highway Agency District:"]; // Get district value
-  const nstmRequired = asset["(92AA) Critical Feature Inspection: NSTM Insp Required?"]; // Check NSTM
-  const specialRequired = asset["(92CC) Critical Feature Inspection: Special Insp Required?"]; // Check special
-  const underwaterRequired = asset["(92BB) Critical Feature Inspection: Underwater Insp Required?"]; // Check underwater
-  const elementRequired = asset["(104) Highway System of Inventory Route:"]; // Check element
-  const frequencyRequired = asset["(91) Designated Inspection Frequency:"]; // Check frequency
-  const postedRequired = asset["(41) Structure Open/Posted/Closed:"]; // Check posted
-  const scourRequired = asset["(B.AP.03) Scour Vulnerability"]; // Check scour critical
+  const district = asset['(2) Highway Agency District:']; // Get district value
+  const nstmRequired =
+    asset['(92AA) Critical Feature Inspection: NSTM Insp Required?']; // Check NSTM
+  const specialRequired =
+    asset['(92CC) Critical Feature Inspection: Special Insp Required?']; // Check special
+  const underwaterRequired =
+    asset['(92BB) Critical Feature Inspection: Underwater Insp Required?']; // Check underwater
+  const elementRequired = asset['(104) Highway System of Inventory Route:']; // Check element
+  const frequencyRequired = asset['(91) Designated Inspection Frequency:']; // Check frequency
+  const postedRequired = asset['(41) Structure Open/Posted/Closed:']; // Check posted
+  const scourRequired = asset['(B.AP.03) Scour Vulnerability']; // Check scour critical
 
   if (district !== undefined) {
     districtCounts[district] = (districtCounts[district] || 0) + 1;
     totalRoutine++; // Increment total routine count
 
-    if (nstmRequired === "Y") {
+    if (nstmRequired === 'Y') {
       nstmCounts[district] = (nstmCounts[district] || 0) + 1;
       totalNstm++; // Increment total NSTM count
     }
 
-    if (specialRequired === "Y") {
+    if (specialRequired === 'Y') {
       specialCounts[district] = (specialCounts[district] || 0) + 1;
       totalSpecial++; // Increment total special count
     }
 
-    if (underwaterRequired === "Y") {
+    if (underwaterRequired === 'Y') {
       underwaterCounts[district] = (underwaterCounts[district] || 0) + 1;
       totalUnderwater++; // Increment total underwater count
     }
@@ -2733,21 +2973,27 @@ assetData.forEach((asset) => {
     }
 
     if (frequencyRequired < 24) {
-      reducedIntervalCounts[district] = (reducedIntervalCounts[district] || 0) + 1;
+      reducedIntervalCounts[district] =
+        (reducedIntervalCounts[district] || 0) + 1;
       totalReducedInterval++; // Increment total reduced interval count
     }
 
     if (frequencyRequired > 24) {
-      extendedIntervalCounts[district] = (extendedIntervalCounts[district] || 0) + 1;
+      extendedIntervalCounts[district] =
+        (extendedIntervalCounts[district] || 0) + 1;
       totalExtendedInterval++; // Increment total extended interval count
     }
 
-    if (postedRequired !== "A") {
+    if (postedRequired !== 'A') {
       postedCounts[district] = (postedCounts[district] || 0) + 1;
       totalPosted++; // Increment total posted count
     }
 
-    if (scourRequired !== null && scourRequired !== "N" && !["A", "B", "AB-T"].includes(scourRequired)) {
+    if (
+      scourRequired !== null &&
+      scourRequired !== 'N' &&
+      !['A', 'B', 'AB-T'].includes(scourRequired)
+    ) {
       scourCounts[district] = (scourCounts[district] || 0) + 1;
       totalScour++; // Increment total scour count
     }
@@ -2757,7 +3003,7 @@ assetData.forEach((asset) => {
 // Function to update textareas dynamically
 function updateTextarea(district, type, value) {
   let districtName = districtIdMap[district]; // Get district name
-  if (!districtName) districtName = "all"; // If no district, send to "all"
+  if (!districtName) districtName = 'all'; // If no district, send to "all"
 
   const textareaId = `${districtName}-textarea-${type}`; // Generate ID
   const textarea = document.getElementById(textareaId);
@@ -2768,54 +3014,54 @@ function updateTextarea(district, type, value) {
 
 // Update the corresponding district textareas
 Object.entries(districtCounts).forEach(([district, count]) => {
-  updateTextarea(district, "routine", count);
+  updateTextarea(district, 'routine', count);
 });
 Object.entries(nstmCounts).forEach(([district, count]) => {
-  updateTextarea(district, "nstm", count);
+  updateTextarea(district, 'nstm', count);
 });
 Object.entries(specialCounts).forEach(([district, count]) => {
-  updateTextarea(district, "special", count);
+  updateTextarea(district, 'special', count);
 });
 Object.entries(underwaterCounts).forEach(([district, count]) => {
-  updateTextarea(district, "underwater", count);
+  updateTextarea(district, 'underwater', count);
 });
 Object.entries(elementCounts).forEach(([district, count]) => {
-  updateTextarea(district, "element", count);
+  updateTextarea(district, 'element', count);
 });
 Object.entries(reducedIntervalCounts).forEach(([district, count]) => {
-  updateTextarea(district, "reducedinterval", count);
+  updateTextarea(district, 'reducedinterval', count);
 });
 Object.entries(extendedIntervalCounts).forEach(([district, count]) => {
-  updateTextarea(district, "extendedinterval", count);
+  updateTextarea(district, 'extendedinterval', count);
 });
 Object.entries(postedCounts).forEach(([district, count]) => {
-  updateTextarea(district, "posted", count);
+  updateTextarea(district, 'posted', count);
 });
 Object.entries(scourCounts).forEach(([district, count]) => {
-  updateTextarea(district, "scour", count);
+  updateTextarea(district, 'scour', count);
 });
 
 // Update the corresponding district textareas
 Object.entries(districtCounts).forEach(([district, count]) => {
-  updateTextarea(district, "routine", count);
+  updateTextarea(district, 'routine', count);
 
   // Calculate bridge share: (routine inspections per inspector) / 2
-  const inspectors = district === "3" ? 6 : 4; // Greenfield (3) has 6 inspectors, others have 4
+  const inspectors = district === '3' ? 6 : 4; // Greenfield (3) has 6 inspectors, others have 4
   const bridgeShare = Math.ceil(count / inspectors / 2); // Divide by inspectors, then by 2
 
-  updateTextarea(district, "bridgeshare", bridgeShare); // Update bridge share
+  updateTextarea(district, 'bridgeshare', bridgeShare); // Update bridge share
 });
 
 // Update total textareas
-updateTextarea("all", "routine", totalRoutine);
-updateTextarea("all", "nstm", totalNstm);
-updateTextarea("all", "special", totalSpecial);
-updateTextarea("all", "underwater", totalUnderwater);
-updateTextarea("all", "element", totalElement);
-updateTextarea("all", "reducedinterval", totalReducedInterval);
-updateTextarea("all", "extendedinterval", totalExtendedInterval);
-updateTextarea("all", "posted", totalPosted);
-updateTextarea("all", "scour", totalScour);
+updateTextarea('all', 'routine', totalRoutine);
+updateTextarea('all', 'nstm', totalNstm);
+updateTextarea('all', 'special', totalSpecial);
+updateTextarea('all', 'underwater', totalUnderwater);
+updateTextarea('all', 'element', totalElement);
+updateTextarea('all', 'reducedinterval', totalReducedInterval);
+updateTextarea('all', 'extendedinterval', totalExtendedInterval);
+updateTextarea('all', 'posted', totalPosted);
+updateTextarea('all', 'scour', totalScour);
 
 console.log(districtCounts);
 
@@ -2840,28 +3086,40 @@ function findAndUpdateAssetErrors() {
   };
 
   assetData.forEach((asset) => {
-    const district = asset["(2) Highway Agency District:"];
-    const status = asset["(41) Structure Open/Posted/Closed:"]; // Check status
-    if (status === "K" || district === undefined) return; // Exclude if status is "K"
+    const district = asset['(2) Highway Agency District:'];
+    const status = asset['(41) Structure Open/Posted/Closed:']; // Check status
+    if (status === 'K' || district === undefined) return; // Exclude if status is "K"
 
-    let assetNumber = asset["Asset Number"]; // Store asset number
+    let assetNumber = asset['Asset Number']; // Store asset number
 
     // Extract necessary values
     let assetValues = {
-      deck: parseFloat(asset["(B.C.01) Deck Condition Rating"]),
-      inspectionFrequency: parseFloat(asset["(91) Designated Inspection Frequency:"]),
-      superstructure: parseFloat(asset["(B.C.02) Superstructure Condition Rating"]),
-      substructure: parseFloat(asset["(B.C.03) Substructure Condition Rating"]),
-      scourCritical: parseFloat(asset["(113) Scour Critical Bridges:"]),
-      mainDesignType: asset["(43B) Structure Type, Main: Type of Design:"],
-      wearingSurfaceType: asset["(108A) Wearing Surface Protection System: Wearing Surface"],
-      wearingSurface: parseFloat(asset["(B.C.01a) Wearing Surface Condition Rating"]),
-      deckStructureType: asset["(107) Deck Structure Type:"],
-      underfillValue: asset["(B.C.04) Culvert Condition Rating"],
-      membraneValue: asset["(108B) Wearing Surface Protection System: Deck Membrane"],
+      deck: parseFloat(asset['(B.C.01) Deck Condition Rating']),
+      inspectionFrequency: parseFloat(
+        asset['(91) Designated Inspection Frequency:']
+      ),
+      superstructure: parseFloat(
+        asset['(B.C.02) Superstructure Condition Rating']
+      ),
+      substructure: parseFloat(asset['(B.C.03) Substructure Condition Rating']),
+      scourCritical: parseFloat(asset['(113) Scour Critical Bridges:']),
+      mainDesignType: asset['(43B) Structure Type, Main: Type of Design:'],
+      wearingSurfaceType:
+        asset['(108A) Wearing Surface Protection System: Wearing Surface'],
+      wearingSurface: parseFloat(
+        asset['(B.C.01a) Wearing Surface Condition Rating']
+      ),
+      deckStructureType: asset['(107) Deck Structure Type:'],
+      underfillValue: asset['(B.C.04) Culvert Condition Rating'],
+      membraneValue:
+        asset['(108B) Wearing Surface Protection System: Deck Membrane'],
     };
 
-    let lowestValue = Math.min(assetValues.deck, assetValues.superstructure, assetValues.substructure);
+    let lowestValue = Math.min(
+      assetValues.deck,
+      assetValues.superstructure,
+      assetValues.substructure
+    );
 
     // Error Check: Frequency Error
     if (lowestValue < 4 && assetValues.inspectionFrequency > 12) {
@@ -2871,14 +3129,17 @@ function findAndUpdateAssetErrors() {
     }
 
     // Error Check: Deck/Slab Error
-    if (assetValues.deck !== assetValues.superstructure && ["1", "01", 1].includes(assetValues.mainDesignType)) {
+    if (
+      assetValues.deck !== assetValues.superstructure &&
+      ['1', '01', 1].includes(assetValues.mainDesignType)
+    ) {
       errorCounts.super[district] = (errorCounts.super[district] || 0) + 1;
       errorAssets.super[district] = errorAssets.super[district] || [];
       errorAssets.super[district].push(assetNumber);
     }
 
     // Error Check: Monolithic Error
-    if (assetValues.wearingSurfaceType === "1") {
+    if (assetValues.wearingSurfaceType === '1') {
       if (assetValues.deck <= 5 || assetValues.wearingSurface <= 5) {
         if (assetValues.deck !== assetValues.wearingSurface) {
           errorCounts.deck[district] = (errorCounts.deck[district] || 0) + 1;
@@ -2886,7 +3147,10 @@ function findAndUpdateAssetErrors() {
           errorAssets.deck[district].push(assetNumber);
         }
       } else {
-        if (assetValues.deck !== assetValues.wearingSurface && assetValues.deck !== assetValues.wearingSurface + 1) {
+        if (
+          assetValues.deck !== assetValues.wearingSurface &&
+          assetValues.deck !== assetValues.wearingSurface + 1
+        ) {
           errorCounts.deck[district] = (errorCounts.deck[district] || 0) + 1;
           errorAssets.deck[district] = errorAssets.deck[district] || [];
           errorAssets.deck[district].push(assetNumber);
@@ -2895,7 +3159,10 @@ function findAndUpdateAssetErrors() {
     }
 
     // Error Check: Scour/Sub Error
-    if (assetValues.scourCritical <= 2 && assetValues.substructure > assetValues.scourCritical) {
+    if (
+      assetValues.scourCritical <= 2 &&
+      assetValues.substructure > assetValues.scourCritical
+    ) {
       errorCounts.sub[district] = (errorCounts.sub[district] || 0) + 1;
       errorAssets.sub[district] = errorAssets.sub[district] || [];
       errorAssets.sub[district].push(assetNumber);
@@ -2904,10 +3171,10 @@ function findAndUpdateAssetErrors() {
     // Error Check: Membrane Error
     if (
       assetValues.wearingSurface > 4 &&
-      assetValues.underfillValue === "N" &&
-      ["1", "2"].includes(assetValues.deckStructureType) &&
-      assetValues.wearingSurfaceType === "6" &&
-      ["0", "8", "N"].includes(assetValues.membraneValue)
+      assetValues.underfillValue === 'N' &&
+      ['1', '2'].includes(assetValues.deckStructureType) &&
+      assetValues.wearingSurfaceType === '6' &&
+      ['0', '8', 'N'].includes(assetValues.membraneValue)
     ) {
       errorCounts.wearing[district] = (errorCounts.wearing[district] || 0) + 1;
       errorAssets.wearing[district] = errorAssets.wearing[district] || [];
@@ -2917,37 +3184,56 @@ function findAndUpdateAssetErrors() {
 
   // Update textareas for each district
   Object.entries(errorCounts.freq).forEach(([district, count]) => {
-    updateTextarea(district, "error-frequency", count);
+    updateTextarea(district, 'error-frequency', count);
   });
   Object.entries(errorCounts.super).forEach(([district, count]) => {
-    updateTextarea(district, "error-deckslab", count);
+    updateTextarea(district, 'error-deckslab', count);
   });
   Object.entries(errorCounts.deck).forEach(([district, count]) => {
-    updateTextarea(district, "error-monolithic", count);
+    updateTextarea(district, 'error-monolithic', count);
   });
   Object.entries(errorCounts.sub).forEach(([district, count]) => {
-    updateTextarea(district, "error-scoursub", count);
+    updateTextarea(district, 'error-scoursub', count);
   });
   Object.entries(errorCounts.wearing).forEach(([district, count]) => {
-    updateTextarea(district, "error-membrane", count);
+    updateTextarea(district, 'error-membrane', count);
   });
 
   // Calculate the sum for each error type and send it to the corresponding textareas
-  let totalFreqErrors = Object.values(errorCounts.freq).reduce((sum, count) => sum + count, 0);
-  let totalSuperErrors = Object.values(errorCounts.super).reduce((sum, count) => sum + count, 0);
-  let totalDeckErrors = Object.values(errorCounts.deck).reduce((sum, count) => sum + count, 0);
-  let totalSubErrors = Object.values(errorCounts.sub).reduce((sum, count) => sum + count, 0);
-  let totalWearingErrors = Object.values(errorCounts.wearing).reduce((sum, count) => sum + count, 0);
+  let totalFreqErrors = Object.values(errorCounts.freq).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+  let totalSuperErrors = Object.values(errorCounts.super).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+  let totalDeckErrors = Object.values(errorCounts.deck).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+  let totalSubErrors = Object.values(errorCounts.sub).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+  let totalWearingErrors = Object.values(errorCounts.wearing).reduce(
+    (sum, count) => sum + count,
+    0
+  );
 
   // Update the sum of errors in the respective textareas
-  document.getElementById("all-textarea-error-frequency").value = totalFreqErrors;
-  document.getElementById("all-textarea-error-monolithic").value = totalSuperErrors;
-  document.getElementById("all-textarea-error-deckslab").value = totalDeckErrors;
-  document.getElementById("all-textarea-error-scoursub").value = totalSubErrors;
-  document.getElementById("all-textarea-error-membrane").value = totalWearingErrors;
+  document.getElementById('all-textarea-error-frequency').value =
+    totalFreqErrors;
+  document.getElementById('all-textarea-error-monolithic').value =
+    totalSuperErrors;
+  document.getElementById('all-textarea-error-deckslab').value =
+    totalDeckErrors;
+  document.getElementById('all-textarea-error-scoursub').value = totalSubErrors;
+  document.getElementById('all-textarea-error-membrane').value =
+    totalWearingErrors;
 
   // Log error asset numbers by district and error type
-  console.log("Errors by District and Type:");
+  console.log('Errors by District and Type:');
   Object.entries(errorAssets).forEach(([errorType, districts]) => {
     console.log(`\n${errorType.toUpperCase()} Errors:`);
     Object.entries(districts).forEach(([district, assets]) => {
@@ -2964,21 +3250,26 @@ findAndUpdateAssetErrors();
 // Function to create and display the popup
 function showErrorPopup(button, message) {
   // Create the temporary popup div
-  let errorPopup = document.createElement("div");
-  errorPopup.classList.add("error-popup");
+  let errorPopup = document.createElement('div');
+  errorPopup.classList.add('error-popup');
   errorPopup.innerText = message;
 
   // Append the popup to the body
   document.body.appendChild(errorPopup);
 
   // Get the .textarea-group that contains the button
-  let group = button.closest(".textarea-group");
+  let group = button.closest('.textarea-group');
 
   // Get the position of the .textarea-group
   let groupRect = group.getBoundingClientRect();
 
   // Position it below the .textarea-group and center it
-  errorPopup.style.left = `${groupRect.left + window.scrollX + groupRect.width / 2 - errorPopup.offsetWidth / 2}px`;
+  errorPopup.style.left = `${
+    groupRect.left +
+    window.scrollX +
+    groupRect.width / 2 -
+    errorPopup.offsetWidth / 2
+  }px`;
   errorPopup.style.top = `${groupRect.bottom + window.scrollY + 10}px`; // Slightly below the group
 
   // Remove popup after 3 seconds
@@ -2990,15 +3281,20 @@ function showErrorPopup(button, message) {
 function showAssetErrorPopup(message, button) {
   if (!button) return; // Exit if no button provided
 
-  let errorPopup = document.createElement("div");
-  errorPopup.classList.add("error-popup");
+  let errorPopup = document.createElement('div');
+  errorPopup.classList.add('error-popup');
   errorPopup.innerText = message;
 
   document.body.appendChild(errorPopup);
 
   let buttonRect = button.getBoundingClientRect();
 
-  errorPopup.style.left = `${buttonRect.left + window.scrollX + buttonRect.width / 2 - errorPopup.offsetWidth / 2}px`;
+  errorPopup.style.left = `${
+    buttonRect.left +
+    window.scrollX +
+    buttonRect.width / 2 -
+    errorPopup.offsetWidth / 2
+  }px`;
   errorPopup.style.top = `${buttonRect.bottom + window.scrollY + 10}px`;
 
   setTimeout(() => {
@@ -3007,36 +3303,55 @@ function showAssetErrorPopup(message, button) {
 }
 
 // Add event listeners for each error button
-document.querySelector("#error-freq button").addEventListener("click", function () {
-  showErrorPopup(this, "Inspection Frequency Error: When the lowest rating is below 4, the frequency must be 12 months or less.");
-});
+document
+  .querySelector('#error-freq button')
+  .addEventListener('click', function () {
+    showErrorPopup(
+      this,
+      'Inspection Frequency Error: When the lowest rating is below 4, the frequency must be 12 months or less.'
+    );
+  });
 
-document.querySelector("#error-super button").addEventListener("click", function () {
-  showErrorPopup(this, "Deck Slab Error: The deck and superstructure ratings must match for slab bridges.");
-});
+document
+  .querySelector('#error-super button')
+  .addEventListener('click', function () {
+    showErrorPopup(
+      this,
+      'Deck Slab Error: The deck and superstructure ratings must match for slab bridges.'
+    );
+  });
 
-document.querySelector("#error-deck button").addEventListener("click", function () {
-  showErrorPopup(
-    this,
-    "Monolithic Error: When the deck or wearing surface rating is below 6, they must match; otherwise, the wearing surface rating can be one less."
-  );
-});
+document
+  .querySelector('#error-deck button')
+  .addEventListener('click', function () {
+    showErrorPopup(
+      this,
+      'Monolithic Error: When the deck or wearing surface rating is below 6, they must match; otherwise, the wearing surface rating can be one less.'
+    );
+  });
 
-document.querySelector("#error-sub button").addEventListener("click", function () {
-  showErrorPopup(this, "Scour Error: When the scour rating is below 3, the substructure rating must be the same or lower.");
-});
+document
+  .querySelector('#error-sub button')
+  .addEventListener('click', function () {
+    showErrorPopup(
+      this,
+      'Scour Error: When the scour rating is below 3, the substructure rating must be the same or lower.'
+    );
+  });
 
-document.querySelector("#error-wearing button").addEventListener("click", function () {
-  showErrorPopup(
-    this,
-    "Membrane Error: When there is no membrane between a concrete deck and a bituminous wearing surface, the wearing surface rating must be below 5."
-  );
-});
+document
+  .querySelector('#error-wearing button')
+  .addEventListener('click', function () {
+    showErrorPopup(
+      this,
+      'Membrane Error: When there is no membrane between a concrete deck and a bituminous wearing surface, the wearing surface rating must be below 5.'
+    );
+  });
 
-["asset-error-button1", "asset-error-button2"].forEach((id) => {
+['asset-error-button1', 'asset-error-button2'].forEach((id) => {
   const btn = document.getElementById(id);
   if (btn) {
-    btn.addEventListener("click", function () {
+    btn.addEventListener('click', function () {
       showAssetErrorPopup(errorString, btn);
     });
   }
@@ -3055,7 +3370,7 @@ function collectUniqueAttributes() {
   const duplicateIDs = new Set(); // Set to track duplicate IDs
 
   // Select all elements in the document
-  const allElements = document.querySelectorAll("*");
+  const allElements = document.querySelectorAll('*');
 
   // Loop through all elements and collect the unique attributes
   allElements.forEach((element) => {
@@ -3076,7 +3391,7 @@ function collectUniqueAttributes() {
 
     // Collect Data-Attributes
     Array.from(element.attributes).forEach((attr) => {
-      if (attr.name.startsWith("data-")) {
+      if (attr.name.startsWith('data-')) {
         uniqueDataAttributes.add(attr.name);
       }
     });
@@ -3088,25 +3403,33 @@ function collectUniqueAttributes() {
   const sortedDataAttributes = [...uniqueDataAttributes].sort();
 
   // Create the output text content
-  let outputText = "";
+  let outputText = '';
 
   // If there are duplicate IDs, flag them in the output
   if (duplicateIDs.size > 0) {
-    outputText += `**Duplicate IDs Found:**\n${Array.from(duplicateIDs).join("\n")}\n\n`;
+    outputText += `**Duplicate IDs Found:**\n${Array.from(duplicateIDs).join(
+      '\n'
+    )}\n\n`;
   }
 
   // Add the unique lists to the output text
-  outputText += `IDs (${sortedIDs.length}):\n` + sortedIDs.join("\n") + "\n\n";
-  outputText += `Unique Classes (${sortedClasses.length}):\n` + sortedClasses.join("\n") + "\n\n";
-  outputText += `Unique Data Attributes (${sortedDataAttributes.length}):\n` + sortedDataAttributes.join("\n") + "\n";
+  outputText += `IDs (${sortedIDs.length}):\n` + sortedIDs.join('\n') + '\n\n';
+  outputText +=
+    `Unique Classes (${sortedClasses.length}):\n` +
+    sortedClasses.join('\n') +
+    '\n\n';
+  outputText +=
+    `Unique Data Attributes (${sortedDataAttributes.length}):\n` +
+    sortedDataAttributes.join('\n') +
+    '\n';
 
   return outputText;
 }
 
 // Function to download the content as a .txt file
-function downloadTxt(content, filename = "uniqueAttributes.txt") {
-  const blob = new Blob([content], { type: "text/plain" });
-  const link = document.createElement("a");
+function downloadTxt(content, filename = 'uniqueAttributes.txt') {
+  const blob = new Blob([content], { type: 'text/plain' });
+  const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = filename;
   document.body.appendChild(link);
@@ -3119,9 +3442,9 @@ function handleExtraction() {
   if (isExtractionEnabled) {
     const textContent = collectUniqueAttributes();
     downloadTxt(textContent); // Trigger the download of the txt file
-    console.log("Extraction Enabled: Data file generated.");
+    console.log('Extraction Enabled: Data file generated.');
   } else {
-    console.log("Extraction Disabled: No action taken.");
+    console.log('Extraction Disabled: No action taken.');
   }
 }
 
@@ -3130,12 +3453,12 @@ handleExtraction();
 
 // :::: (Google Analytics) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.body.addEventListener("click", function (event) {
-    if (event.target.tagName === "BUTTON") {
-      gtag("event", "click", {
-        event_category: "button",
-        event_label: event.target.innerText.trim() || "Unnamed Button",
+document.addEventListener('DOMContentLoaded', function () {
+  document.body.addEventListener('click', function (event) {
+    if (event.target.tagName === 'BUTTON') {
+      gtag('event', 'click', {
+        event_category: 'button',
+        event_label: event.target.innerText.trim() || 'Unnamed Button',
       });
     }
   });
@@ -3146,37 +3469,39 @@ document.addEventListener("DOMContentLoaded", function () {
 // :::: (Clicking in Textarea)
 
 // When a component textarea is clicked the component rating tab is opened
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // map of button data-target → textarea id
   const tabMap = {
-    "bridge-alignment-pg2": "BAP01-textarea",
-    "bridge-approach-pg2": "BC01b-textarea",
-    "bridge-joints-pg2": "BC08-textarea",
-    "bridge-joints-pg5": "BC08a-textarea",
-    "bridge-railings-pg2": "BC05-textarea",
-    "bridge-railings-pg5": "BC06-textarea",
-    "bridge-deck-pg2": "BC01-textarea",
-    "bridge-deck-pg5": "BC01a-textarea",
-    "bridge-super-pg2": "BC02-textarea",
-    "bridge-super-pg5": "BC02a-textarea",
-    "bridge-bearings-pg2": "BC07-textarea",
-    "bridge-sub-pg2": "BC03-textarea",
-    "bridge-sub-pg5": "BC03a-textarea",
-    "bridge-culvert-pg2": "BC04-textarea",
-    "bridge-channel-pg2": "BC09-textarea",
-    "bridge-channel-pg5": "BC10-textarea",
-    "bridge-scour-pg2": "BC11-textarea",
-    "bridge-scour-pg5": "BAP03-textarea",
-    "bridge-overtopping-pg2": "BAP02-textarea",
+    'bridge-alignment-pg2': 'BAP01-textarea',
+    'bridge-approach-pg2': 'BC01b-textarea',
+    'bridge-joints-pg2': 'BC08-textarea',
+    'bridge-joints-pg5': 'BC08a-textarea',
+    'bridge-railings-pg2': 'BC05-textarea',
+    'bridge-railings-pg5': 'BC06-textarea',
+    'bridge-deck-pg2': 'BC01-textarea',
+    'bridge-deck-pg5': 'BC01a-textarea',
+    'bridge-super-pg2': 'BC02-textarea',
+    'bridge-super-pg5': 'BC02a-textarea',
+    'bridge-bearings-pg2': 'BC07-textarea',
+    'bridge-sub-pg2': 'BC03-textarea',
+    'bridge-sub-pg5': 'BC03a-textarea',
+    'bridge-culvert-pg2': 'BC04-textarea',
+    'bridge-channel-pg2': 'BC09-textarea',
+    'bridge-channel-pg5': 'BC10-textarea',
+    'bridge-scour-pg2': 'BC11-textarea',
+    'bridge-scour-pg5': 'BAP03-textarea',
+    'bridge-overtopping-pg2': 'BAP02-textarea',
   };
 
   // loop through each mapping
   Object.entries(tabMap).forEach(([dataTarget, textareaId]) => {
     const textarea = document.getElementById(textareaId);
-    const button = document.querySelector(`button[data-target="${dataTarget}"]`);
+    const button = document.querySelector(
+      `button[data-target="${dataTarget}"]`
+    );
     if (!textarea || !button) return; // skip if missing
 
-    textarea.addEventListener("focus", () => {
+    textarea.addEventListener('focus', () => {
       // directly call openTab using the button as currentTarget
       openTab({ currentTarget: button });
       // textarea stays focused for typing
@@ -3186,14 +3511,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // :::: (Example Comments Button Dbl Click)
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Select all buttons
-  const allButtons = document.querySelectorAll("button");
+  const allButtons = document.querySelectorAll('button');
 
   // Attach dblclick listener to buttons with text "Example Comments" for repopulating/randomizing comments
   allButtons.forEach((button) => {
-    if (button.textContent.trim() === "Example Comments") {
-      button.addEventListener("dblclick", updateExampleComments);
+    if (button.textContent.trim() === 'Example Comments') {
+      button.addEventListener('dblclick', updateExampleComments);
     }
   });
 });

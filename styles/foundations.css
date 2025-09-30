@@ -56,8 +56,8 @@
   --rating-9: rgba(19, 60, 192, 0.6); /* Deep Green */
 }
 
-[data-theme="white"] {
-  --main-background: url("../media/light-down-black2.svg");
+[data-theme='white'] {
+  --main-background: url('../media/light-down-black2.svg');
   --main-background-overlay: rgba(255, 255, 255, 0.85);
   --main-color: rgba(240, 240, 240, 0.95); /* light neutral */
   --text-color: rgb(33, 33, 33); /* dark readable text */
@@ -99,8 +99,8 @@
   --notes-text: rgba(33 33 33 / 0.6);
 }
 
-[data-theme="orange"] {
-  --main-background: url("../media/light-down-black2.svg");
+[data-theme='orange'] {
+  --main-background: url('../media/light-down-black2.svg');
   --main-background-overlay: rgb(65 45 25 / 0.9); /* warm dark overlay */
   --main-color: rgb(124 69 18 / 0.9); /* rich burnt orange */
   --text-color: rgb(245 235 220); /* light tan text */
@@ -141,8 +141,8 @@
   --highlight: rgba(63, 63, 63, 0.7);
 }
 
-[data-theme="blue"] {
-  --main-background: url("../media/light-down-black2.svg");
+[data-theme='blue'] {
+  --main-background: url('../media/light-down-black2.svg');
   --main-background-overlay: rgb(54 54 54 / 0.9);
   --main-color: rgb(58 73 95 / 0.9);
   --text-color: rgb(233 233 233);
@@ -172,8 +172,8 @@
   --notes-text: rgba(233 233 233 / 0.6);
 }
 
-[data-theme="pink"] {
-  --main-background: url("../media/light-down-black2.svg");
+[data-theme='pink'] {
+  --main-background: url('../media/light-down-black2.svg');
   --main-background-overlay: rgba(147, 147, 147, 0.9);
   --main-color: rgba(109, 93, 110, 0.9);
   --text-color: rgb(29, 29, 29);
@@ -211,9 +211,9 @@ div,
 p,
 li,
 ul {
-  font-family: "Ubuntu", sans-serif;
-  font-family: "DM Sans", sans-serif;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
   border: none;
@@ -244,8 +244,8 @@ h6,
 p,
 a,
 span {
-  font-family: "DM Sans", sans-serif;
-  font-family: "Roboto", sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
   border: none;
@@ -425,7 +425,10 @@ main {
   position: absolute;
   left: 50%; /* Positions the top-left corner inside the parent */
   transform: translate(-50%, 0%);
-  -ms-transform: translate(-50%, 0%); /* Adjusts the position based on width and height (left, top) */
+  -ms-transform: translate(
+    -50%,
+    0%
+  ); /* Adjusts the position based on width and height (left, top) */
   width: 320px;
   height: 30px;
   cursor: default;
@@ -470,14 +473,14 @@ main {
 .ite-text {
   color: var(--color-purple);
   text-shadow: 0 0 2px rgb(0, 0, 0), 1px 1px 2px rgb(0, 0, 0);
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 24px;
   font-weight: bold;
 }
 .rate-text {
   color: var(--color-orange);
   text-shadow: 0 0 2px rgb(0, 0, 0), 1px 1px 2px rgb(0, 0, 0);
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 24px;
   font-weight: bold;
 }
@@ -494,7 +497,10 @@ main {
 /* Asset data display boxes */
 @media (max-width: 768px) {
   .textarea2-group-container {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjusts for smaller screen sizes */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(250px, 1fr)
+    ); /* Adjusts for smaller screen sizes */
   }
 }
 
@@ -515,9 +521,9 @@ main {
 /* Main asset buttons */
 @media (max-width: 768px) {
   /* Hide the buttons or elements with specific data-target values */
-  [data-target="culvert-asset-tab"],
-  [data-target="wall-asset-tab"],
-  [data-target="misc-asset-tab"] {
+  [data-target='culvert-asset-tab'],
+  [data-target='wall-asset-tab'],
+  [data-target='misc-asset-tab'] {
     display: none;
   }
 }

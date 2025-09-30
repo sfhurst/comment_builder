@@ -1,0 +1,1 @@
+When not in a textarea pressing 0-9 sets the quanity and severity fields:

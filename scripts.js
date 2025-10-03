@@ -302,6 +302,10 @@ let activeIndex = 0;
 
 // Add a new entry
 function addReportEntry() {
+  // Optional: log the current active entry
+  console.log('Active report entry:', reportEntries[activeIndex]);
+  console.log(activeIndex);
+
   // Step 1: Add new entry with defaults
   const newEntry = {
     id: Date.now(), // unique identifier
@@ -359,17 +363,26 @@ function addReportEntry() {
 
   // Step 4: Update the report the report
   updateReport();
-
   // Optional: log the current active entry
   // console.log('Active report entry:', reportEntries[activeIndex]);
+  console.log('Active report entry:', reportEntries);
+  // console.log(activeIndex);
 }
 
 function cycleReportEntry() {
+  // Optional: log the current active entry
+  console.log('Active report entry:', reportEntries[activeIndex]);
+  console.log(activeIndex);
   if (reportEntries.length === 0) return;
 
   // Step 1: move to next entry
   activeIndex = (activeIndex + 1) % reportEntries.length;
   const entry = reportEntries[activeIndex];
+
+  // Populate textareas
+  document.getElementById('txt01-textarea').value = entry.defect;
+  document.getElementById('txt02-textarea').value = entry.location;
+  document.getElementById('txt03-textarea').value = entry.details;
 
   // Step 2: buttons
   const quantityButtons = Array.from(
@@ -406,10 +419,6 @@ function cycleReportEntry() {
     tempBtn.classList.add('active');
     tempBtn.focus();
   }
-  // Populate textareas
-  document.getElementById('txt01-textarea').value = entry.defect;
-  document.getElementById('txt02-textarea').value = entry.location;
-  document.getElementById('txt03-textarea').value = entry.details;
 
   // Step 4: update report
   updateReport();
@@ -417,6 +426,11 @@ function cycleReportEntry() {
   // Put focus back on the "changeDefectButton"
   const changeBtn = document.getElementById('changeDefectButton');
   if (changeBtn) changeBtn.focus();
+
+  // Optional: log the current active entry
+  // console.log('Active report entry:', reportEntries[activeIndex]);
+  console.log('Active report entry:', reportEntries);
+  // console.log(activeIndex);
 }
 
 function deleteActiveReportEntry() {

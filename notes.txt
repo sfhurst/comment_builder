@@ -1,6 +1,6 @@
 clicking close and copy, maybe output comments to a text file as a log
 
 clicking the template buttons slightly tweak the layout.
-this will allow you to build the templates aroung punctuation.
+this will allow you to build the templates around punctuation.
 maybe they all link so clicking any makes them all fit if they have similar things in common like leading with the.
 adjust the details separately so it can be placed in different ways. maybe.

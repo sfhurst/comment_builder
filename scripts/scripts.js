@@ -601,6 +601,7 @@ const pluralLocationsList = [
 const pluralDefectsList = [
   'cracks',
   'diagonal cracks',
+  'horizontal cracks',
   'longitudinal cracks',
   'map cracks',
   'patches',
@@ -617,6 +618,163 @@ const pluralDefectsList = [
   'vertical cracks',
 ];
 
+const singularDefectsList = [
+  'bend',
+  'corrosion hole',
+  'crack',
+  'deformation',
+  'diagonal crack',
+  'discontinuity',
+  'failure',
+  'fracture',
+  'horizontal crack',
+  'longitudinal crack',
+  'missing bolt',
+  'patch',
+  'pothole',
+  'random crack',
+  'rust hole',
+  'rust spot',
+  'scour hole',
+  'shallow-depth spall',
+  'shallow-depth spall with delamination',
+  'shallow-depth spall with delamination and exposed rebar',
+  'shallow-depth spall with exposed rebar',
+  'spall',
+  'surface defect',
+  'transverse crack',
+  'vertical crack',
+  'void',
+];
+
+const planLocationList = [
+  'Beam 1',
+  'Beam 2',
+  'Beam 3',
+  'Beam 4',
+  'Beam 5',
+  'Beam 6',
+  'Beam 7',
+  'Beam 8',
+  'Beam 9',
+  'Beam 10',
+  'Beam 11',
+  'Beam 12',
+  'Beam 13',
+  'Beam 14',
+  'Beam 15',
+  'Beam 16',
+  'Beam 17',
+  'Beam 18',
+  'Beam 19',
+  'Beam 20',
+  'Span A',
+  'Span B',
+  'Span C',
+  'Span D',
+  'Span E',
+  'Span F',
+  'Span G',
+  'Span H',
+  'Span I',
+  'Span J',
+  'Span K',
+  'Span L',
+  'Span M',
+  'Span N',
+  'Span O',
+  'Span P',
+  'Span Q',
+  'Span R',
+  'Span S',
+  'Span T',
+  'Span U',
+  'Span V',
+  'Span W',
+  'Span X',
+  'Span Y',
+  'Span Z',
+  'Girder 1',
+  'Girder 2',
+  'Girder 3',
+  'Girder 4',
+  'Girder 5',
+  'Girder 6',
+  'Girder 7',
+  'Girder 8',
+  'Girder 9',
+  'Girder 10',
+  'Girder 11',
+  'Girder 12',
+  'Girder 13',
+  'Girder 14',
+  'Girder 15',
+  'Girder 16',
+  'Girder 17',
+  'Girder 18',
+  'Girder 19',
+  'Girder 20',
+  'Pier 2',
+  'Pier 3',
+  'Pier 4',
+  'Pier 5',
+  'Pier 6',
+  'Pier 7',
+  'Pier 8',
+  'Pier 9',
+  'Pier 10',
+  'Pier 11',
+  'Pier 12',
+  'Pier 13',
+  'Pier 14',
+  'Pier 15',
+  'Pier 16',
+  'Pier 17',
+  'Pier 18',
+  'Pier 19',
+  'Pier 20',
+  'Column 1',
+  'Column 2',
+  'Column 3',
+  'Column 4',
+  'Column 5',
+  'Column 6',
+  'Column 7',
+  'Column 8',
+  'Column 9',
+  'Column 10',
+  'Column 11',
+  'Column 12',
+  'Column 13',
+  'Column 14',
+  'Column 15',
+  'Column 16',
+  'Column 17',
+  'Column 18',
+  'Column 19',
+  'Column 20',
+  'Bearing 1',
+  'Bearing 2',
+  'Bearing 3',
+  'Bearing 4',
+  'Bearing 5',
+  'Bearing 6',
+  'Bearing 7',
+  'Bearing 8',
+  'Bearing 9',
+  'Bearing 10',
+  'Bearing 11',
+  'Bearing 12',
+  'Bearing 13',
+  'Bearing 14',
+  'Bearing 15',
+  'Bearing 16',
+  'Bearing 17',
+  'Bearing 18',
+  'Bearing 19',
+  'Bearing 20',
+];
+
 // plural check helper
 function isPluralLocation(location) {
   const lowerLoc = location.toLowerCase();
@@ -629,6 +787,18 @@ function isPluralDefect(defect) {
   return pluralDefectsList.some((plural) => lowerLoc.includes(plural));
 }
 
+// singular check helper
+function isSingularDefect(defect) {
+  const lowerLoc = defect.toLowerCase();
+  return singularDefectsList.some((singular) => lowerLoc.includes(singular));
+}
+
+// plan items helper
+function isPlanLocation(location) {
+  const lowerLoc = location.toLowerCase();
+  return planLocationList.some((plan) => lowerLoc.includes(plan.toLowerCase()));
+}
+
 // Function to get the active button text for a given data-button-class
 function getActiveButtonText(buttonClass) {
   const activeButton = document.querySelector(
@@ -637,7 +807,8 @@ function getActiveButtonText(buttonClass) {
   return activeButton ? activeButton.textContent.trim().toLowerCase() : '';
 }
 
-// Function to build the report string
+let setIndex = 0;
+// --- Build Report ---
 function buildReport() {
   let quantity = getActiveButtonText('quantity-buttons');
   if (quantity === 'x') quantity = '';
@@ -651,79 +822,88 @@ function buildReport() {
   const defect = document.getElementById('txt01-textarea').value.trim();
   const location = document.getElementById('txt02-textarea').value.trim();
   const details = document.getElementById('txt03-textarea').value.trim();
-
-  // decide has/have now
   const locationHasHave = isPluralLocation(location) ? 'have' : 'has';
   const defectIsAre = isPluralDefect(defect) ? 'are' : 'is';
-
-  let report = '';
-  if (details !== '') {
-    switch (templateNumber) {
-      case 1:
-        report = `${quantity} ${severity} defects; ${details}.`;
-        break;
-      case 2:
-        report = `The ${location} ${locationHasHave} ${quantity} ${severity} ${defect}: ${details}.`;
-        break;
-      case 3:
-        report = `There ${defectIsAre} ${quantity} ${severity} ${defect} in the ${location}: ${details}.`;
-        break;
-      case 4:
-        report = `${quantity} ${severity} ${defect} ${defectIsAre} present in the ${location}: ${details}.`;
-        break;
-      case 5:
-        report = `${quantity} ${severity} defects are present; there ${defectIsAre} ${defect} in the ${location}: ${details}.`;
-        break;
-      case 6:
-        report = `${quantity} ${severity} ${defect} in the ${location}: ${details}.`;
-        break;
-      case 7:
-        report = `${location}: ${quantity} ${severity} ${defect}; ${details}.`;
-        break;
-      default:
-        report = `The ${location} ${locationHasHave} ${quantity} ${severity} ${defect}: ${details}.`;
-    }
+  const set = templateSets[setIndex];
+  // --- Select correct template group ---
+  let templateGroup;
+  if (!location && !details) {
+    templateGroup = set.noDetailsLocation; // both blank
+  } else if (!location) {
+    templateGroup = set.noLocation; // location blank
+  } else if (!details) {
+    templateGroup = set.noDetails; // details blank
   } else {
+    templateGroup = set.withDetails; // both present
+  }
+  const templateFn = templateGroup[templateNumber] || templateGroup.default;
+  // --- Build the base report ---
+  let report = templateFn(
+    quantity,
+    severity,
+    defect,
+    location,
+    details,
+    locationHasHave,
+    defectIsAre
+  );
+  // --- Singular defect override ---
+  // const isSingular = isSingularDefect(defect);
+  const activeQuantityButton = document.querySelector(
+    '[data-button-class="quantity-buttons"].active'
+  );
+  const isSingular = isSingularDefect(defect);
+  if (
+    isSingular &&
+    activeQuantityButton?.textContent.trim().toLowerCase() === 'isolated'
+  ) {
+    // Now adjust text in the final sentence
     switch (templateNumber) {
       case 1:
-        report = `${quantity} ${severity} defects.`;
+      case 7:
+        // (none)
         break;
       case 2:
-        report = `The ${location} ${locationHasHave} ${quantity} ${severity} ${defect}.`;
-        break;
       case 3:
-        report = `There ${defectIsAre} ${quantity} ${severity} ${defect} in the ${location}.`;
-        break;
       case 4:
-        report = `${quantity} ${severity} ${defect} ${defectIsAre} present in the ${location}.`;
+      case 6:
+        report = report.replace(/\bisolated\b/i, 'an isolated');
         break;
       case 5:
-        report = `${quantity} ${severity} defects are present; there ${defectIsAre} ${defect} in the ${location}.`;
+        report = report
+          .replace(/\bdefects,\s*mainly\b/i, 'defect, a')
+          .replace(/\bisolated\b/i, 'an isolated');
         break;
-      case 6:
-        report = `${quantity} ${severity} ${defect} in the ${location}.`;
-        break;
-      case 7:
-        report = `${location}: ${quantity} ${severity} ${defect}.`;
-        break;
-      default:
-        report = `The ${location} ${locationHasHave} ${quantity} ${severity} ${defect}.`;
     }
   }
-
-  // clean up spaces and periods
+  // --- Plan defect override ---
+  const isPlan = isPlanLocation(location);
+  if (isPlan) {
+    // Now adjust text in the final sentence
+    switch (templateNumber) {
+      case 1:
+      case 7:
+        // (none)
+        break;
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        report = report.replace(/\bthe\b/i, '');
+        break;
+    }
+  }
+  // --- Cleanup ---
   report = report.replace(/\s{2,}/g, ' ');
   report = report.replace(/\.{2,}/g, '.');
-
-  // Capitalize the very first letter only
   if (report.trim().length > 0) {
-    report = report.replace(/^\s+/, ''); // remove leading spaces
+    report = report.replace(/^\s+/, '');
     const first = report.charAt(0).toUpperCase();
-    const rest = report.slice(1); // leave everything else unchanged
+    const rest = report.slice(1);
     report = first + rest;
   }
-
-  // --- Update the global array here ---
+  // --- Update global array ---
   let entry = reportEntries[activeIndex];
   entry.quantity = quantity;
   entry.severity = severity;
@@ -732,26 +912,17 @@ function buildReport() {
   entry.details = details;
   entry.template = `T${templateNumber}`;
   entry.comment = report;
-
-  // update rating + comment for active defect
+  // rating update
   const activeId = reportEntries[activeIndex].id;
   const rating = getRating(quantity, severity);
-
   reportEntries[activeIndex].rating = rating;
   reportEntries[activeIndex].comment = report;
-
   // sort worst → best
   reportEntries.sort((a, b) => b.rating - a.rating);
-
-  // find the active defect's new index
+  // restore activeIndex by ID
   activeIndex = reportEntries.findIndex((defect) => defect.id === activeId);
-
-  // --- Build the final report by joining all comments ---
+  // --- Final joined report ---
   const finalReport = reportEntries.map((e) => e.comment).join(' ');
-
-  // log for debugging
-  // console.log('Final Report:', finalReport);
-
   return finalReport;
 }
 
@@ -760,6 +931,35 @@ function updateReport() {
   const reportArea = document.getElementById('txt04-textarea');
   reportArea.value = buildReport();
 }
+
+function normalizeLocationCase() {
+  const locationBox2 = document.getElementById('txt02-textarea');
+  if (!locationBox2) return;
+  const typed = locationBox2.value.trim();
+  if (!typed) return;
+  // Match canonical list case-insensitively
+  const match = pluralLocationsList.find(
+    (loc) => loc.toLowerCase() === typed.toLowerCase()
+  );
+  if (match) {
+    locationBox2.value = match; // replace with proper case
+  }
+}
+
+const locationBox2 = document.getElementById('txt02-textarea');
+locationBox2.addEventListener('blur', normalizeLocationCase);
+// Optional: for accepting predictive text via arrow/tab
+locationBox2.addEventListener('keydown', (e) => {
+  if (
+    e.code === 'ArrowRight' ||
+    e.code === 'ArrowLeft' ||
+    e.code === 'ArrowUp' ||
+    e.code === 'ArrowDown' ||
+    e.code === 'Tab'
+  ) {
+    setTimeout(normalizeLocationCase, 0); // run after the browser updates value
+  }
+});
 
 // Add event listeners to all template buttons
 document
@@ -785,6 +985,7 @@ window.addEventListener('DOMContentLoaded', updateReport);
 // Your lists
 const defectsList = [
   'abrasion',
+  'an area of',
   'beam end deterioration',
   'bearing misalignment',
   'chalking',
@@ -1034,21 +1235,53 @@ if (locationBox) attachAutoComplete(locationBox, locationsList);
 
 // Map of hotkeys to sequences of combos
 const hotkeyCombos = {
-  9: [{ quantity: 'Isolated', severity: 'Inherent' }],
+  9: [
+    {
+      quantity: 'Isolated',
+      severity: 'Inherent',
+      details: 'no deficiencies or significant defects found',
+    },
+  ],
   8: [
-    { quantity: 'Some', severity: 'Inherent' },
-    { quantity: 'Widespread', severity: 'Inherent' },
-    { quantity: 'Isolated', severity: 'Minor' },
+    {
+      quantity: 'Some',
+      severity: 'Inherent',
+      details: 'no deficiencies or significant defects found',
+    },
+    {
+      quantity: 'Widespread',
+      severity: 'Inherent',
+      details: 'no deficiencies or significant defects found',
+    },
+    {
+      quantity: 'Isolated',
+      severity: 'Minor',
+      details: 'no deficiencies or significant defects found',
+    },
   ],
   7: [{ quantity: 'Some', severity: 'Minor' }],
   6: [
     { quantity: 'Widespread', severity: 'Minor' },
     { quantity: 'Isolated', severity: 'Moderate' },
   ],
-  5: [{ quantity: 'Some', severity: 'Moderate' }],
+  5: [
+    {
+      quantity: 'Some',
+      severity: 'Moderate',
+      details: 'strength and performance are not affected',
+    },
+  ],
   4: [
-    { quantity: 'Widespread', severity: 'Moderate' },
-    { quantity: 'Isolated', severity: 'Major' },
+    {
+      quantity: 'Widespread',
+      severity: 'Moderate',
+      details: 'strength and/or performance are affected',
+    },
+    {
+      quantity: 'Isolated',
+      severity: 'Major',
+      details: 'strength and/or performance are affected',
+    },
   ],
   x: [
     { quantity: 'X', severity: 'Minor' },
@@ -1058,8 +1291,15 @@ const hotkeyCombos = {
 };
 // Track indices per key so each hotkey cycles separately
 const hotkeyIndex = {};
+// Collect all hotkey detail strings for cleanup
+const allHotkeyDetails = [];
+Object.values(hotkeyCombos).forEach((comboArr) => {
+  comboArr.forEach((c) => {
+    if (c.details) allHotkeyDetails.push(c.details);
+  });
+});
 document.addEventListener('keydown', (e) => {
-  const key = e.key.toLowerCase(); // normalize to lower case
+  const key = e.key.toLowerCase();
   // Only run if key is in our map and we’re not in a text field
   if (
     hotkeyCombos[key] &&
@@ -1071,7 +1311,7 @@ document.addEventListener('keydown', (e) => {
     )
   ) {
     e.preventDefault();
-    // Set index to 0 if this is first time pressing this key
+    // Initialize index for first press
     if (!hotkeyIndex[key] && hotkeyIndex[key] !== 0) hotkeyIndex[key] = 0;
     const combos = hotkeyCombos[key];
     const combo = combos[hotkeyIndex[key]];
@@ -1087,6 +1327,31 @@ document.addEventListener('keydown', (e) => {
       document.querySelectorAll('[data-button-class="severity-buttons"]')
     ).find((btn) => btn.textContent.trim() === combo.severity);
     if (sevBtn) sevBtn.focus();
+    // Handle details textarea
+    const detailsBox = document.getElementById('txt03-textarea');
+    if (detailsBox) {
+      let currentText = detailsBox.value;
+      // Remove any previously added hotkey details
+      allHotkeyDetails.forEach((d) => {
+        const regex = new RegExp(d.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        currentText = currentText.replace(regex, '');
+      });
+      // Clean up extra spaces
+      currentText = currentText.replace(/\s{2,}/g, ' ').trim();
+      // Append new details if present
+      if (combo.details) {
+        currentText = currentText
+          ? `${currentText}; ${combo.details}`
+          : combo.details;
+      }
+      // ALWAYS clean up duplicate or trailing semicolons
+      currentText = currentText
+        .replace(/;;+/g, ';')
+        .replace(/^\s*;\s*|\s*;\s*$/g, '');
+      detailsBox.value = currentText;
+    }
+    // Update the report after hotkey
+    updateReport();
   }
 });
 
@@ -1156,4 +1421,31 @@ buttonClose.addEventListener('keydown', function (evt) {
     openTab({ currentTarget: buttonClose }); // simulate a click
     copyAndClose();
   }
+});
+
+// :::: (Change Template Defaults) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+// Function to cycle template set
+function cycleTemplateSet() {
+  setIndex = (setIndex + 1) % templateSets.length;
+  updateReport(); // rebuild using the new template set
+}
+// Select all template buttons
+const templateButtons = document.querySelectorAll(
+  '[data-button-class="template-buttons"]'
+);
+// Attach listeners to each
+templateButtons.forEach((btn) => {
+  // Handle click
+  btn.addEventListener('click', (evt) => {
+    openTab(evt); // your existing tab behavior
+    cycleTemplateSet();
+  });
+  // Handle Enter or Space keys
+  btn.addEventListener('keydown', (evt) => {
+    if (evt.code === 'Enter' || evt.code === 'Space') {
+      evt.preventDefault(); // prevent default spacebar scroll
+      cycleTemplateSet();
+    }
+  });
 });

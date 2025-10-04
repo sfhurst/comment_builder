@@ -1,3 +1,8 @@
+make another set of templates for a period before the details. capitalize the details sentence.
+change the color of the template buttons when the setIndex changes.
+save the setIndex to the array objects so that these templates are correct.
+match the template preview text to the setIndex for that page. maybe. Maybe just do the buttons.
+
 clicking close and copy, maybe output comments to a text file as a log
 
 clicking the template buttons slightly tweak the layout.

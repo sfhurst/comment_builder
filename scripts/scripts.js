@@ -852,16 +852,18 @@ function buildReport() {
   const activeQuantityButton = document.querySelector(
     '[data-button-class="quantity-buttons"].active'
   );
-  const isSingular = isSingularDefect(defect);
+  const defectTrimmed = defect.trim().toLowerCase();
+  // Exact full match only — no partials like "spalling"
+  const singularMatch = singularDefectsList.some(
+    (d) => defectTrimmed === d.toLowerCase()
+  );
   if (
-    isSingular &&
+    singularMatch &&
     activeQuantityButton?.textContent.trim().toLowerCase() === 'isolated'
   ) {
-    // Now adjust text in the final sentence
     switch (templateNumber) {
       case 1:
       case 7:
-        // (none)
         break;
       case 2:
       case 3:
@@ -993,6 +995,7 @@ const defectsList = [
   'corrosion',
   'cracking',
   'cracking and delamination',
+  'cracking with efflorescence',
   'deep spalling',
   'deformation',
   'delamination',

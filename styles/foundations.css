@@ -202,6 +202,37 @@
   --highlight: rgba(149, 135, 156, 0.7);
 }
 
+[data-theme='red'] {
+  --main-background: url('../media/light-down-black2.svg');
+  --main-background-overlay: rgb(54 54 54 / 0.9);
+  --main-color: rgba(53, 40, 40, 0.9);
+  --text-color: rgb(233 233 233);
+  --content-background-color: rgb(34 34 34 / 0.7);
+  --active-button-color1: rgb(182 182 182);
+  --hover-button-color1: rgb(40 40 65);
+  --inactive-button-color1: rgb(77, 47, 47);
+  --active-button-text-color1: rgb(42 42 42);
+  --hover-button-text-color1: var(--text-color);
+  --inactive-button-text-color1: var(--text-color);
+  --active-button-color2: rgb(182 182 182);
+  --hover-button-color2: rgb(58 88 74);
+  --inactive-button-color2: rgb(65 99 79);
+  --active-button-text-color2: rgb(42 42 42);
+  --hover-button-text-color2: var(--text-color);
+  --inactive-button-text-color2: var(--text-color);
+  --active-button-color3: rgb(182 182 182);
+  --hover-button-color3: rgb(88, 83, 58);
+  --inactive-button-color3: rgb(97, 99, 65);
+  --active-button-text-color3: rgb(42 42 42);
+  --hover-button-text-color3: var(--text-color);
+  --inactive-button-text-color3: var(--text-color);
+
+  --rating-lines: rgba(128, 128, 128, 0.2);
+  --neon-light: rgb(76, 76, 253);
+  --highlight: rgba(63, 63, 63, 0.7);
+  --notes-text: rgba(233 233 233 / 0.6);
+}
+
 html,
 header,
 textarea,

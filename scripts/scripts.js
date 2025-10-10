@@ -807,7 +807,7 @@ function getActiveButtonText(buttonClass) {
   return activeButton ? activeButton.textContent.trim().toLowerCase() : '';
 }
 
-let setIndex = 0;
+let setIndex = 1;
 // --- Build Report ---
 function buildReport() {
   let quantity = getActiveButtonText('quantity-buttons');
@@ -1130,6 +1130,7 @@ const locationsList = [
   'wingwall',
 ];
 const detailsList = [
+  // positive statements
   'no deficiencies or significant defects found',
   'no significant settlement has occurred',
   'rideability is not significantly impacted',

@@ -1129,6 +1129,14 @@ const locationsList = [
   'west railing',
   'wingwall',
 ];
+const detailsList = [
+  'no deficiencies or significant defects found',
+  'no significant settlement has occurred',
+  'rideability is not significantly impacted',
+  'strength and performance are not affected',
+  'there are some insignificant surface defects and areas of staining',
+  'there is no loss of bearing',
+];
 
 // reusable function with backspace + alt support
 function autoComplete(textarea, list, state) {
@@ -1233,6 +1241,8 @@ const defectBox = document.getElementById('txt01-textarea');
 if (defectBox) attachAutoComplete(defectBox, defectsList);
 const locationBox = document.getElementById('txt02-textarea');
 if (locationBox) attachAutoComplete(locationBox, locationsList);
+const detailsBox = document.getElementById('txt03-textarea');
+if (detailsBox) attachAutoComplete(detailsBox, detailsList);
 
 // :::: (Typing Shortcuts For Quantity/Severity Pairs) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 

@@ -1136,6 +1136,7 @@ const detailsList = [
   'strength and performance are not affected',
   'there are some insignificant surface defects and areas of staining',
   'there is no loss of bearing',
+  'there is no obvious deformation or structural instability',
 ];
 
 // reusable function with backspace + alt support

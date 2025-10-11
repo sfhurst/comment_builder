@@ -1,36 +1,24 @@
 // :::: (Textarea Expansion) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-// Expand the textareas and sync txt04-textarea with input from other textareas
-function expandTextarea(event) {
-  // Get the element that triggered the event
-  const activeTextarea = event.target;
+// Expand the textareas when pasted or typed in
+function expandTextarea(event, textareaName) {
+  // Extract the unique part of the textarea name (e.g., txt01 from txt01-textarea)
+  const baseId = textareaName.split('-')[0];
 
-  // Use requestAnimationFrame for smoother updates
+  // Create the IDs for both textarea and review textarea
+  const textareaId = `${baseId}-textarea`;
+
+  // Use requestAnimationFrame to sync the update
   requestAnimationFrame(() => {
-    const textareaElemFinal = document.getElementById('txt04-textarea');
+    // Get the elements for both textareas (if they exist)
+    const textareaElem = document.getElementById(textareaId);
 
-    if (activeTextarea) {
-      activeTextarea.parentNode.dataset.replicatedValue = activeTextarea.value;
-    }
-
-    if (textareaElemFinal) {
-      // Get the ID of the active textarea (e.g., "txt01-textarea")
-      const activeTextareaId = activeTextarea.id;
-
-      // If the event is from a textarea other than txt04, sync its content
-      if (activeTextareaId !== 'txt04-textarea') {
-        textareaElemFinal.value = activeTextarea.value;
-        textareaElemFinal.parentNode.dataset.replicatedValue =
-          textareaElemFinal.value;
-      }
+    // Check if the textarea elements exist and update their replicated values
+    if (textareaElem) {
+      textareaElem.parentNode.dataset.replicatedValue = textareaElem.value;
     }
   });
 }
-
-// Attach event listeners to all relevant textareas
-document.querySelectorAll('[id^="txt"]').forEach((textarea) => {
-  textarea.addEventListener('input', expandTextarea);
-});
 
 // :::: (Activate Button On Click) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -944,7 +932,10 @@ function buildReport() {
 // Function to update txt04-textarea
 function updateReport() {
   const reportArea = document.getElementById('txt04-textarea');
-  reportArea.value = buildReport();
+  if (reportArea) {
+    reportArea.value = buildReport();
+    reportArea.parentNode.dataset.replicatedValue = reportArea.value;
+  }
 }
 
 function normalizeLocationCase() {

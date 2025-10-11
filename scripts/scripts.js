@@ -479,7 +479,7 @@ function copyAndClose() {
 
   // Copy to clipboard
   navigator.clipboard
-    .writeText(textToCopy)
+    .writeText(textToCopy + ' ')
     .then(() => {
       // Success: Log and then close the tab
       console.log('Text successfully copied to clipboard.');

@@ -280,7 +280,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// :::: (Array Work) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// :::: (Array Inuit) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Global array of report entries
 let reportEntries = [
@@ -292,13 +292,15 @@ let reportEntries = [
     defect: '',
     location: '',
     details: '',
-    template: 'T1',
+    template: 'T2',
     comment: 'Some minor defects.',
   },
 ];
 
 // Track active entry
 let activeIndex = 0;
+
+// :::: (Add Defect Button) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Add a new entry
 function addReportEntry() {
@@ -315,7 +317,7 @@ function addReportEntry() {
     defect: '',
     location: '',
     details: '',
-    template: 'T1',
+    template: 'T2',
     comment: 'Some minor defects.',
   };
   reportEntries.push(newEntry);
@@ -343,7 +345,7 @@ function addReportEntry() {
     (btn) => btn.textContent.trim() === 'Minor'
   );
   const defaultTemp = Array.from(templateButtons).find(
-    (btn) => btn.textContent.trim() === 'T1'
+    (btn) => btn.textContent.trim() === 'T2'
   );
 
   if (defaultQty) defaultQty.classList.add('active');
@@ -368,6 +370,8 @@ function addReportEntry() {
   console.log('Active report entry:', reportEntries);
   // console.log(activeIndex);
 }
+
+// :::: (Change Defect Button) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 function cycleReportEntry() {
   // Optional: log the current active entry
@@ -433,6 +437,8 @@ function cycleReportEntry() {
   // console.log(activeIndex);
 }
 
+// :::: (Remove Defect Button) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 function deleteActiveReportEntry() {
   if (reportEntries.length > 1) {
     // Remove the current active entry
@@ -459,25 +465,37 @@ function deleteActiveReportEntry() {
   if (changeBtn) changeBtn.focus();
 }
 
+// :::: (Copy & Close Button) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 function copyAndClose() {
   const defectBox = document.getElementById('txt04-textarea');
-  if (!defectBox) return;
+  if (!defectBox) {
+    console.error('Textarea element not found.');
+    window.close(); // Close the window even if the element isn't found
+    return;
+  }
 
-  const textToCopy = defectBox.value;
+  // Set focus on the textarea to ensure the value is up-to-date
+  defectBox.focus();
 
-  // Copy to clipboard
-  navigator.clipboard
-    .writeText(textToCopy + ' ')
-    .then(() => {
-      // Success: Log and then close the tab
-      console.log('Text successfully copied to clipboard.');
-      window.close();
-    })
-    .catch((err) => {
-      // Error: Log the error and still attempt to close
-      console.error('Failed to copy text: ', err);
-      window.close();
-    });
+  // Use a small delay to ensure the browser registers the focus event
+  setTimeout(() => {
+    const textToCopy = defectBox.value;
+
+    // Copy to clipboard
+    navigator.clipboard
+      .writeText(textToCopy + ' ')
+      .then(() => {
+        // Success: Log and then close the tab
+        console.log('Text successfully copied to clipboard.');
+        window.close();
+      })
+      .catch((err) => {
+        // Error: Log the error and still attempt to close
+        console.error('Failed to copy text: ', err);
+        window.close();
+      });
+  }, 10); // 10ms delay is usually sufficient
 }
 
 // :::: (Comment Order Rating) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -525,7 +543,7 @@ function getRating(quantity, severity) {
   return 0;
 }
 
-// :::: (Set Template Text On Focus) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// :::: (Template Buttons) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // map each template name to the actual template string you want to show
 const templateMap = {
@@ -545,7 +563,7 @@ document.querySelectorAll('.template-buttons').forEach((btn) => {
   });
 });
 
-// :::: (Template Functions) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// :::: (Text Adjusters) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 const pluralLocationsList = [
   'abutment backwalls',
@@ -800,6 +818,8 @@ function isPlanLocation(location) {
   return planLocationList.some((plan) => lowerLoc.includes(plan.toLowerCase()));
 }
 
+// :::: (Build Report) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 // Function to get the active button text for a given data-button-class
 function getActiveButtonText(buttonClass) {
   const activeButton = document.querySelector(
@@ -809,6 +829,7 @@ function getActiveButtonText(buttonClass) {
 }
 
 let setIndex = 1;
+
 // --- Build Report ---
 function buildReport() {
   let quantity = getActiveButtonText('quantity-buttons');
@@ -938,6 +959,8 @@ function updateReport() {
   }
 }
 
+// :::: (Location Adjustments) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 function normalizeLocationCase() {
   const locationBox2 = document.getElementById('txt02-textarea');
   if (!locationBox2) return;
@@ -967,6 +990,8 @@ locationBox2.addEventListener('keydown', (e) => {
   }
 });
 
+// :::: (Template Button Event Listeners) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 // Add event listeners to all template buttons
 document
   .querySelectorAll('.quantity-buttons, .severity-buttons, .template-buttons')
@@ -986,7 +1011,7 @@ document
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', updateReport);
 
-// :::: (Template Functions) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// :::: (Predictive Text) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Your lists
 const defectsList = [
@@ -1144,6 +1169,8 @@ const detailsList = [
   'there is no obvious deformation or structural instability',
 ];
 
+// :::: (Predictive Text Management) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 // reusable function with backspace + alt support
 function autoComplete(textarea, list, state) {
   const val = textarea.value;
@@ -1178,6 +1205,7 @@ function autoComplete(textarea, list, state) {
   }
   updateReport();
 }
+
 function attachAutoComplete(textarea, list) {
   const state = {
     matches: [],
@@ -1242,6 +1270,7 @@ function attachAutoComplete(textarea, list) {
     updateReport();
   });
 }
+
 // hook up your textareas
 const defectBox = document.getElementById('txt01-textarea');
 if (defectBox) attachAutoComplete(defectBox, defectsList);
@@ -1308,6 +1337,7 @@ const hotkeyCombos = {
     { quantity: 'X', severity: 'X' },
   ],
 };
+
 // Track indices per key so each hotkey cycles separately
 const hotkeyIndex = {};
 // Collect all hotkey detail strings for cleanup
@@ -1317,6 +1347,7 @@ Object.values(hotkeyCombos).forEach((comboArr) => {
     if (c.details) allHotkeyDetails.push(c.details);
   });
 });
+
 document.addEventListener('keydown', (e) => {
   const key = e.key.toLowerCase();
   // Only run if key is in our map and we’re not in a text field

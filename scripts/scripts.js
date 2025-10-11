@@ -466,17 +466,18 @@ function copyAndClose() {
   const textToCopy = defectBox.value;
 
   // Copy to clipboard
-  navigator.clipboard.writeText(textToCopy).then(
-    () => {
-      // Successfully copied, then close the tab
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      // Success: Log and then close the tab
+      console.log('Text successfully copied to clipboard.');
       window.close();
-    },
-    (err) => {
+    })
+    .catch((err) => {
+      // Error: Log the error and still attempt to close
       console.error('Failed to copy text: ', err);
-      // Still attempt to close tab even if copy fails
       window.close();
-    }
-  );
+    });
 }
 
 // :::: (Comment Order Rating) // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
